@@ -1,4 +1,3 @@
-import { Appbar } from "@/components/AppBar"
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
@@ -9,13 +8,21 @@ export const Signin = () => {
 
   let navigate = useNavigate();
     const toSignup = () => {
-      let signup = "/signup";
+      let signup = "/choose";
       navigate(signup);
     }
 
   return (
     <>
-
+    <div className="flex justify-between h-16">
+        <div className="flex justify-between items-center space-x-5">
+            <div className="font-league-spartan">jobjolt</div>
+        </div>
+        <div className="flex items-center pr-5">
+            <div> 
+            </div>
+        </div>
+    </div>
 
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -38,6 +45,7 @@ export const Signin = () => {
                   type="email"
                   autoComplete="email"
                   required
+                  onChange={e => setUsername(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -61,6 +69,7 @@ export const Signin = () => {
                   type="password"
                   autoComplete="current-password"
                   required
+                  onChange={e => setPassword(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -70,6 +79,15 @@ export const Signin = () => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={async () => {
+                  const response = await axios.post("http://localhost:3000/api/v1/worker/signin", {
+                      username,
+                      password
+                  });
+                  localStorage.setItem("token", response.data.token)
+                  navigate("/dashboard");
+                  console.log("Successfully signed in !!!");
+              }}
               >
                 Sign in
               </button>
@@ -78,7 +96,8 @@ export const Signin = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not have a account on Jobjolt ?{' '}
-            <button onClick={toSignup} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <button onClick={toSignup}
+                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Sign up
             </button>
           </p>
