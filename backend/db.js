@@ -31,8 +31,18 @@ const workerSchema = new mongoose.Schema({
     }
 });
 
+
+
+const waccountSchema = new mongoose.Schema({
+    workerId: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to Worker model
+        ref: 'Worker',
+        required: true
+    }
+});
+
 const hirerSchema = new mongoose.Schema({
-    username: {
+    husername: {
         type: String,
         required: true,
         unique: true,
@@ -41,30 +51,22 @@ const hirerSchema = new mongoose.Schema({
         minLength: 3,
         maxLength: 30
     },
-    password: {
+    hpassword: {
         type: String,
         required: true,
         minLength: 6
     },
-    firstName: {
+    hfirstName: {
         type: String,
         required: true,
         trim: true,
         maxLength: 50
     },
-    lastName: {
+    hlastName: {
         type: String,
         required: true,
         trim: true,
         maxLength: 50
-    }
-});
-
-const waccountSchema = new mongoose.Schema({
-    workerId: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to Worker model
-        ref: 'Worker',
-        required: true
     }
 });
 

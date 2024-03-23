@@ -3,16 +3,16 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Hirer } = require("../db");
+const { Hirer, Haccount } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
-const { authMiddleware } = require("../middleware");
+const { hauthMiddleware } = require("../middleware");
 
 const signupBody = zod.object({
-    username: zod.string(),
-    firstname: zod.string(),
-    lastname: zod.string(),
-    password: zod.string(),
+    husername: zod.string(),
+    hfirstName: zod.string(),
+    hlastName: zod.string(),
+    hpassword: zod.string(),
 })
 
 router.post("/hsignup", async (req, res) => {
@@ -40,6 +40,11 @@ router.post("/hsignup", async (req, res) => {
         hlastName: req.body.hlastName,
     })
     const hirerId = hirer._id;
+
+    await Haccount.create({
+        hirerId
+    })
+
 
     const token = jwt.sign({
         hirerId
@@ -87,11 +92,11 @@ router.post("/signin", async (req, res) => {
 
 const updateBody = zod.object({
     hpassword: zod.string().optional(),
-    hfirstname: zod.string().optional(),
-    hlastname: zod.string().optional(),
+    hfirstName: zod.string().optional(),
+    hlastName: zod.string().optional(),
 })
 
-router.put("/", authMiddleware, async (req, res) => {
+router.put("/", hauthMiddleware, async (req, res) => {
     const { success } = updateBody.safeParse(req.body)
     if (!success) {
         res.status(411).json({
