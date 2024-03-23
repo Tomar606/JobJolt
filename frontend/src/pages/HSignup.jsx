@@ -28,7 +28,7 @@ export const HSignup = () => {
           </div>
         
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            < div className="space-y-6" >
               
             <div>
                 <div>
@@ -100,7 +100,7 @@ export const HSignup = () => {
                   Sign up
                 </button>
               </div>
-            </form>
+            </div>
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Already have an Account?{' '}

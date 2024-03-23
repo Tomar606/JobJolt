@@ -13,7 +13,7 @@ export const Signin = () => {
     }
 
   return (
-    <>
+    <form className="space-y-6">
     <div className="flex justify-between h-16">
         <div className="flex justify-between items-center space-x-5">
             <div className="font-league-spartan">jobjolt</div>
@@ -77,7 +77,7 @@ export const Signin = () => {
 
             <div>
               <button
-                type="submit"
+                type="button"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={async () => {
                   const response = await axios.post("http://localhost:3000/api/v1/worker/signin", {
@@ -103,6 +103,6 @@ export const Signin = () => {
           </p>
         </div>
       </div>
-    </>
+    </form>
   )
 }
