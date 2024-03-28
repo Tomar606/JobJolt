@@ -1,7 +1,7 @@
-
+import { WorkerBar } from "./WorkerBar"
 
 export const Dashboard = () => {
-    return <div>
-        hello
-    </div>
+  return <div>
+    <WorkerBar/>
+  </div>
 }

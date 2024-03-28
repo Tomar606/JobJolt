@@ -9,6 +9,7 @@ import { Choose } from "./pages/Choose"
 import { HSignup } from "./pages/HSignup"
 import { Home } from "./pages/Home"
 import { Dashboard } from "./pages/Dashboard"
+import { Profile } from "./pages/Profile"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <Route path="/signin" element={<Signin/>}/>
       <Route path="/hsignup" element={<HSignup/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
     </>
