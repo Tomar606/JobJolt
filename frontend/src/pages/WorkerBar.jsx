@@ -112,11 +112,11 @@ export const WorkerBar = () => {
             Company
           </a>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="profile" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+        <button href='profile' className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+</svg>
+        </button>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
@@ -187,12 +187,15 @@ export const WorkerBar = () => {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="profile"
+                <button href
+                src='<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>
+              '
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
-                </a>
+                  hehe
+                </button>
               </div>
             </div>
           </div>
