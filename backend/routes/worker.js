@@ -3,10 +3,13 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Worker, Waccount } = require("../db");
+const { Worker, Waccount, PFP } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { authMiddleware } = require("../middleware");
+const multer = require("multer");
+
+const upload = multer();
 
 const signupBody = zod.object({
     username: zod.string(),
@@ -110,6 +113,29 @@ router.put("/", authMiddleware, async (req, res) => {
     res.json({
         message: "Updated successfully"
     })
+})
+
+// profile picture upload
+
+router.post('/pfp', upload.single('pfp'), async (req, res) => {
+    try {
+        const username = req.params.username;
+        const worker = await Worker.findOne(username);
+
+        if (!worker){
+            return res.status(404).json({ error: "User not found" })
+        }
+
+        worker.pfp.data = req.filter.buffer;
+        worker.pfp.contentType = req.filter.mimetype;
+
+        await worker.save();
+
+        res.json({ message: 'Profile picture uploaded successfully'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error"});
+    }
 })
 
 module.exports = router;
