@@ -84,9 +84,20 @@ const Worker = mongoose.model('Worker', workerSchema);
 const Hirer = mongoose.model('Hirer', hirerSchema);
 const Haccount = mongoose.model('Haccount', haccountSchema);
 
+const pfpSchema = new mongoose.Schema({
+    pfp: {
+        data: Buffer,
+        contentType: String
+    }
+})
+
+const PFP = mongoose.model('pfp', pfpSchema);
+
+
 module.exports = {
 	Worker,
     Waccount,
     Hirer,
-    Haccount
+    Haccount,
+    PFP
 };

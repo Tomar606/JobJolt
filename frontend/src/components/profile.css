@@ -1,0 +1,27 @@
+/* ProfileSection.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Apply font family to elements */
+.profile-section,
+.profile-section * {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Style for the profile box */
+.profile-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    width: 100vw;
+}
+
+/* Style for the profile image */
+.profile-image {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+    border-radius: 50%; /* To make the image circular */
+    margin-right: 20px; /* Add space between the image and text */
+}
