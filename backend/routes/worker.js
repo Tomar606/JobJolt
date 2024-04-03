@@ -1,14 +1,11 @@
 // backend/routes/worker.js
-const express = require('express');
-
-const router = express.Router();
+const express = require('express');const router = express.Router();
+const multer = require('multer');
 const zod = require("zod");
-const { Worker, Waccount, PFP } = require("../db");
+const { authMiddleware } = require("../middleware");
+const { Worker, Waccount, Job} = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
-const { authMiddleware } = require("../middleware");
-const multer = require("multer");
-
 const upload = multer();
 
 const signupBody = zod.object({
@@ -119,15 +116,21 @@ router.put("/", authMiddleware, async (req, res) => {
 
 router.post('/pfp', upload.single('pfp'), async (req, res) => {
     try {
-        const username = req.params.username;
-        const worker = await Worker.findOne(username);
+        const { workerId } = req.body;
+        const worker = await Worker.findById(workerId);
 
         if (!worker){
             return res.status(404).json({ error: "User not found" })
         }
 
-        worker.pfp.data = req.filter.buffer;
-        worker.pfp.contentType = req.filter.mimetype;
+        if (!req.file) {
+            return res.status(400).json({error: "No file uploaded" });
+        }
+
+        worker.pfp = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+        };
 
         await worker.save();
 
@@ -137,5 +140,24 @@ router.post('/pfp', upload.single('pfp'), async (req, res) => {
         res.status(500).json({ error: "Internal server error"});
     }
 })
+
+router.get('/jobs', async (req, res) => {
+    const { page } = req.query;
+    const pageSize = 10; // Number of jobs per page
+    const skip = (page - 1) * pageSize;
+  
+    try {
+      // Fetch paginated jobs from the database
+      const jobs = await Job.find()
+        .skip(skip)
+        .limit(pageSize)
+        .sort({ createdAt: -1 }); // Assuming jobs are sorted by creation date
+  
+      res.json(jobs);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 module.exports = router;
