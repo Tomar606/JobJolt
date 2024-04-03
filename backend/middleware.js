@@ -41,6 +41,16 @@ const hauthMiddleware = (req, res, next) => {
     }
 };
 
+// Function to generate JWT token
+const generateToken = (workerId) => {
+    return jwt.sign({ workerId }, JWT_SECRET, { expiresIn: '1h' }); // Set expiration time as needed
+};
+
+// Example usage: Generate token for a worker with ID '123'
+const token = generateToken('65fdc2b61321dbd27d2221ef');
+console.log(token); // Output the generated token
+
+
 module.exports = {
     authMiddleware,
     hauthMiddleware

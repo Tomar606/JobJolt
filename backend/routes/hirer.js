@@ -3,7 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Hirer, Haccount } = require("../db");
+const { Hirer, Haccount, Job } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { hauthMiddleware } = require("../middleware");
@@ -112,5 +112,28 @@ router.put("/", hauthMiddleware, async (req, res) => {
         message: "Updated successfully"
     })
 })
+
+router.post('/jobs', async (req, res) => {
+    const { title, description, company, location } = req.body;
+  
+    try {
+      // Create a new job
+      const newJob = new Job({
+        title,
+        description,
+        company,
+        location
+      });
+  
+      // Save the job to the database
+      await newJob.save();
+  
+      res.status(201).json(newJob);
+    } catch (error) {
+      console.error('Error creating job:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 module.exports = router;

@@ -87,11 +87,38 @@ const Haccount = mongoose.model('Haccount', haccountSchema);
 const pfpSchema = new mongoose.Schema({
     pfp: {
         data: Buffer,
-        contentType: String
+        contentType: String,
     }
 })
 
-const PFP = mongoose.model('pfp', pfpSchema);
+const PFP = mongoose.model('PFP', pfpSchema);
+
+const jobSchema = new mongoose.Schema({
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    company: {
+      type: String,
+      required: true
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  });
+  
+  // Create the Job model using the schema
+  const Job = mongoose.model('Job', jobSchema);
+  
 
 
 module.exports = {
@@ -99,5 +126,6 @@ module.exports = {
     Waccount,
     Hirer,
     Haccount,
-    PFP
+    PFP,
+    Job
 };
