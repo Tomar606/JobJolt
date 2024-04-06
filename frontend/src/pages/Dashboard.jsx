@@ -1,9 +1,12 @@
 import Feed from "@/components/Jobfeed"
 import { WorkerBar } from "./WorkerBar"
+import { Sidebar } from "@/components/Sidebar"
 
 export const Dashboard = () => {
   return <div>
     <WorkerBar/>
-    <Feed/>
+    <div style={{display:"flex"}}>
+    <Sidebar/><Feed/>
+    </div>
   </div>
 }
