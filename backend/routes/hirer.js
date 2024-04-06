@@ -3,7 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Hirer, Haccount, Job } = require("../db");
+const { Hirer, Haccount, Job, } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { hauthMiddleware } = require("../middleware");
@@ -114,14 +114,21 @@ router.put("/", hauthMiddleware, async (req, res) => {
 })
 
 router.post('/jobs', async (req, res) => {
-    const { title, description, company, location } = req.body;
+    const { _id, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, companyLogo, location } = req.body;
   
     try {
       // Create a new job
       const newJob = new Job({
+        _id,
         title,
         description,
+        eligibilityRequirements,
+        salary,
+        experience,
+        jobType,
+        postedDate,
         company,
+        companyLogo,
         location
       });
   

@@ -160,4 +160,52 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
+  router.post('/like-job/:jobId', async (req, res) => {
+    try {
+      const workerId = req.worker.workerId; // Assuming you have authentication middleware
+      const { jobId } = req.params;
+      
+      // Update worker's liked jobs
+      await Worker.findByIdAndUpdate(workerId, { $addToSet: { likedJobs: jobId } });
+  
+      res.json({ message: 'Job liked successfully' });
+    } catch (error) {
+      console.error('Error liking job:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+  // Route to save a job
+  router.post('/save-job/:jobId', async (req, res) => {
+    try {
+      const workerId = req.user.id; // Assuming you have authentication middleware
+      const { jobId } = req.params;
+      
+      // Update worker's saved jobs
+      await Worker.findByIdAndUpdate(workerId, { $addToSet: { savedJobs: jobId } });
+  
+      res.json({ message: 'Job saved successfully' });
+    } catch (error) {
+      console.error('Error saving job:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+  // Route to apply to a job
+  router.post('/apply-job/:jobId', async (req, res) => {
+    try {
+      const workerId = req.user.id; // Assuming you have authentication middleware
+      const { jobId } = req.params;
+      
+      // Update worker's applied jobs
+      await Worker.findByIdAndUpdate(workerId, { $addToSet: { appliedJobs: { jobId: jobId } } });
+  
+      res.json({ message: 'Job application submitted successfully' });
+    } catch (error) {
+      console.error('Error applying for job:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+
 module.exports = router;

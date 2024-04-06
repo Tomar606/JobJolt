@@ -102,30 +102,96 @@ const jobSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    eligibilityRequirements: {
+      type: String,
+      required: true
+    },
+    salary: {
+      type: String,
+      required: true
+    },
+    experience: {
+      type: String,
+      required: true
+    },
+    jobType: {
+      type: String,
+      required: true
+    },
+    postedDate: {
+      type: Date,
+      required: true
+    },
     company: {
+      type: String,
+      required: true
+    },
+    companyLogo: {
       type: String,
       required: true
     },
     location: {
       type: String,
       required: true
+    }
+  });
+
+  const Job =  mongoose.model("JOB", jobSchema)
+
+  const likedJobSchema = new mongoose.Schema({
+    workerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Worker', // Reference to the Worker model
+      required: true
     },
-    createdAt: {
-      type: Date,
-      default: Date.now
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Job', // Reference to the Job model
+      required: true
     }
   });
   
-  // Create the Job model using the schema
-  const Job = mongoose.model('Job', jobSchema);
+  const LikedJob = mongoose.model('LikedJob', likedJobSchema);
+
+  const savedJobSchema = new mongoose.Schema({
+    workerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Worker', // Reference to the Worker model
+      required: true
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Job', // Reference to the Job model
+      required: true
+    }
+  });
   
+  const SavedJob = mongoose.model('SavedJob', savedJobSchema);
 
-
+  const appliedJobSchema = new mongoose.Schema({
+    workerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Worker', // Reference to the Worker model
+      required: true
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Job', // Reference to the Job model
+      required: true
+    }
+  });
+  
+  const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);
+  
+  
 module.exports = {
 	Worker,
     Waccount,
     Hirer,
     Haccount,
     PFP,
-    Job
+    Job,
+    LikedJob,
+    SavedJob,
+    AppliedJob
 };
