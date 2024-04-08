@@ -12,7 +12,7 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const findWork = [
-  { name: 'Find Work', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'Find Work', description: 'Get a better understanding of your traffic', href: 'findWork', icon: ChartPieIcon },
   { name: 'Your Network', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
   { name: 'Saved Jobs', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Applications', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },

@@ -3,7 +3,7 @@ const express = require('express');const router = express.Router();
 const multer = require('multer');
 const zod = require("zod");
 const { authMiddleware } = require("../middleware");
-const { Worker, Waccount, Job} = require("../db");
+const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJob} = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
@@ -162,11 +162,17 @@ router.get('/jobs', async (req, res) => {
 
   router.post('/like-job/:jobId', async (req, res) => {
     try {
-      const workerId = req.worker.workerId; // Assuming you have authentication middleware
+      // Check if user is authenticated
+      if (!req._id) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+  
+      const workerId = req.user._id; // Access _id from req.user
+      console.log("found!!")
       const { jobId } = req.params;
-      
+  
       // Update worker's liked jobs
-      await Worker.findByIdAndUpdate(workerId, { $addToSet: { likedJobs: jobId } });
+      await LikedJob.create({ workerId, jobId });
   
       res.json({ message: 'Job liked successfully' });
     } catch (error) {
@@ -174,6 +180,8 @@ router.get('/jobs', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
+  
   
   // Route to save a job
   router.post('/save-job/:jobId', async (req, res) => {
