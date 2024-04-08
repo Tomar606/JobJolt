@@ -10,6 +10,7 @@ import { HSignup } from "./pages/HSignup"
 import { Home } from "./pages/Home"
 import { Dashboard } from "./pages/Dashboard"
 import { Profile } from "./pages/Profile"
+import { FindWork } from "./pages/FindWork"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/hsignup" element={<HSignup/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/profile" element={<Profile/>}/>
+      <Route path="/findWork" element={<FindWork/>}/>
       </Routes>
     </BrowserRouter>
     </>
