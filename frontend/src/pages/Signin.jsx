@@ -15,8 +15,8 @@ export const Signin = () => {
   return (
     <form className="space-y-6">
     <div className="flex justify-between h-16">
-        <div className="flex justify-between items-center space-x-5">
-            <div className="font-league-spartan">jobjolt</div>
+        <div className="flex justify-between items-center space-x-5 ">
+            <div className="font-league-spartan">Jobjolt</div>
         </div>
         <div className="flex items-center pr-5">
             <div> 
@@ -85,6 +85,7 @@ export const Signin = () => {
                       password
                   });
                   localStorage.setItem("token", response.data.token)
+                  localStorage.setItem("fname",response.data.fname)
                   navigate("/dashboard");
                   console.log("Successfully signed in !!!");
               }}
@@ -95,7 +96,7 @@ export const Signin = () => {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not have a account on Jobjolt ?{' '}
+            Don't have an account on Jobjolt?{' '}
             <button onClick={toSignup}
                  className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Sign up

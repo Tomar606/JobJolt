@@ -7,7 +7,6 @@ const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJob} = require("../db"
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
-
 const signupBody = zod.object({
     username: zod.string(),
     firstName: zod.string(),
@@ -79,7 +78,8 @@ router.post("/signin", async (req, res) => {
         }, JWT_SECRET);
 
         res.json({
-            token: token
+            token: token,
+            fname: worker.firstName
         })
         return;
     }

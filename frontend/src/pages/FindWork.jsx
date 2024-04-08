@@ -1,5 +1,5 @@
 import { WorkerBar } from "./WorkerBar"
-import Feed from "@/components/Jobfeed"
+import Feed from "@/pages/Jobfeed"
 
 
 export const FindWork = () => {
