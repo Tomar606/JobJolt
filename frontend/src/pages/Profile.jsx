@@ -1,6 +1,6 @@
-import ProfileSection from "@/components/profileSection"
 import { Sidebar } from "../components/Sidebar"
-import { WorkerBar } from "./WorkerBar"
+import { WorkerBar } from "../components/WorkerBar"
+import ProfilePage from "./ProfilePage"
 
 
 
@@ -10,7 +10,7 @@ export const Profile = () => {
         <WorkerBar/>
         <div className="flex">
         <Sidebar/>
-        <ProfileSection/>
+        <ProfilePage/>
         </div>
     </div>
 }

@@ -11,6 +11,7 @@ import { Home } from "./pages/Home"
 import { Dashboard } from "./pages/Dashboard"
 import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
+import { HDashboard } from "./pages/HDashboard"
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/findWork" element={<FindWork/>}/>
+      <Route path="/hdashboard" element={<HDashboard/>}/>
       </Routes>
     </BrowserRouter>
     </>
