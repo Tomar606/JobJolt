@@ -1,4 +1,4 @@
-import { WorkerBar } from "./WorkerBar"
+import { WorkerBar } from "../components/WorkerBar"
 import Feed from "@/components/Jobfeed"
 
 
