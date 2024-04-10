@@ -4,7 +4,6 @@ import JobList from "./Jobfeed"
 
 export const Dashboard = () => {
   return <div>
-    <WorkerBar />
     <Welcome />
     <div className="flex">
       <Sidebar />
