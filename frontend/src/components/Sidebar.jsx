@@ -1,3 +1,4 @@
+import {useNavigate} from "react-router-dom"
 import {
     Card,
     Typography,
@@ -15,13 +16,15 @@ import {
     InboxIcon,
     PowerIcon,
   } from "@heroicons/react/24/solid";
-   
+  
+  
   export const Sidebar = () => {
+    let navigate=useNavigate();
     return (
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
         <div className="mb-2 p-4">
           <Typography variant="h5" color="blue-gray">
-            Sidebar
+            JobJolt v1.0
           </Typography>
         </div>
         <List>
@@ -29,7 +32,9 @@ import {
             <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
-            My Profile
+            <button style={{width:"100%", textAlign:"left"}} onClick={()=>{
+            navigate("/profile")
+            }}>My Profile</button>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -56,7 +61,11 @@ import {
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Log Out
+            <button style={{width:"100%", textAlign:"left"}} onClick={()=>{
+            localStorage.removeItem("token")
+            window.alert("Successfully logged out. Who are you?")
+            navigate("/")
+            }}>Logout</button>
           </ListItem>
         </List>
       </Card>

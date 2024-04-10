@@ -4,17 +4,21 @@ import JobList from "./Jobfeed"
 
 export const Dashboard = () => {
   return <div>
-    <Welcome />
     <div className="flex">
       <Sidebar />
-      <JobList />
+      <div>
+        <Welcome />
+        <JobList />
+      </div>
     </div>
   </div>
 }
 
 function Welcome() {
-  return <div className="bg-gray-200 text-gray-800 text-center py-4 text-lg font-semibold antialiased">
-    Hi there {localStorage.getItem("fname")} <br />
-    Here are the Jobs you can apply for:
-  </div>
+  return (
+    <div className="bg-blue-50 text-gray-900 text-center py-4 antialiased border-blue-500 rounded-md">
+      <p className="text-lg font-semibold mb-2" style={{ fontFamily: 'cursive' }}>Hi there {localStorage.getItem("fname")}!</p>
+      <p style={{ fontFamily: 'cursive' }}>Here are the Jobs you can apply for:</p>
+    </div>
+  );
 }
