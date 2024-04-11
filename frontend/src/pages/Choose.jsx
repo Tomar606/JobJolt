@@ -35,13 +35,13 @@ export const Choose = () => {
                     <br></br>
                     <div className="flex justify-between space-x-6 mt-4">
                         <button
-                            className="w-60 h-52 bg-indigo-400 text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+                            className="w-60 h-52 bg-green-200 text-gray-900 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
                             onClick={toHSignup}
                         >
                             I'm hiring for a project.
                         </button>
                         <button
-                            className="w-60 h-52 bg-indigo-400 text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+                            className="w-60 h-52 bg-blue-200 text-gray-900 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
                             onClick={toSignup}
                         >
                             I'm looking for work.
