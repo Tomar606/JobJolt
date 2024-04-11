@@ -1,18 +1,36 @@
-import { WorkerBar } from "./WorkerBar"
-import { Sidebar } from "@/components/Sidebar"
-import JobList from "./Jobfeed"
+import { useEffect } from "react";
+import { WorkerBar } from "./WorkerBar";
+import { Sidebar } from "@/components/Sidebar";
+import JobList from "./Jobfeed";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
-  return <div>
-    <div className="flex">
-      <Sidebar />
-      <div>
-        <Welcome />
-        <JobList />
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const kickOut = () => {
+    if (!token) {
+      window.alert("Access denied. You need to log in first.");
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    kickOut();
+  }, [token]);
+
+  return (
+    <div>
+      <div className="flex">
+        <Sidebar />
+        <div>
+          <Welcome />
+          <JobList />
+        </div>
       </div>
     </div>
-  </div>
-}
+  );
+};
 
 function Welcome() {
   return (

@@ -15,7 +15,6 @@ export const Home = () => {
 
     const token = localStorage.getItem("token")
     const navigatedashboard = () => {
-        console.log(token)
         if(token){
             navigate("/dashboard")
         }
