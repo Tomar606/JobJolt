@@ -20,7 +20,7 @@ export const Signup = () => {
       <>
         <div className="flex justify-between h-16">
         <div className="flex justify-between items-center space-x-5">
-            <div className="font-league-spartan">jobjolt</div>    
+            <div className="font-league-spartan">JobJolt</div>  
         </div>
         <div className="flex items-center pr-5">
             <div> 

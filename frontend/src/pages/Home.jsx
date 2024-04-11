@@ -15,29 +15,41 @@ export const Home = () => {
 
     const token = localStorage.getItem("token")
     const navigatedashboard = () => {
-        if(token){
+        if (token) {
             navigate("/dashboard")
         }
     }
 
-    useEffect(()=>{navigatedashboard()},[])
-   
+    useEffect(() => { navigatedashboard() }, [])
+
 
     return <div>
-        <div className="flex justify-between h-16">
-            <div className="flex justify-between items-center space-x-5">
-                <div className="font-league-spartan">jobjolt</div>
-                <button className="item-center pl-3 pr-3 ">Hire</button>
-                <button className="item-center pl-3 pr-3 ">Work</button>
-                <button className="item-center pl-3 pr-3">Why JobJolt</button>
+        <div className="flex justify-between items-center h-16 bg-white shadow-md px-5">
+            <div className="flex items-center space-x-6">
+                <div className="font-bold text-xl text-gray-800">JobJolt v1.0</div>
+                <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Hire</button>
+                <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Work</button>
+                <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Why JobJolt</button>
             </div>
-            <div className="flex items-center pr-5">
-                <div>
-                    <button onClick={toSignin} className="item-center pl-3 pr-3 "> Log in</button>
-                    <button onClick={toChoose} className="item-center pl-3 pr-3 "> Sign up</button>
+            <div className="flex items-center space-x-4">
+                <button onClick={toSignin} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log in</button>
+                <button onClick={toChoose} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Sign up</button>
+            </div>
+        </div>
+        <div
+            className="w-full h-screen bg-cover bg-center flex items-center justify-center text-gray-900 text-center"
+            style={{
+                backgroundImage: 'url("https://images.pexels.com/photos/5699475/pexels-photo-5699475.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+            }}
+        >
+            <div className="space-y-4">
+                <div className="text-5xl font-bold border-2 border-white p-4 rounded-lg bg-white bg-opacity-65">
+                    Welcome to JobJolt
+                </div>
+                <div className="text-2xl border-2 border-white p-4 rounded-lg bg-white bg-opacity-65">
+                    Stressing about Management? You got this!
                 </div>
             </div>
         </div>
-        hello
     </div>
 }
