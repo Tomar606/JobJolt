@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Appbar } from "../components/AppBar";
 import { useNavigate } from "react-router-dom";
+import Footer from "@/components/footer";
 
 export const Home = () => {
     let navigate = useNavigate();
@@ -51,5 +52,6 @@ export const Home = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 }
