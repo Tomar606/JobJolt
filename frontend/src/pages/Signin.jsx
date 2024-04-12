@@ -7,26 +7,27 @@ export const Signin = () => {
   const [password, setPassword] = useState("");
 
   let navigate = useNavigate();
-    const toSignup = () => {
-      let signup = "/choose";
-      navigate(signup);
-    }
+  const toSignup = () => {
+    let signup = "/choose";
+    navigate(signup);
+  }
 
   return (
     <form className="space-y-6">
-    <div className="flex justify-between h-16">
-        <div className="flex justify-between items-center space-x-5 ">
-            <div className="font-league-spartan">Jobjolt</div>
+      <div className="flex justify-between h-16">
+        <div className="flex justify-center items-center space-x-5">
+          <div className="font-new-style text-2xl m-2">JobJolt v1.0</div>
         </div>
+
         <div className="flex items-center pr-5">
-            <div> 
-            </div>
+          <div>
+          </div>
         </div>
-    </div>
+      </div>
 
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          
+
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Log in to Jobjolt
           </h2>
@@ -81,14 +82,14 @@ export const Signin = () => {
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={async () => {
                   const response = await axios.post("http://localhost:3000/api/v1/worker/signin", {
-                      username,
-                      password
+                    username,
+                    password
                   });
                   localStorage.setItem("token", response.data.token)
-                  localStorage.setItem("fname",response.data.fname)
+                  localStorage.setItem("fname", response.data.fname)
                   navigate("/dashboard");
                   console.log("Successfully signed in !!!");
-              }}
+                }}
               >
                 Sign in
               </button>
@@ -98,7 +99,7 @@ export const Signin = () => {
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account on Jobjolt?{' '}
             <button onClick={toSignup}
-                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Sign up
             </button>
           </p>
