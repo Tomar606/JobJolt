@@ -80,7 +80,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded shadow">
+    <div className='max-w-full p-6 bg-white rounded shadow'>
       <h2 className="text-xl font-bold mb-6">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
