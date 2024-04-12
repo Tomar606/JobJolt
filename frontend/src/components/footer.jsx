@@ -15,68 +15,68 @@ const Footer = () => {
 
       <div className="space-y-2">
         <div className="font-bold text-lg">CONNECT US</div>
-        <a href="mailto:theshoppiemail@gmail.com" className="flex items-center space-x-2 hover:underline">
+        <a href="mailto:mail@jobjolt.com" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/112-gmail_email_mail-512.png"
             height="30px"
             width="30px"
             alt="Gmail icon"
           />
-          <span>theshoppiemail@gmail.com</span>
+          <span>mail@jobjolt.com</span>
         </a>
-        <a href="https://www.instagram.com/theshoppinghomiez" className="flex items-center space-x-2 hover:underline">
+        <a href="https://www.instagram.com/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"
             height="30px"
             width="30px"
             alt="Instagram icon"
           />
-          <span>@theshoppinghomiez</span>
+          <span>@jobjolt</span>
         </a>
-        <a href="https://www.facebook.com/theshoppinghomiez" className="flex items-center space-x-2 hover:underline">
+        <a href="https://www.facebook.com/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
             height="30px"
             width="30px"
             alt="Facebook icon"
           />
-          <span>@theshoppinghomiez</span>
+          <span>@jobjolt</span>
         </a>
-        <a href="https://twitter.com/theshoppinghomiez" className="flex items-center space-x-2 hover:underline">
+        <a href="https://twitter.com/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png"
             height="30px"
             width="30px"
             alt="Twitter icon"
           />
-          <span>@theshoppinghomiez</span>
+          <span>@jobjolt</span>
         </a>
-        <a href="https://www.youtube.com/theshoppinghomiez" className="flex items-center space-x-2 hover:underline">
+        <a href="https://www.youtube.com/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"
             height="26px"
             width="32px"
             alt="YouTube icon"
           />
-          <span>@theshoppinghomiez</span>
+          <span>@jobjolt</span>
         </a>
-        <a href="https://www.reddit.com/r/theshoppinghomiez" className="flex items-center space-x-2 hover:underline">
+        <a href="https://www.reddit.com/r/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png"
             height="30px"
             width="30px"
             alt="Reddit icon"
           />
-          <span>r/theshoppinghomiez</span>
+          <span>r/jobjolt</span>
         </a>
-        <a href="https://github.com/theshoppinghomies" className="flex items-center space-x-2 hover:underline">
+        <a href="https://github.com/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
             height="30px"
             width="30px"
             alt="GitHub icon"
           />
-          <span>github.com/theshoppinghomies</span>
+          <span>github.com/jobjolt</span>
         </a>
       </div>
 
