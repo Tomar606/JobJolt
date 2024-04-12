@@ -7,7 +7,6 @@ const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJob} = require("../db"
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
-
 const signupBody = zod.object({
     username: zod.string(),
     firstName: zod.string(),
@@ -80,7 +79,11 @@ router.post("/signin", async (req, res) => {
 
         res.json({
             token: token,
+<<<<<<< HEAD
             redirectTo: "/dashboard"
+=======
+            fname: worker.firstName
+>>>>>>> 4c6c903dc364e48e6d6c794d8a5d25eb3480dfa0
         })
         return;
     }

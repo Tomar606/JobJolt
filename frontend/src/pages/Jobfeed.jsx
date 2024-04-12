@@ -46,20 +46,20 @@ const JobList = () => {
 
   return (
     <div>
-      <h1>Job Listings</h1>
       {jobs.map(job => (
-        <div key={job._id} className="border border-gray-200 p-4 rounded-md mb-4">
+        <div key={job._id} className="border border-gray-200 p-4 rounded-md mb-0 container-fluid">
           <h2 className="text-lg font-semibold">{job.title}</h2>
           <p>{job.company}</p>
           <p>{job.description}</p>
           <p>Salary: {job.salary}</p>
           <p>Location: {job.location}</p>
-          <div>
+          <div className="d-flex justify-content-between">
             <button onClick={() => handleApplyJob(job._id)} className="mr-2 bg-blue-500 text-white px-4 py-2 rounded-md">Apply</button>
             <button onClick={() => handleLikeJob(job._id)} className="mr-2 bg-green-500 text-white px-4 py-2 rounded-md">Like</button>
             <button onClick={() => handleSaveJob(job._id)} className="bg-yellow-500 text-white px-4 py-2 rounded-md">Save</button>
           </div>
         </div>
+
       ))}
     </div>
   );

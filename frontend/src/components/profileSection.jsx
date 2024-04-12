@@ -19,13 +19,13 @@ const ProfileSection = () => {
             <div className="profile-section">
                 <div className="profile-header">
                     <img src={profileInfo.image} alt="Profile" className="profile-image" />
-                    <div className="profile-info">
+                    <div className="profile-info p-1">
                         <h2>{profileInfo.name}</h2>
                         <p>{profileInfo.title}</p>
                         <p>{profileInfo.location}</p>
                     </div>
                 </div>
-                <div className="profile-details">
+                <div className="profile-details p-2">
                     <div className="detail">
                         <p>Hourly Rate:</p>
                         <p>{profileInfo.hourlyRate}</p>
