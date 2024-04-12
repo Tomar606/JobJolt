@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { WorkerBar } from "./WorkerBar";
 import { Sidebar } from "@/components/Sidebar";
-import JobList from "./Jobfeed";
+import JobList from "../components/Jobfeed";
 import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
