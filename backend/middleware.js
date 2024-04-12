@@ -47,7 +47,7 @@ const generateToken = (workerId) => {
 };
 
 // Example usage: Generate token for a worker with ID '123'
-const token = generateToken('65fdc2b61321dbd27d2221ef');
+const token = generateToken('65fdcfd6a45aa53d40a7e33b');
 console.log(token); // Output the generated token
 
 

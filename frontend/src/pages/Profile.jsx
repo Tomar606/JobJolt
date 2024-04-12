@@ -8,7 +8,7 @@ export const Profile = () => {
 
     return <div>
         <WorkerBar/>
-        <div className="flex">
+        <div className="flex max-w-full">
         <Sidebar/>
         <ProfilePage/>
         </div>
