@@ -1,6 +1,4 @@
-import { WorkerBar } from "../components/WorkerBar"
 import { useEffect } from "react";
-import { WorkerBar } from "./WorkerBar";
 import { Sidebar } from "@/components/Sidebar";
 import JobList from "./Jobfeed";
 import { useNavigate } from "react-router-dom";

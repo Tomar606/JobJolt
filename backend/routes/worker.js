@@ -79,11 +79,8 @@ router.post("/signin", async (req, res) => {
 
         res.json({
             token: token,
-<<<<<<< HEAD
-            redirectTo: "/dashboard"
-=======
+            redirectTo: "/dashboard",
             fname: worker.firstName
->>>>>>> 4c6c903dc364e48e6d6c794d8a5d25eb3480dfa0
         })
         return;
     }

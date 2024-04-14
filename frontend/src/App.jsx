@@ -11,11 +11,7 @@ import { Home } from "./pages/Home"
 import { Dashboard } from "./pages/Dashboard"
 import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
-<<<<<<< HEAD
 import { HDashboard } from "./pages/HDashboard"
-=======
-import { WorkerBar } from "./pages/WorkerBar"
->>>>>>> 4c6c903dc364e48e6d6c794d8a5d25eb3480dfa0
 
 function App() {
 
