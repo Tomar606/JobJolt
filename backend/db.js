@@ -28,6 +28,24 @@ const workerSchema = new mongoose.Schema({
         required: true,
         trim: true,
         maxLength: 50
+    },
+    dob: {
+      type: String,
+      maxLength: 10
+    },
+    jobTitle: String,
+    skills: [String],
+    experience: String,
+    qualifications: String,
+    hobbies: String,
+    portfolioLinks: [String],
+    resume: {
+      data: Buffer,
+      contentType: String
+    },
+    profilePicture: {
+      data: Buffer,
+      contentType: String
     }
 });
 
@@ -83,15 +101,6 @@ const Worker = mongoose.model('Worker', workerSchema);
 
 const Hirer = mongoose.model('Hirer', hirerSchema);
 const Haccount = mongoose.model('Haccount', haccountSchema);
-
-const pfpSchema = new mongoose.Schema({
-    pfp: {
-        data: Buffer,
-        contentType: String,
-    }
-})
-
-const PFP = mongoose.model('PFP', pfpSchema);
 
 const jobSchema = new mongoose.Schema({
     title: {
@@ -189,7 +198,6 @@ module.exports = {
     Waccount,
     Hirer,
     Haccount,
-    PFP,
     Job,
     LikedJob,
     SavedJob,

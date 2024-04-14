@@ -33,6 +33,8 @@ router.post("/hsignup", async (req, res) => {
         })
     }
 
+    let hfirstName = req.body.hfirstName;
+    
     const hirer = await Hirer.create({
         husername: req.body.husername,
         hpassword: req.body.hpassword,
@@ -52,7 +54,8 @@ router.post("/hsignup", async (req, res) => {
 
     res.json({
         message: "Hirer created successfully",
-        token: token
+        token: token,
+        fname: hfirstName
     })
 })
 
@@ -80,7 +83,8 @@ router.post("/signin", async (req, res) => {
         }, JWT_SECRET);
 
         res.json({
-            token: token
+            token: token,
+            redirectTo: '/hdashboard'
         })
         return;
     }

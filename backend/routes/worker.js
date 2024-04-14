@@ -79,6 +79,7 @@ router.post("/signin", async (req, res) => {
 
         res.json({
             token: token,
+            redirectTo: "/dashboard",
             fname: worker.firstName
         })
         return;
@@ -112,34 +113,37 @@ router.put("/", authMiddleware, async (req, res) => {
     })
 })
 
-// profile picture upload
-
-router.post('/pfp', upload.single('pfp'), async (req, res) => {
+router.put('/profile', async (req, res) => {
     try {
-        const { workerId } = req.body;
-        const worker = await Worker.findById(workerId);
-
-        if (!worker){
-            return res.status(404).json({ error: "User not found" })
-        }
-
-        if (!req.file) {
-            return res.status(400).json({error: "No file uploaded" });
-        }
-
-        worker.pfp = {
-            data: req.file.buffer,
-            contentType: req.file.mimetype
-        };
-
-        await worker.save();
-
-        res.json({ message: 'Profile picture uploaded successfully'});
+      const { firstName, lastName, dateOfBirth, jobTitle, skills, experience, qualifications, hobbies, portfolioLinks } = req.body;
+      let profilePicture;
+      if (req.file) {
+        profilePicture = req.file.filename; // Get the filename of the uploaded file
+      }  
+      // Update the worker's profile information
+      const updatedProfile = {
+        firstName,
+        lastName,
+        dateOfBirth,
+        jobTitle,
+        skills,
+        experience,
+        qualifications,
+        hobbies,
+        portfolioLinks,
+        profilePicture
+      };
+  
+      // Save updated profile information to the database
+      const worker = await Worker.findByIdAndUpdate(req.workerId, updatedProfile, { new: true });
+  
+      res.json({ message: 'Profile updated successfully', worker });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal server error"});
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-})
+  });
+  
 
 router.get('/jobs', async (req, res) => {
     const { page } = req.query;

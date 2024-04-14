@@ -28,16 +28,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const WorkerBar = () => {
+export const HirerBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="hdashboard" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            JobJolt v1.0
+            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -53,7 +53,7 @@ export const WorkerBar = () => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Find Work
+              Find Talent
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
