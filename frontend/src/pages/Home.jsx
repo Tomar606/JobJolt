@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Appbar } from "../components/AppBar";
 import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
