@@ -100,8 +100,9 @@ export const Signup = () => {
                         lastName
                     });
                     console.log("account created");
-                    localStorage.setItem("token", response.data.token);
-                    <Navigate to="/dasboard"/>
+                    localStorage.setItem("wtoken", response.data.wtoken);
+                    localStorage.setItem("wfname", firstName);
+                    navigate("/dashboard")
                     
                 }}
                 type="button"

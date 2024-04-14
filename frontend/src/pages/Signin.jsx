@@ -87,11 +87,23 @@ export const Signin = () => {
                     password
                   });
 
+                  if(response.data.redirectTo=="/dashboard"){
+                    localStorage.setItem("wtoken", response.data.wtoken);
+                    localStorage.setItem("wfname", response.data.wfname);}
+                  
+                  else if(response.data.redirectTo=="/hdashboard"){
+                    localStorage.setItem("htoken", response.data.htoken);
+                    localStorage.setItem("hfname", response.data.hfname);
+                  }
 
-                  localStorage.setItem("token", response.data.token);
-                  localStorage.setItem("fname", response.data.fname);
-
+                  else{
+                    window.alert("Invalid Inputs")
+                  }
+                  
+              
+                  
                   console.log("Successfully signed in !!!");
+                  navigate(response.data.redirectTo)
                   
                 } catch (error) {
                   console.error("Error signing in:", error);

@@ -1,6 +1,7 @@
 // backend/routes/signin.js
 
-const express = require('express');const router = express.Router();
+const express = require('express');
+const router = express.Router();
 const zod = require("zod");
 const { Worker, Hirer} = require("../db");
 const jwt = require("jsonwebtoken");
@@ -29,14 +30,14 @@ router.post("/", async (req, res) => {
     });
 
     if (worker) {
-        const token = jwt.sign({
+        const wtoken = jwt.sign({
             workerId: worker._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
+            wtoken: wtoken,
             redirectTo: "/dashboard",
-            fname: worker.firstName
+            wfname: worker.firstName
         })
         return;
     }
@@ -48,14 +49,14 @@ router.post("/", async (req, res) => {
         });
 
         if (hirer) {
-            const token = jwt.sign({
+            const htoken = jwt.sign({
                 hirerId: hirer._id
             }, JWT_SECRET);
 
             res.json({
-                token: token,
+                htoken: htoken,
                 redirectTo: "/hdashboard",
-                fname: hirer.hfirstName
+                hfname: hirer.hfirstName
             })
             return;
         }

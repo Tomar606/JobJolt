@@ -4,19 +4,19 @@ import JobList from "../components/Jobfeed";
 import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
-    const token = localStorage.getItem("token");
+    const wtoken = localStorage.getItem("wtoken");
     const navigate = useNavigate();
 
     const kickOut = () => {
-        if (!token) {
-            window.alert("Access denied. You need to log in first.");
+        if (!wtoken) {
+            window.alert("You need to log in first as a worker");
             navigate("/");
         }
     };
 
     useEffect(() => {
         kickOut();
-    }, [token]);
+    }, [wtoken]);
 
     return (
         <div className="flex h-screen">
@@ -38,7 +38,7 @@ function Welcome() {
     return (
         <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md">
             <p className="text-lg font-semibold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
-                Hi there {localStorage.getItem("fname")}!
+                Hi there {localStorage.getItem("wfname")}!
             </p>
             <p style={{ fontFamily: 'Arial, sans-serif' }}>
                 Here are the Jobs you can apply for:

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/footer";
 
@@ -12,16 +11,6 @@ export const Home = () => {
         let choose = "/choose";
         navigate(choose);
     }
-
-    const token = localStorage.getItem("token")
-    const navigatedashboard = () => {
-        if (token) {
-            navigate("/dashboard")
-        }
-    }
-
-    useEffect(() => { navigatedashboard() }, [])
-
 
     return <div>
         <div className="flex justify-between items-center h-16 bg-white shadow-md px-5">

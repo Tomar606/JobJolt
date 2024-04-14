@@ -73,7 +73,7 @@ export const Sidebar = () => {
                     <button
                         style={{ width: "100%", textAlign: "left" }}
                         onClick={() => {
-                            localStorage.removeItem("token");
+                            localStorage.clear();
                             window.alert("Successfully logged out.");
                             navigate("/");
                         }}
