@@ -117,13 +117,13 @@ router.put("/", hauthMiddleware, async (req, res) => {
     })
 })
 
-router.post('/jobs', async (req, res) => {
-    const { _id, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, companyLogo, location } = req.body;
+router.post('/post-job', async (req, res) => {
+    const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, companyLogo, location } = req.body;
   
     try {
       // Create a new job
       const newJob = new Job({
-        _id,
+        hirerId,
         title,
         description,
         eligibilityRequirements,

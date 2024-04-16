@@ -103,6 +103,7 @@ const Hirer = mongoose.model('Hirer', hirerSchema);
 const Haccount = mongoose.model('Haccount', haccountSchema);
 
 const jobSchema = new mongoose.Schema({
+  hirerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Hirer', required: true },
     title: {
       type: String,
       required: true
@@ -112,7 +113,7 @@ const jobSchema = new mongoose.Schema({
       required: true
     },
     eligibilityRequirements: {
-      type: String,
+      type: Array,
       required: true
     },
     salary: {
@@ -145,7 +146,7 @@ const jobSchema = new mongoose.Schema({
     }
   });
 
-  const Job =  mongoose.model("JOB", jobSchema)
+  const Job =  mongoose.model("Job", jobSchema)
 
   const likedJobSchema = new mongoose.Schema({
     workerId: {
@@ -191,7 +192,6 @@ const jobSchema = new mongoose.Schema({
   });
   
   const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);
-  
   
 module.exports = {
 	Worker,

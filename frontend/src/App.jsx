@@ -12,11 +12,14 @@ import { Dashboard } from "./pages/Dashboard"
 import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
+import { JobPost } from "./pages/JobPost"
+import { WorkerBar } from "./components/WorkerBar"
 
 function App() {
 
   return (
     <>
+    <WorkerBar/>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}/>
@@ -28,6 +31,7 @@ function App() {
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/findWork" element={<FindWork/>}/>
       <Route path="/hdashboard" element={<HDashboard/>}/>
+      <Route path="/hirer/new-job" element={<JobPost/>}/>
       </Routes>
     </BrowserRouter>
     </>

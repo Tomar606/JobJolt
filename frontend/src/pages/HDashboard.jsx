@@ -1,7 +1,8 @@
 import { HirerBar } from "@/components/HirerBar"
 import { Sidebar } from "@/components/Sidebar"
 import { useNavigate } from "react-router-dom"
-import JobList from "@/components/Jobfeed"
+import { Link } from "react-router-dom"
+
 
 export const HDashboard = () => {
   let navigate = useNavigate()
@@ -12,13 +13,29 @@ export const HDashboard = () => {
   }
   return <div>
     <HirerBar />
-    <div className="flex h-screen">
-      <Sidebar className="h-full" />
-      <div className="flex flex-col flex-grow bg-light-gray h-full overflow-y-auto">
-        <Welcome />
-        <div className="flex-grow p-4 bg-pastel-peach rounded-md">
-          <JobList />
-        </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Hirer Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Link to="/hirer/new-job">
+          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Post a New Job
+          </button>
+        </Link>
+        <Link to="/hirer/posted-jobs">
+          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            View Posted Jobs
+          </button>
+        </Link>
+        <Link to="/hirer/applications">
+          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            View Applications
+          </button>
+        </Link>
+        <Link to="/hirer/watchlist">
+          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            View Watchlist
+          </button>
+        </Link>
       </div>
     </div>
   </div>

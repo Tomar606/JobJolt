@@ -164,6 +164,28 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
+  router.get('/profile', authMiddleware, async (req, res) => {
+    try {
+      // Fetch profile details from the database based on user's ID
+      const worker = await Worker.findById(req.workerId);
+  
+      if (!worker) {
+        return res.status(404).json({ message: 'Profile not found' });
+      }
+
+      // Return profile details in the response
+      res.json({
+        firstName: worker.firstName,
+        lastName: worker.lastName,
+        username: worker.username,
+        // Add other profile fields here
+      });
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
   router.post('/like-job/:jobId', async (req, res) => {
     try {
       // Check if user is authenticated
