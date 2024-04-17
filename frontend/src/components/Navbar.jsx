@@ -15,10 +15,14 @@ const Navbar = () => {
         navigate("/whyjobjolt");
     };
 
+    const toHome = ()=> {
+        navigate("/")
+    }
+
     return (
         <div className="flex justify-between items-center h-16 bg-white shadow-md px-5">
             <div className="flex items-center space-x-6">
-                <div className="font-bold text-xl text-gray-800">JobJolt v1.0</div>
+                <button onClick={toHome} className="font-bold text-xl text-gray-800">JobJolt v1.0</button>
                 <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Hire</button>
                 <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Work</button>
                 <button onClick={toWhyPage} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">

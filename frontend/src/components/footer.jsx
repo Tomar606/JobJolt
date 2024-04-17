@@ -1,12 +1,19 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  let navigate = useNavigate()
+
+  const toAboutUs = ()=> {
+    navigate("/aboutus")
+  }
+
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-800 text-white">
       <div className="space-y-2">
         <div className="font-bold text-lg">ABOUT</div>
         <a href="#" className="block hover:underline">Contact us</a>
-        <a href="#" className="block hover:underline">About us</a>
+        <button onClick={toAboutUs} className="block hover:underline">About us</button>
         <a href="#" className="block hover:underline">Report Infringement</a>
         <a href="#" className="block hover:underline">Privacy Policy</a>
         <a href="#" className="block hover:underline">Terms of Use</a>
@@ -82,10 +89,10 @@ const Footer = () => {
 
       <div className="space-y-2">
         <div className="font-bold text-lg">Registered Office Address</div>
-        <a href="#" className="block hover:underline">Flat number 301, Madhu Chandan Apartments</a>
-        <a href="#" className="block hover:underline">Vallabh Nagar, Indore</a>
-        <a href="#" className="block hover:underline">Pin Code: 452003</a>
-        <a href="#" className="block hover:underline">Madhya Pradesh, India</a>
+        <p>Flat number 301</p>
+        <p>Somewhere in Indore</p>
+        <p>Pin Code: 452XXX</p>
+        <p>Madhya Pradesh, India</p>
       </div>
     </div>
   );

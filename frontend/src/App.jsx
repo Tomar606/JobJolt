@@ -16,7 +16,7 @@ import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
 import { JobPost } from "./pages/JobPost"
 import { WhyJobJolt } from "./pages/WhyJobJolt"
-
+import { AboutUs } from "./pages/AboutUs"
 function App() {
 
   return (
@@ -34,6 +34,7 @@ function App() {
           <Route path="/hdashboard" element={<HDashboard />} />
           <Route path="/hirer/new-job" element={<JobPost />} />
           <Route path="/whyjobjolt" element={<WhyJobJolt />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </BrowserRouter>
     </>
