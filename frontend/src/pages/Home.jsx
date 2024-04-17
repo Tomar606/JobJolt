@@ -11,6 +11,9 @@ export const Home = () => {
         let choose = "/choose";
         navigate(choose);
     }
+    const toWhyPage = ()=> {
+        navigate("/whyjobjolt")
+    }
 
     return <div>
         <div className="flex justify-between items-center h-16 bg-white shadow-md px-5">
@@ -18,7 +21,7 @@ export const Home = () => {
                 <div className="font-bold text-xl text-gray-800">JobJolt v1.0</div>
                 <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Hire</button>
                 <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Work</button>
-                <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Why JobJolt</button>
+                <button onClick={toWhyPage}  className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Why JobJolt</button>
             </div>
             <div className="flex items-center space-x-4">
                 <button onClick={toSignin} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log in</button>

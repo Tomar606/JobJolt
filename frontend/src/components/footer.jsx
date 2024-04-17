@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-800 text-white">
+    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-800 text-white">
       <div className="space-y-2">
         <div className="font-bold text-lg">ABOUT</div>
         <a href="#" className="block hover:underline">Contact us</a>
@@ -69,14 +69,14 @@ const Footer = () => {
           />
           <span>r/jobjolt</span>
         </a>
-        <a href="https://github.com/jobjolt" className="flex items-center space-x-2 hover:underline">
+        <a href="https://github.com/pranshu0604/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
             height="30px"
             width="30px"
             alt="GitHub icon"
           />
-          <span>github.com/jobjolt</span>
+          <span>github.com/pranshu0604/jobjolt</span>
         </a>
       </div>
 
