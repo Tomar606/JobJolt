@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-    <WorkerBar/>
+    {/* <WorkerBar/> */}
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}/>

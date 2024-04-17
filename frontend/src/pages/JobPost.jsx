@@ -23,7 +23,7 @@ export const JobPost = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3000/api/v1/jobs', formData);
+          const response = await axios.post('http://localhost:3000/api/v1/hirer/job', formData);
           console.log('Job posted successfully:', response.data);
           // Redirect to a success page or display a success message
         } catch (error) {
