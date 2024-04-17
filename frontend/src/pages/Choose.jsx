@@ -24,7 +24,7 @@ export const Choose = () => {
             }}
         >
             <div className="flex justify-between h-16 bg-white bg-opacity-50 p-3">
-                <div className="font-league-spartan text-xl">JobJolt v1.0</div>
+                <button onClick={()=>navigate("/")} className="font-league-spartan text-xl bg-white rounded-lg p-1 font-semibold text-center">JobJolt v1.0</button>
             </div>
             <div className="flex flex-col justify-center items-center px-6 py-12 lg:px-8 h-full">
                 <div className="bg-white bg-opacity-75 p-6 rounded-lg shadow-lg text-center w-96">
