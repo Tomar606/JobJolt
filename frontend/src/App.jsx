@@ -14,6 +14,7 @@ import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
 import { JobPost } from "./pages/JobPost"
 import { WorkerBar } from "./components/WorkerBar"
+import HirerJobsPage from "./pages/PostedJobs"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/findWork" element={<FindWork/>}/>
       <Route path="/hdashboard" element={<HDashboard/>}/>
       <Route path="/hirer/new-job" element={<JobPost/>}/>
+      <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
       </Routes>
     </BrowserRouter>
     </>

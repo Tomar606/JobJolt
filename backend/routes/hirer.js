@@ -118,7 +118,7 @@ router.put("/", hauthMiddleware, async (req, res) => {
 })
 
 router.post('/post-job', async (req, res) => {
-    const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, companyLogo, location } = req.body;
+    const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, location } = req.body;
   
     try {
       // Create a new job
@@ -132,7 +132,6 @@ router.post('/post-job', async (req, res) => {
         jobType,
         postedDate,
         company,
-        companyLogo,
         location
       });
   
@@ -142,6 +141,17 @@ router.post('/post-job', async (req, res) => {
       res.status(201).json(newJob);
     } catch (error) {
       console.error('Error creating job:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+  router.get('/jobs', hauthMiddleware, async (req, res) => {
+    try {
+      // Fetch jobs posted by the hirer from the database
+      const jobs = await Job.find({ hirerId: req.hirerId });
+      res.json(jobs);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
