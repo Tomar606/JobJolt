@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 
 export const JobPost = () =>{
+   
+  const hirerId = localStorage.getItem("hirerId");
+  console.log(hirerId);
 
     const [formData, setFormData] = useState({
+        hirerId,
         title: '',
         description: '',
         eligibilityRequirements: '',
@@ -16,6 +20,7 @@ export const JobPost = () =>{
         companyLogo: '',
         location: ''
       });
+
     
       const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,11 +29,13 @@ export const JobPost = () =>{
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3000/api/v1/hirer/post-job', formData);
+          const response = await axios.post('http://localhost:3000/api/v1/hirer/post-job' , formData) ;
           console.log('Job posted successfully:', response.data);
           // Redirect to a success page or display a success message
         } catch (error) {
           console.error('Error posting job:', error);
+          console.log(localStorage.getItem.hirerId)
+          console.log(response.data);
           // Display an error message to the user
         }
       };

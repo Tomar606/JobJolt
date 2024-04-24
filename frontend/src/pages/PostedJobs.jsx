@@ -8,13 +8,9 @@ const HirerJobsPage = () => {
     // Fetch jobs posted by the hirer from the backend API
     const fetchJobs = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3000/api/v1/hirer/jobs', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get('http://localhost:3000/api/v1/hirer/jobs');
         setJobs(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching jobs:', error);
       }

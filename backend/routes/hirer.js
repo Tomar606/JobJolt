@@ -118,9 +118,10 @@ router.put("/", hauthMiddleware, async (req, res) => {
 })
 
 router.post('/post-job', async (req, res) => {
-    const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, location } = req.body;
   
     try {
+        const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, location } = req.body;
+
       // Create a new job
       const newJob = new Job({
         hirerId,
@@ -145,7 +146,7 @@ router.post('/post-job', async (req, res) => {
     }
   });
 
-  router.get('/jobs', hauthMiddleware, async (req, res) => {
+  router.get('/jobs', async (req, res) => {
     try {
       // Fetch jobs posted by the hirer from the database
       const jobs = await Job.find({ hirerId: req.hirerId });
@@ -157,4 +158,4 @@ router.post('/post-job', async (req, res) => {
   });
   
 
-module.exports = router;
+module.exports = router; 
