@@ -146,16 +146,19 @@ router.post('/post-job', async (req, res) => {
     }
   });
 
-  router.get('/jobs', async (req, res) => {
+  router.get('/jobs',  async (req, res) => {
     try {
-      // Fetch jobs posted by the hirer from the database
-      const jobs = await Job.find({ hirerId: req.hirerId });
+      console.log("Fetching jobs for hirerId:", req._id);
+      // Fetch jobs posted by the hirer from the database based on hirerId
+      const jobs = await Job.find({ IdOfHirer: req._id });
+      console.log("Jobs found:", jobs);
       res.json(jobs);
     } catch (error) {
       console.error('Error fetching jobs:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
   
 
 module.exports = router; 
