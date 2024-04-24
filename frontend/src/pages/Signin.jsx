@@ -82,6 +82,9 @@ export const Signin = () => {
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
+                    localStorage.setItem("hirerId", response.data.hirerId);
+                    
+                    console.log(localStorage.getItem("hirerId"))
                   } else {
                     window.alert("Invalid Inputs");
                   }

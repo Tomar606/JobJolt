@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react"
 
 export const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);

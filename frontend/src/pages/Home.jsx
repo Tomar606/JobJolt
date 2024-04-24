@@ -12,6 +12,38 @@ export const Home = () => {
         navigate(choose);
     }
 
+    function logout(){
+        localStorage.clear()
+        window.alert("Successfully logged out.")
+        window.location.reload(false)
+    }
+    
+
+    function ConditionalButtons(){
+        const wtoken = localStorage.getItem("wtoken")
+        const htoken = localStorage.getItem("htoken")
+
+        if(wtoken){
+            return <>
+            <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Visit Profile</button>
+            <button onClick={logout} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log Out</button>
+            </>
+        }
+        else if(htoken){
+            return <>
+            <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Visit Profile</button>
+            <button onClick={logout} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log Out</button>
+            </>
+        }
+        else {
+            return <>
+            <button onClick={toSignin} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log in</button>
+            <button onClick={toChoose} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Sign up</button>
+            </>
+        }
+        
+    }
+
     return <div>
         <div className="flex justify-between items-center h-16 bg-white shadow-md px-5">
             <div className="flex items-center space-x-6">
@@ -21,8 +53,7 @@ export const Home = () => {
                 <button className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Why JobJolt</button>
             </div>
             <div className="flex items-center space-x-4">
-                <button onClick={toSignin} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Log in</button>
-                <button onClick={toChoose} className="py-2 px-4 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200">Sign up</button>
+                <ConditionalButtons/>
             </div>
         </div>
         <div

@@ -33,7 +33,7 @@ const hauthMiddleware = (req, res, next) => {
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
 
-        req.workerId = decoded.workerId;
+        req.hirerId = decoded.hirerId;
 
         next();
     } catch (err) {
