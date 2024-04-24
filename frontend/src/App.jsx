@@ -15,6 +15,7 @@ import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
 import { JobPost } from "./pages/JobPost"
+import HirerJobsPage from "./pages/PostedJobs"
 import { WhyJobJolt } from "./pages/WhyJobJolt"
 import { AboutUs } from "./pages/AboutUs"
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/hirer/new-job" element={<JobPost />} />
           <Route path="/whyjobjolt" element={<WhyJobJolt />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
         </Routes>
       </BrowserRouter>
     </>

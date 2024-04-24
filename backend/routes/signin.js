@@ -56,7 +56,8 @@ router.post("/", async (req, res) => {
             res.json({
                 htoken: htoken,
                 redirectTo: "/hdashboard",
-                hfname: hirer.hfirstName
+                hfname: hirer.hfirstName,
+                hirerId: hirer._id
             })
             return;
         }

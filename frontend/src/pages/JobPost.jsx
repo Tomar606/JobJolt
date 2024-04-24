@@ -1,9 +1,14 @@
-import { useState } from "react";
-import axios from "axios"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
-export const JobPost = () => {
+export const JobPost = () =>{
+   
+  const hirerId = localStorage.getItem("hirerId");
+  console.log(hirerId);
+
     const [formData, setFormData] = useState({
+        hirerId,
         title: '',
         description: '',
         eligibilityRequirements: '',
@@ -15,6 +20,7 @@ export const JobPost = () => {
         companyLogo: '',
         location: ''
       });
+
     
       const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,11 +29,13 @@ export const JobPost = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3000/api/v1/jobs', formData);
+          const response = await axios.post('http://localhost:3000/api/v1/hirer/post-job' , formData) ;
           console.log('Job posted successfully:', response.data);
           // Redirect to a success page or display a success message
         } catch (error) {
           console.error('Error posting job:', error);
+          console.log(localStorage.getItem.hirerId)
+          console.log(response.data);
           // Display an error message to the user
         }
       };
@@ -67,10 +75,6 @@ export const JobPost = () => {
           <div>
             <label htmlFor="company" className="block text-gray-700">Company</label>
             <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-          </div>
-          <div>
-            <label htmlFor="companyLogo" className="block text-gray-700">Company Logo</label>
-            <input type="text" id="companyLogo" name="companyLogo" value={formData.companyLogo} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
           </div>
           <div>
             <label htmlFor="location" className="block text-gray-700">Location</label>
