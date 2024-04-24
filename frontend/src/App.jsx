@@ -1,6 +1,8 @@
-import { BrowserRouter,
-Route,
-Routes } from "react-router-dom"
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom"
 
 
 import { Signup } from "./pages/Signup"
@@ -13,29 +15,38 @@ import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
 import { JobPost } from "./pages/JobPost"
+
 import { WorkerBar } from "./components/WorkerBar"
+
+
+
+import { WhyJobJolt } from "./pages/WhyJobJolt"
+import { AboutUs } from "./pages/AboutUs"
 import HirerJobsPage from "./pages/PostedJobs"
 
 function App() {
 
   return (
     <>
-    {/* <WorkerBar/> */}
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/choose" element={<Choose/>}/>
-      <Route path="/signup" element={<Signup/>}/>
-      <Route path="/signin" element={<Signin/>}/>
-      <Route path="/hsignup" element={<HSignup/>}/>
-      <Route path="/dashboard" element={<Dashboard/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/findWork" element={<FindWork/>}/>
-      <Route path="/hdashboard" element={<HDashboard/>}/>
-      <Route path="/hirer/new-job" element={<JobPost/>}/>
-      <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
-      </Routes>
-    </BrowserRouter>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/choose" element={<Choose />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/hsignup" element={<HSignup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/findWork" element={<FindWork />} />
+          <Route path="/hdashboard" element={<HDashboard />} />
+          <Route path="/hirer/new-job" element={<JobPost />} />
+          <Route path="/whyjobjolt" element={<WhyJobJolt />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
+        </Routes>
+      </BrowserRouter>
+
     </>
   )
 }
