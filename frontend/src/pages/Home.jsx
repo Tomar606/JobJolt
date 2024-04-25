@@ -50,11 +50,7 @@ export const Home = () => {
         navigate("/aboutus")
     }
 
-    function logout(){
-        localStorage.clear()
-        window.alert("Successfully logged out.")
-        window.location.reload(false)
-    }
+
     
 
     function ConditionalButtons(){
