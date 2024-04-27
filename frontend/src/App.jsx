@@ -18,6 +18,7 @@ import { JobPost } from "./pages/JobPost"
 import HirerJobsPage from "./pages/PostedJobs"
 import { WhyJobJolt } from "./pages/WhyJobJolt"
 import { AboutUs } from "./pages/AboutUs"
+import { Applications } from "./pages/Applications"
 function App() {
 
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/whyjobjolt" element={<WhyJobJolt />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
+          <Route path="/hirer/applications" element={<Applications/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -48,14 +48,14 @@ router.post("/hsignup", async (req, res) => {
     })
 
 
-    const token = jwt.sign({
+    const htoken = jwt.sign({
         hirerId
     }, JWT_SECRET);
 
     res.json({
         message: "Hirer created successfully",
-        token: token,
-        fname: hfirstName
+        htoken: htoken,
+        hfname: hfirstName
     })
 })
 
@@ -78,13 +78,14 @@ router.post("/signin", async (req, res) => {
     });
 
     if (hirer) {
-        const token = jwt.sign({
-            hirerId: worker._id
+        const htoken = jwt.sign({
+            hirerId: hirer._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
-            redirectTo: '/hdashboard'
+            htoken: htoken,
+            redirectTo: '/hdashboard',
+            hirerId: hirer._id
         })
         return;
     }
@@ -149,9 +150,8 @@ router.post('/post-job', async (req, res) => {
   router.get('/jobs',  async (req, res) => {
     try {
       console.log("Fetching jobs for hirerId:", req._id);
-      // Fetch jobs posted by the hirer from the database based on hirerId
-      const jobs = await Job.find({ IdOfHirer: req._id });
-      console.log("Jobs found:", jobs);
+      const jobs = await Job.find();
+    //   console.log("Jobs found:", jobs);
       res.json(jobs);
     } catch (error) {
       console.error('Error fetching jobs:', error);

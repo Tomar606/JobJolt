@@ -73,14 +73,15 @@ router.post("/signin", async (req, res) => {
     });
 
     if (worker) {
-        const token = jwt.sign({
+        const wtoken = jwt.sign({
             workerId: worker._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
+            wtoken: wtoken,
             redirectTo: "/dashboard",
-            fname: worker.firstName
+            wfname: worker.firstName,
+            wid:worker._Id
         })
         return;
     }
@@ -228,7 +229,7 @@ router.get('/jobs', async (req, res) => {
   // Route to apply to a job
   router.post('/apply-job/:jobId', async (req, res) => {
     try {
-      const workerId = req.user.id; // Assuming you have authentication middleware
+      const workerId = req.body.id; // Assuming you have authentication middleware
       const { jobId } = req.params;
       
       // Update worker's applied jobs

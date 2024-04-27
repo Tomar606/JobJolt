@@ -20,7 +20,7 @@ const JobList = () => {
   const handleApplyJob = async () => {
     try {
       await axios.post(`http://localhost:3000/api/v1/worker/apply-job/${job._id}`);
-      // You can update the UI or display a message indicating the job was applied to
+      window.alert("Applied for job successfully")
     } catch (error) {
       console.error('Error applying for job:', error);
     }
