@@ -9,6 +9,7 @@ export const AboutUs = () => {
         <div className="bg-gray-100 text-gray-800">
             {/* Add the Navbar at the top */}
             <Navbar />
+            
 
             {/* Content of the About Us page */}
             <div className="max-w-6xl mx-auto p-8 space-y-8">
