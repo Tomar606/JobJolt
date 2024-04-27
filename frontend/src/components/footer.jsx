@@ -1,15 +1,14 @@
-import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const toAboutUs = ()=> {
-    navigate("/aboutus")
-  }
+  const toAboutUs = () => {
+    navigate("/aboutus");
+  };
 
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-800 text-white">
+    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 bg-black text-white border-t border-white">
       <div className="space-y-2">
         <div className="font-bold text-lg">ABOUT</div>
         <a href="#" className="block hover:underline">Contact us</a>
@@ -99,5 +98,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-

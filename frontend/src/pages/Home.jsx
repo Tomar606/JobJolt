@@ -64,23 +64,32 @@ export const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="w-full h-screen bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center">
+            <div className="w-full h-screen bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center relative">
                 <div className="flex flex-col justify-center items-start space-y-4">
-                    <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65">
-                        Welcome to JobJolt
+                    <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
+                        <div className="wrapper"> {/* Wrapping the text in a wrapper */}
+                            Welcome to JobJolt
+                            <div className="shine"></div> {/* Shine animation */}
+                        </div>
                     </div>
-                    <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-black bg-opacity-65">
-                        Stressing about Management?
+                    <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-black bg-opacity-65 relative">
+                        <div className="wrapper"> {/* Wrapping the text in a wrapper */}
+                            No more stress in HRM
+                            <div className="shine"></div> {/* Shine animation */}
+                        </div>
                     </div>
-                    <div className="text-2xl p-4 pt-0 rounded-lg bg-black bg-opacity-65">
-                        You got this!
+                    <div className="text-2xl p-4 pt-0 rounded-lg bg-black bg-opacity-65 relative">
+                        <div className="wrapper"> {/* Wrapping the text in a wrapper */}
+                            You got this!
+                            <div className="shine"></div> {/* Shine animation */}
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-center items-center">
                     <img
                         src={homegraphic2}
                         alt="image"
-                        className="object-cover h-96" 
+                        className="object-cover h-96"
                     />
                 </div>
             </div>

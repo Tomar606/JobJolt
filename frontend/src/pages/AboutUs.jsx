@@ -6,7 +6,7 @@ import GST from "@/assets/GST.jpg"
 
 export const AboutUs = () => {
     return (
-        <div className="bg-gray-100 text-gray-800">
+        <div className="bg-black text-white">
             {/* Add the Navbar at the top */}
             <Navbar />
             
@@ -19,7 +19,7 @@ export const AboutUs = () => {
                 {/* Cards for founders */}
                 <div className="flex space-x-4">
                     {/* Card for Pranshu Pandey */}
-                    <div className="flex items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={PP}
                             alt="Pranshu Pandey"
@@ -34,7 +34,7 @@ export const AboutUs = () => {
                     </div>
 
                     {/* Card for Gaurav Singh Tomar */}
-                    <div className="flex items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={GST}
                             alt="Gaurav Singh Tomar"
