@@ -48,14 +48,14 @@ router.post("/hsignup", async (req, res) => {
     })
 
 
-    const token = jwt.sign({
+    const htoken = jwt.sign({
         hirerId
     }, JWT_SECRET);
 
     res.json({
         message: "Hirer created successfully",
-        token: token,
-        fname: hfirstName
+        htoken: htoken,
+        hfname: hfirstName
     })
 })
 
@@ -78,13 +78,14 @@ router.post("/signin", async (req, res) => {
     });
 
     if (hirer) {
-        const token = jwt.sign({
-            hirerId: worker._id
+        const htoken = jwt.sign({
+            hirerId: hirer._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
-            redirectTo: '/hdashboard'
+            htoken: htoken,
+            redirectTo: '/hdashboard',
+            hirerId: hirer._id
         })
         return;
     }

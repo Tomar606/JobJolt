@@ -4,14 +4,14 @@ import Footer from "@/components/footer";
 
 export const WhyJobJolt = () => {
     return (
-        <div className="bg-gray-100 text-gray-800">
+        <div className="bg-black text-white">
             {/* Add the Navbar at the top */}
             <Navbar />
 
             {/* Rest of the WhyJobJolt page */}
             <br />
             <div className="max-w-6xl mx-auto space-y-8">
-                <div className="p-8 bg-gray-100 text-gray-800">
+                <div className="p-8 bg-black text-white">
                     <div className="space-y-8">
                         <div className="text-3xl font-bold">Why JobJolt</div>
                         <div className="space-y-6">

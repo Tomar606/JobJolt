@@ -79,12 +79,11 @@ export const Signin = () => {
                   if (response.data.redirectTo === "/dashboard") {
                     localStorage.setItem("wtoken", response.data.wtoken);
                     localStorage.setItem("wfname", response.data.wfname);
+                    localStorage.setItem("workerId",response.data.wid)
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
-                    
-                    console.log(localStorage.getItem("hirerId"))
                   } else {
                     window.alert("Invalid Inputs");
                   }

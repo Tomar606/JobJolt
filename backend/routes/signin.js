@@ -8,13 +8,10 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 
 
-
 const signinBody = zod.object({
     username: zod.string().email(),
     password: zod.string()
 })
-
-
 
 router.post("/", async (req, res) => {
     const { success } = signinBody.safeParse(req.body)
