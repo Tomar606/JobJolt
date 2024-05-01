@@ -3,7 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Hirer, Haccount, Job, } = require("../db");
+const { Hirer, Haccount, Job, Applications, } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { hauthMiddleware } = require("../middleware");
@@ -156,6 +156,47 @@ router.post('/post-job', async (req, res) => {
 
     } catch (error) {
       console.error('Error fetching jobs:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+  router.post('/applications', async (req, res) => {
+    try { 
+        const {hirerId, jobId, workerId} = req.body;
+        
+        const newApplication = new Applications({
+            hirerId,
+            jobId,
+            workerId
+        });
+
+        await newApplication.save();
+
+        res.status(201).json(newApplication);
+    }catch (error){
+        console.error('error accessing applications:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+  router.put('/applications', async (req, res) => {
+    try {
+      const { workerId } = req.body;
+
+  
+      const application = await Applications.findOne({ jobId });
+  
+      if (!application) {
+        return res.status(404).json({ message: 'Application not found' });
+      }
+  
+      application.workerIds.push(workerId);
+  
+      await application.save();
+  
+      res.json({ message: 'Application updated successfully' });
+    } catch (error) {
+      console.error('Error updating application:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });

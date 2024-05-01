@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 export const Dashboard = () => {
     const wtoken = localStorage.getItem("wtoken");
@@ -18,17 +19,27 @@ export const Dashboard = () => {
     }, [wtoken]);
 
     return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <Sidebar className="h-full" />
-            
-            {/* Main content area */}
-            <div className="flex flex-col flex-grow bg-light-gray h-full overflow-y-auto">
-                <Welcome />
-                <div className="flex-grow p-4 bg-pastel-peach rounded-md">
-                </div>
-            </div>
-        </div>
+        <div className="flex flex-wrap justify-center mt-10">
+        {/* Tile 1: Job Search */}
+        <Link to="/findWork" className="m-4 p-8 bg-blue-200 rounded-lg shadow-md w-96">
+          <h2 className="text-2xl font-semibold text-center">Job Search</h2>
+        </Link>
+  
+        {/* Tile 2: Applications */}
+        <Link to="/applications" className="m-4 p-8 bg-green-200 rounded-lg shadow-md w-96">
+          <h2 className="text-2xl font-semibold text-center">Applications</h2>
+        </Link>
+  
+        {/* Tile 3: Saved Jobs */}
+        <Link to="/saved-jobs" className="m-4 p-8 bg-yellow-200 rounded-lg shadow-md w-96">
+          <h2 className="text-2xl font-semibold text-center">Saved Jobs</h2>
+        </Link>
+  
+        {/* Tile 4: Messages */}
+        <Link to="/messages" className="m-4 p-8 bg-red-200 rounded-lg shadow-md w-96">
+          <h2 className="text-2xl font-semibold text-center">Messages</h2>
+        </Link>
+      </div>
     );
 };
 

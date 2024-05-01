@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react"
 
 export const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [firstName, setFirstName] = useState("John");
+  const [profileData, setProfileData] = useState(null); // Add profileData state
+  const workerId = localStorage.getItem("workerId");
+  console.log(workerId);
+
   useEffect(() => {
-    // Fetch profile data from backend when component mounts
     const fetchProfileData = async () => {
       try {
+       
         const response = await axios.get("http://localhost:3000/api/v1/worker/profile");
         setProfileData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
@@ -20,7 +23,7 @@ export const ProfilePage = () => {
     fetchProfileData();
   }, []);
 
-
+  const [firstName, setFirstName] = useState("John");
   const [lastName, setLastName] = useState("Doe");
   const [dateOfBirth, setDateOfBirth] = useState("1990-01-01");
   const [gender, setGender] = useState("");
@@ -43,7 +46,7 @@ export const ProfilePage = () => {
     // Update profile data in the backend
     try {
       // Send the form data to the backend
-      const response = await axios.post("http://localhost:3000/api/v1/profile", {
+      const response = await axios.put("http://localhost:3000/api/v1/worker/profile", {
         firstName,
         lastName,
         dateOfBirth,
@@ -94,7 +97,7 @@ export const ProfilePage = () => {
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             ) : (
-              <span className="block mt-1">{firstName}</span>
+              <span className="block mt-1">{profileData && profileData.firstName}</span>
             )}
           </div>
 
@@ -110,7 +113,7 @@ export const ProfilePage = () => {
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             ) : (
-              <span className="block mt-1">{lastName}</span>
+              <span className="block mt-1">{profileData && profileData.lastName}</span>
             )}
           </div>
 
@@ -126,7 +129,7 @@ export const ProfilePage = () => {
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             ) : (
-              <span className="block mt-1">{dateOfBirth}</span>
+              <span className="block mt-1">{profileData && profileData.dateOfBirth}</span>
             )}
           </div>
 
@@ -146,121 +149,121 @@ export const ProfilePage = () => {
                 <option value="other">Other</option>
               </select>
             ) : (
-              <span className="block mt-1">{gender}</span>
+              <span className="block mt-1">{profileData && profileData.gender}</span>
             )}
           </div>
 
           {/* Job Title */}
-<div className="mb-4">
-  <label htmlFor="jobTitle" className="block font-medium text-gray-700">Job Title:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="jobTitle"
-      value={jobTitle}
-      onChange={(e) => setJobTitle(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{jobTitle}</span>
-  )}
-</div>
+          <div className="mb-4">
+            <label htmlFor="jobTitle" className="block font-medium text-gray-700">Job Title:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="jobTitle"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.jobTitle}</span>
+            )}
+          </div>
 
-{/* Skills */}
-<div className="mb-4">
-  <label htmlFor="skills" className="block font-medium text-gray-700">Skills:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="skills"
-      value={skills}
-      onChange={(e) => setSkills(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{skills}</span>
-  )}
-</div>
+          {/* Skills */}
+          <div className="mb-4">
+            <label htmlFor="skills" className="block font-medium text-gray-700">Skills:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="skills"
+                value={skills}
+                onChange={(e) => setSkills(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.skills}</span>
+            )}
+          </div>
 
-{/* Experience */}
-<div className="mb-4">
-  <label htmlFor="experience" className="block font-medium text-gray-700">Experience:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="experience"
-      value={experience}
-      onChange={(e) => setExperience(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{experience}</span>
-  )}
-</div>
+          {/* Experience */}
+          <div className="mb-4">
+            <label htmlFor="experience" className="block font-medium text-gray-700">Experience:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="experience"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.experience}</span>
+            )}
+          </div>
 
-{/* Qualifications */}
-<div className="mb-4">
-  <label htmlFor="qualifications" className="block font-medium text-gray-700">Qualifications:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="qualifications"
-      value={qualifications}
-      onChange={(e) => setQualifications(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{qualifications}</span>
-  )}
-</div>
+          {/* Qualifications */}
+          <div className="mb-4">
+            <label htmlFor="qualifications" className="block font-medium text-gray-700">Qualifications:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="qualifications"
+                value={qualifications}
+                onChange={(e) => setQualifications(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.qualifications}</span>
+            )}
+          </div>
 
-{/* Hobbies */}
-<div className="mb-4">
-  <label htmlFor="hobbies" className="block font-medium text-gray-700">Hobbies:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="hobbies"
-      value={hobbies}
-      onChange={(e) => setHobbies(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{hobbies}</span>
-  )}
-</div>
+          {/* Hobbies */}
+          <div className="mb-4">
+            <label htmlFor="hobbies" className="block font-medium text-gray-700">Hobbies:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="hobbies"
+                value={hobbies}
+                onChange={(e) => setHobbies(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.hobbies}</span>
+            )}
+          </div>
 
-{/* Portfolio Links */}
-<div className="mb-4">
-  <label htmlFor="portfolioLinks" className="block font-medium text-gray-700">Portfolio Links:</label>
-  {isEditMode ? (
-    <input
-      type="text"
-      id="portfolioLinks"
-      value={portfolioLinks}
-      onChange={(e) => setPortfolioLinks(e.target.value)}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{portfolioLinks}</span>
-  )}
-</div>
+          {/* Portfolio Links */}
+          <div className="mb-4">
+            <label htmlFor="portfolioLinks" className="block font-medium text-gray-700">Portfolio Links:</label>
+            {isEditMode ? (
+              <input
+                type="text"
+                id="portfolioLinks"
+                value={portfolioLinks}
+                onChange={(e) => setPortfolioLinks(e.target.value)}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.portfolioLinks}</span>
+            )}
+          </div>
 
-{/* Resume */}
-<div className="mb-4">
-  <label htmlFor="resume" className="block font-medium text-gray-700">Resume:</label>
-  {isEditMode ? (
-    <input
-      type="file"
-      id="resume"
-      accept=".pdf"
-      onChange={(e) => setResume(e.target.files[0])}
-      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  ) : (
-    <span className="block mt-1">{resume ? resume.name : "No file chosen"}</span>
-  )}
-</div>
+          {/* Resume */}
+          <div className="mb-4">
+            <label htmlFor="resume" className="block font-medium text-gray-700">Resume:</label>
+            {isEditMode ? (
+              <input
+                type="file"
+                id="resume"
+                accept=".pdf"
+                onChange={(e) => setResume(e.target.files[0])}
+                className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            ) : (
+              <span className="block mt-1">{profileData && profileData.resume ? profileData.resume.name : "No file chosen"}</span>
+            )}
+          </div>
 
           {isEditMode && (
             <div className="mt-4">
@@ -277,6 +280,5 @@ export const ProfilePage = () => {
     </div>
   );
 };
-
 
 export default ProfilePage;

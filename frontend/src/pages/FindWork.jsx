@@ -1,11 +1,13 @@
 import { Sidebar } from "@/components/Sidebar";
 import JobList from "../components/Jobfeed";
-
+import { SearchBar } from "@/components/SearchBar";
+import { WorkerBar } from "@/components/WorkerBar";
 
 export const FindWork = () => {
 
     return (
         <div>
+            <WorkerBar/>
           <div className="flex h-screen">
             {/* Sidebar */}
             <Sidebar className="h-full" />
@@ -13,6 +15,7 @@ export const FindWork = () => {
             {/* Main content area */}
             <div className="flex flex-col flex-grow bg-light-gray h-full overflow-y-auto">
                 <Welcome />
+                <SearchBar/>
                 <div className="flex-grow p-4 bg-pastel-peach rounded-md">
                     <JobList />
                 </div>
