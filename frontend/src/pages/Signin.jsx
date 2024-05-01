@@ -79,7 +79,7 @@ export const Signin = () => {
                   if (response.data.redirectTo === "/dashboard") {
                     localStorage.setItem("wtoken", response.data.wtoken);
                     localStorage.setItem("wfname", response.data.wfname);
-                    localStorage.setItem("workerId",response.data.wid)
+                    localStorage.setItem("workerId", response.data.workerId);
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
