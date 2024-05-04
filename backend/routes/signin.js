@@ -34,7 +34,8 @@ router.post("/", async (req, res) => {
         res.json({
             wtoken: wtoken,
             redirectTo: "/dashboard",
-            wfname: worker.firstName
+            wfname: worker.firstName,
+            workerId: worker._id
         })
         return;
     }

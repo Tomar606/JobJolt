@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [profileData, setProfileData] = useState(null); // Add profileData state
-  const workerId = localStorage.getItem("workerId");
-  console.log(workerId);
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-       
-        const response = await axios.get("http://localhost:3000/api/v1/worker/profile");
+        const workerId = localStorage.getItem("workerId");
+        const response = await axios.get(`http://localhost:3000/api/v1/worker/profile/${workerId}`);
         setProfileData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -23,16 +21,16 @@ export const ProfilePage = () => {
     fetchProfileData();
   }, []);
 
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setLastName] = useState("Doe");
-  const [dateOfBirth, setDateOfBirth] = useState("1990-01-01");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("");
-  const [jobTitle, setJobTitle] = useState("Software Engineer");
-  const [skills, setSkills] = useState("JavaScript, React");
-  const [experience, setExperience] = useState("5 years");
-  const [qualifications, setQualifications] = useState("Bachelor's degree in Computer Science");
-  const [hobbies, setHobbies] = useState("Reading, hiking");
-  const [portfolioLinks, setPortfolioLinks] = useState("https://example.com");
+  const [jobTitle, setJobTitle] = useState("");
+  const [skills, setSkills] = useState("");
+  const [experience, setExperience] = useState("");
+  const [qualifications, setQualifications] = useState("");
+  const [hobbies, setHobbies] = useState("");
+  const [portfolioLinks, setPortfolioLinks] = useState("");
   const [resume, setResume] = useState(null);
 
   const navigate = useNavigate();
@@ -46,7 +44,7 @@ export const ProfilePage = () => {
     // Update profile data in the backend
     try {
       // Send the form data to the backend
-      const response = await axios.put("http://localhost:3000/api/v1/worker/profile", {
+      const response = await axios.put(`http://localhost:3000/api/v1/worker/profile/${profileData._id}`, {
         firstName,
         lastName,
         dateOfBirth,
