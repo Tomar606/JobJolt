@@ -166,20 +166,28 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
-  router.get('/profile', async (req, res) => {
+  router.get('/profile/:workerId', async (req, res) => {
     try {
+      const { workerId } = req.params;
+      console.log('Worker ID :', workerId);
       // Fetch profile details from the database based on user's ID
-      const worker = await Worker.findById(req.workerId);
-  
+      const worker = await Worker.findById(workerId);
       if (!worker) {
         return res.status(404).json({ message: 'Profile not found' });
       }
-
+  
       // Return profile details in the response
       res.json({
+        username: worker.username,
         firstName: worker.firstName,
         lastName: worker.lastName,
-        username: worker.username,
+        dateOfBirth: worker.dob, // Make sure this matches the field name in your schema
+        jobTitle: worker.jobTitle,
+        skills: worker.skills,
+        experience: worker.experience,
+        qualifications: worker.qualifications,
+        hobbies: worker.hobbies,
+        portfolioLinks: worker.portfolioLinks,
         // Add other profile fields here
       });
     } catch (error) {
@@ -187,6 +195,7 @@ router.get('/jobs', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
 
   router.post('/like-job/:jobId', async (req, res) => {
     try {
