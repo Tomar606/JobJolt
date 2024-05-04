@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { array } = require('zod');
 mongoose.connect("mongodb+srv://Tomar606:Tomar606@jobjolt.udtlr0d.mongodb.net/")
 
 
@@ -189,6 +190,27 @@ const jobSchema = new mongoose.Schema({
   
   const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);
   
+  const applications = new mongoose.Schema({
+    hirerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Hirer',
+      required: true
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Job',
+      required: true
+    },
+    applicants : {
+      type: Array,
+      required: true
+    }
+
+  });
+
+  const Applications = mongoose.model('Applications', applications)
+
+
 module.exports = {
 	Worker,
     Waccount,
@@ -197,5 +219,6 @@ module.exports = {
     Job,
     LikedJob,
     SavedJob,
-    AppliedJob
+    AppliedJob,
+    Applications
 };
