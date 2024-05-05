@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import homegraphic2 from "@/assets/homegraphic2.png";
 import { Link } from "react-scroll";
+import { Us } from "@/components/Us";
 
 export const Home = () => {
     const aboutUsRef = useRef(null);
@@ -45,9 +46,7 @@ export const Home = () => {
                     />
                 </div>
             </div>
-            <div ref={aboutUsRef} className="h-screen bg-gray-100 flex items-center justify-center">
-                <div className="text-4xl">About Us</div>
-            </div>
+            <Us/>
             <div ref={whyJobjoltRef} className="h-screen bg-gray-200 flex items-center justify-center">
                 <div className="text-4xl">Why JobJolt?</div>
             </div>
