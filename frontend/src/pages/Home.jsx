@@ -8,7 +8,6 @@ import { Us } from "@/components/Us";
 export const Home = () => {
     const aboutUsRef = useRef(null);
     const whyJobjoltRef = useRef(null);
-    const contactUsRef = useRef(null);
 
     const scrollToRef = (ref) => {
         window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" });
@@ -17,7 +16,7 @@ export const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="w-full h-screen bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center relative">
+            <div className="w-full h-4/5 bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center relative">
                 <div className="flex flex-col justify-center items-start space-y-4">
                     <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
                         <div className="wrapper">
@@ -49,9 +48,6 @@ export const Home = () => {
             <Us/>
             <div ref={whyJobjoltRef} className="h-screen bg-gray-200 flex items-center justify-center">
                 <div className="text-4xl">Why JobJolt?</div>
-            </div>
-            <div ref={contactUsRef} className="h-screen bg-gray-300 flex items-center justify-center">
-                <div className="text-4xl">Contact Us</div>
             </div>
             <Link to="home" smooth={true} duration={1000} className="fixed bottom-10 right-10 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full">
                 <i className="fas fa-arrow-up"></i>
