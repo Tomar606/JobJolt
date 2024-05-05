@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const JobList = () => {
+  const workerId = localStorage.getItem("workerId");
+
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -10,34 +12,38 @@ const JobList = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/worker/jobs`); // Assuming your backend endpoint is '/jobs'
+      const response = await axios.get(`http://localhost:3000/api/v1/worker/jobs`);
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
   };
 
-  const handleApplyJob = async () => {
+  const handleApplyJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/apply-job/${job._id}`);
+      await axios.post(`http://localhost:3000/api/v1/worker/apply-job/${jobId}`);
       window.alert("Applied for job successfully")
     } catch (error) {
       console.error('Error applying for job:', error);
     }
   };
 
-
-  const handleLikeJob = async () => {
+  const handleLikeJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/like-job/${job._id}`);
+      await axios.post(`http://localhost:3000/api/v1/worker/like-job/${jobId}`);
       // You can update the UI or display a message indicating the job was liked
     } catch (error) {
       console.error('Error liking job:', error);
     }
   };
-  const handleSaveJob = async () => {
+
+  const handleSaveJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/save-job/${job._id}`);
+      console.log(jobId)
+      await axios.post(`http://localhost:3000/api/v1/worker/saved-jobs`, {
+        workerId,
+        jobId
+      });
       // You can update the UI or display a message indicating the job was saved
     } catch (error) {
       console.error('Error saving job:', error);

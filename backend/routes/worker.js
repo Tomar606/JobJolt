@@ -1,12 +1,14 @@
 // backend/routes/worker.js
-const express = require('express');const router = express.Router();
+const express = require('express');
+const router = express.Router();
 const multer = require('multer');
 const zod = require("zod");
 const { authMiddleware } = require("../middleware");
-const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJob} = require("../db");
+const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJobs } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
+
 const signupBody = zod.object({
     username: zod.string(),
     firstName: zod.string(),
@@ -115,36 +117,37 @@ router.put("/", authMiddleware, async (req, res) => {
 })
 
 router.put('/profile', async (req, res) => {
-    try {
-      const { firstName, lastName, dateOfBirth, jobTitle, skills, experience, qualifications, hobbies, portfolioLinks } = req.body;
-      let profilePicture;
-      if (req.file) {
-        profilePicture = req.file.filename; // Get the filename of the uploaded file
-      }  
-      // Update the worker's profile information
-      const updatedProfile = {
-        firstName,
-        lastName,
-        dateOfBirth,
-        jobTitle,
-        skills,
-        experience,
-        qualifications,
-        hobbies,
-        portfolioLinks,
-        profilePicture,
+  try {
+    const { firstName, lastName, dateOfBirth, gender, jobTitle, skills, experience, qualifications, hobbies, portfolioLinks } = req.body;
+    let profilePicture;
+    if (req.file) {
+      profilePicture = req.file.filename; // Get the filename of the uploaded file
+    }  
+    // Update the worker's profile information
+    const updatedProfile = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      gender,
+      jobTitle,
+      skills,
+      experience,
+      qualifications,
+      hobbies,
+      portfolioLinks,
+      profilePicture,
+    };
 
-      };
-  
-      // Save updated profile information to the database
-      const worker = await Worker.findByIdAndUpdate(req.workerId, updatedProfile, { new: true });
-  
-      res.json({ message: 'Profile updated successfully', worker });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+    // Save updated profile information to the database
+    const worker = await Worker.findByIdAndUpdate(req.params.workerId, updatedProfile, { new: true });
+
+    res.json({ message: 'Profile updated successfully', worker });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
   
 
 router.get('/jobs', async (req, res) => {
@@ -221,6 +224,36 @@ router.get('/jobs', async (req, res) => {
   
   
   // Route to save a job
+
+  router.get("/saved-jobs", async (req, res) => {
+    try {
+      const workerId = req.workerId;
+      const savedJobs = await SavedJobs.findOne({ workerId }).populate("savedJobs");
+      if (!savedJobs) {
+        return res.status(404).json({ message: "Saved jobs not found for this worker" });
+      }
+      res.json(savedJobs.savedJobs);
+    } catch (error) {
+      console.error("Error fetching saved jobs:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+  
+  // Route to save a job for a worker
+  router.post("/saved-jobs", async (req, res) => {
+    try {
+      const { workerId, jobId } = req.body;
+      const savedJobs = await SavedJobs.findOneAndUpdate(
+        { workerId },
+        { $addToSet: { savedJobs: jobId } }, // Add jobId to the savedJobs array if it's not already present
+        { upsert: true, new: true }
+      );
+      res.json(savedJobs);
+    } catch (error) {
+      console.error("Error saving job:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
   
   
