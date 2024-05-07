@@ -15,14 +15,11 @@ import { Profile } from "./pages/Profile"
 import { FindWork } from "./pages/FindWork"
 import { HDashboard } from "./pages/HDashboard"
 import { JobPost } from "./pages/JobPost"
-
-import { WorkerBar } from "./components/WorkerBar"
-
-
-
 import { WhyJobJolt } from "./pages/WhyJobJolt"
 import { AboutUs } from "./pages/AboutUs"
 import HirerJobsPage from "./pages/PostedJobs"
+import { Applications } from "./pages/Applications"
+import SavedJobsPage from "./pages/Savedjobs"
 
 function App() {
 
@@ -43,6 +40,8 @@ function App() {
           <Route path="/whyjobjolt" element={<WhyJobJolt />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/hirer/posted-jobs" element={<HirerJobsPage/>}/>
+          <Route path="/applications" element={<Applications/>}/>
+          <Route path="/saved-jobs" element={<SavedJobsPage/>}/>
         </Routes>
       </BrowserRouter>
 
