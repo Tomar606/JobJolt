@@ -23,6 +23,7 @@ import { AboutUs } from "./pages/AboutUs"
 import HirerJobsPage from "./pages/PostedJobs"
 import { Applications } from "./pages/Applications"
 import { SavedJobsPage } from "./pages/Savedjobs"
+import { HirerApplicationsPage } from "./pages/HApplications"
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/hirer/posted-jobs" element={<HirerJobsPage />} />
           <Route path="/applications" element={<Applications />} />
           <Route path="/saved-jobs" element={<SavedJobsPage />} />
+          <Route path="/hirer/applications" element={<HirerApplicationsPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer
