@@ -1,3 +1,6 @@
+import React from "react"
+import { Flip, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 import { HirerBar } from "@/components/HirerBar"
 import { Sidebar } from "@/components/Sidebar"
 import {  useNavigate } from "react-router-dom"
@@ -8,7 +11,17 @@ export const HDashboard = () => {
   const navigate = useNavigate()
   const htoken = localStorage.getItem("htoken")
   if (!htoken) {
-    window.alert("Please sign in as a hirer first")
+    toast.warn('Please sign in as a hirer first...', {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+      });
     navigate("/")
   }
   
