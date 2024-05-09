@@ -193,25 +193,24 @@ const jobSchema = new mongoose.Schema({
   
   const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);
   
-  const applications = new mongoose.Schema({
+  const applicationsSchema = new mongoose.Schema({
     hirerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Hirer',
+      ref: 'Hirer', // Reference to the Hirer model
       required: true
     },
     jobId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job',
+      ref: 'Job', // Reference to the Job model
       required: true
     },
-    applicants : {
-      type: Array,
-      required: true
-    }
-
+    applicants: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Worker' // Reference to the Worker model
+    }]
   });
-
-  const Applications = mongoose.model('Applications', applications)
+  
+  const Applications = mongoose.model('Applications', applicationsSchema);
 
 
 module.exports = {
