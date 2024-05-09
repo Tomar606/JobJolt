@@ -253,6 +253,24 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
+  router.delete("/saved-jobs/:workerId/:jobId", async (req, res) => {
+    try {
+      const { workerId, jobId } = req.params;
+      const savedJobs = await SavedJobs.findOne({ workerId });
+      if (!savedJobs) {
+        return res.status(404).json({ message: "Saved jobs not found" });
+      }
+      const updatedSavedJobs = savedJobs.savedJobs.filter((id) => id.toString() !== jobId);
+      savedJobs.savedJobs = updatedSavedJobs;
+      await savedJobs.save();
+      res.json({ message: "Job unsaved successfully" });
+    } catch (error) {
+      console.error("Error unsaving job:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+  
+
   
   
   
