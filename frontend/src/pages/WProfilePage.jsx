@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ProfilePage = () => {
+const WProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [profileData, setProfileData] = useState(null); // Add profileData state
 
@@ -279,4 +279,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default WProfilePage;

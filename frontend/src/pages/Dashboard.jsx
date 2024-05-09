@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 
 export const Dashboard = () => {
   const wtoken = localStorage.getItem("wtoken");
@@ -32,6 +33,7 @@ export const Dashboard = () => {
 
   return (
     <div>
+      <Navbar/>
       <Welcome />
       <div className="flex flex-wrap justify-center mt-10">
         {/* Tile 1: Job Search */}

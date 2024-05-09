@@ -3,8 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import homegraphic2 from "@/assets/homegraphic2.png";
 import { Link } from "react-scroll";
-import { Us } from "@/components/Us";
-import { WhyUs } from "@/components/WhyUs";
+import { UsInShort } from "@/components/UsInShort";
+import { WhyInShort } from "@/components/WhyInShort";
 
 export const Home = () => {
     const aboutUsRef = useRef(null);
@@ -37,8 +37,8 @@ export const Home = () => {
                     />
                 </div>
             </div>
-            <WhyUs/>
-            <Us />
+            <WhyInShort/>
+            <UsInShort />
             <Link to="home" smooth={true} duration={1000} className="fixed bottom-10 right-10 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full">
                 <i className="fas fa-arrow-up"></i>
             </Link>

@@ -7,6 +7,42 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("wtoken") || !!localStorage.getItem("htoken"));
 
+    const toWork = () => {
+        if(localStorage.getItem("wtoken")){
+            navigate('/dashboard')
+        }else{
+            toast.error('Sign in as a Worker to access Worker Dashboard!', {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+                });
+        }
+    }
+
+    const toHire = () => {
+        if(localStorage.getItem("htoken")){
+            navigate('/hdashboard')
+        }else{
+            toast.error('Sign in as a Hirer to access Hirer Dashboard!', {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+                });
+        }        
+    }
+
     const toSignin = () => {
         navigate("/signin");
     };
@@ -20,7 +56,22 @@ const Navbar = () => {
     };
 
     const toProfile = () => {
-        navigate("/profile");
+        if(localStorage.getItem("wtoken")){
+            navigate("/wprofile");
+        }
+        else if(localStorage.getItem("htoken")){
+            toast.info('Hirer profile page is currently under development', {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+                });
+        }
     };
 
     const logout = () => {
@@ -36,7 +87,7 @@ const Navbar = () => {
             transition: Flip,
         });
         localStorage.clear();
-        setIsLoggedIn(false); // Update isLoggedIn state
+        setIsLoggedIn(false); 
     };
 
     const toAboutUs = () => {
@@ -75,10 +126,10 @@ const Navbar = () => {
                 <button onClick={() => navigate("/")} className="font-bold text-xl text-white hover:text-gray-200 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                     JobJolt v1.0
                 </button>
-                <button className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110">
+                <button onClick={toHire} className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110">
                     Hire
                 </button>
-                <button className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110">
+                <button onClick={toWork} className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110">
                     Work
                 </button>
                 <button onClick={toAboutUs} className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110">
