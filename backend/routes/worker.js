@@ -222,20 +222,18 @@ router.get('/jobs', async (req, res) => {
   });
   
   
-  
-  // Route to save a job
 
-  router.get("/saved-jobs", async (req, res) => {
+
+  router.get("/saved-jobs/:workerId", async (req, res) => {
     try {
-      const workerId = req.workerId;
-      const savedJobs = await SavedJobs.findOne({ workerId }).populate("savedJobs");
-      if (!savedJobs) {
-        return res.status(404).json({ message: "Saved jobs not found for this worker" });
-      }
-      res.json(savedJobs.savedJobs);
+      const savedJobs = await SavedJobs.findOne({ workerId: req.params.workerId });
+      const jobIds = savedJobs.savedJobs;
+      const sjobs = await Job.find({ _id: { $in: jobIds } });
+      res.json(sjobs);
     } catch (error) {
-      console.error("Error fetching saved jobs:", error);
-      res.status(500).json({ message: "Internal server error" });
+      console.log("error");
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
   
