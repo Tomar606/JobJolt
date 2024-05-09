@@ -160,20 +160,21 @@ const jobSchema = new mongoose.Schema({
   
   const LikedJob = mongoose.model('LikedJob', likedJobSchema);
 
-  const savedJobSchema = new mongoose.Schema({
+  const savedJobsSchema = new mongoose.Schema({
     workerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Worker', // Reference to the Worker model
-      required: true
+      ref: "Worker", // Reference to the Worker model
+      required: true,
     },
-    jobId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
-      required: true
-    }
+    savedJobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job", // Reference to the Job model
+      },
+    ],
   });
   
-  const SavedJob = mongoose.model('SavedJob', savedJobSchema);
+  const SavedJobs = mongoose.model("SavedJobs", savedJobsSchema);
 
   const appliedJobSchema = new mongoose.Schema({
     workerId: {
@@ -218,7 +219,7 @@ module.exports = {
     Haccount,
     Job,
     LikedJob,
-    SavedJob,
+    SavedJobs,
     AppliedJob,
     Applications
 };

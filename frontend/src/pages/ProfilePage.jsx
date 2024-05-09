@@ -44,7 +44,7 @@ const ProfilePage = () => {
     // Update profile data in the backend
     try {
       // Send the form data to the backend
-      const response = await axios.put(`http://localhost:3000/api/v1/worker/profile/${profileData._id}`, {
+      const response = await axios.put(`http://localhost:3000/api/v1/worker/profile`, {
         firstName,
         lastName,
         dateOfBirth,
