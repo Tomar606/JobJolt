@@ -88,6 +88,7 @@ const Navbar = () => {
         });
         localStorage.clear();
         setIsLoggedIn(false); 
+        navigate('/')
     };
 
     const toAboutUs = () => {
