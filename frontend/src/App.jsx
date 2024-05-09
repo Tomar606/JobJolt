@@ -19,10 +19,9 @@ import { WhyJobJolt } from "./pages/WhyJobJolt"
 import { AboutUs } from "./pages/AboutUs"
 import HirerJobsPage from "./pages/PostedJobs"
 import { Applications } from "./pages/Applications"
-import SavedJobsPage from "./pages/Savedjobs"
+import { SavedJobsPage } from "./pages/Savedjobs"
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
@@ -44,7 +43,6 @@ function App() {
           <Route path="/saved-jobs" element={<SavedJobsPage/>}/>
         </Routes>
       </BrowserRouter>
-
     </>
   )
 }
