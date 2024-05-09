@@ -182,11 +182,13 @@ const jobSchema = new mongoose.Schema({
       ref: 'Worker', // Reference to the Worker model
       required: true
     },
-    jobId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
-      required: true
-    }
+    jobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job', // Reference to the Job model
+        required: true
+      }
+    ]
   });
   
   const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);

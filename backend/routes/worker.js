@@ -269,10 +269,65 @@ router.get('/jobs', async (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     }
   });
-  
 
+  // worker can apply to jobs and acess the jobs he has applied to
+
+
+  router.post('/apply', async (req, res) => {
+    try {
+      const { workerId, jobId } = req.body;
   
+      // Check if the worker has already applied to this job
+      const existingApplication = await AppliedJob.findOne({ workerId });
   
+      if (existingApplication) {
+        // If the worker has already applied to this job, update the existing document
+        existingApplication.jobs.push(jobId);
+        await existingApplication.save();
+        res.status(200).json({ message: 'Job application updated successfully' });
+      } else {
+        // If the worker hasn't applied to any job yet, create a new document
+        const newApplication = new AppliedJob({
+          workerId,
+          jobs: [jobId]
+        });
+        await newApplication.save();
+        res.status(201).json({ message: 'Job application created successfully' });
+      }
+    } catch (error) {
+      console.error('Error applying for a job:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  router.get('/applied-jobs/:workerId', async (req, res) => {
+    try {
+      const appliedJobs = await AppliedJob.findOne({ workerId: req.params.workerId });
+      const jobIds = appliedJobs.jobs;
+      const sappliedjobs = await Job.find({ _id: { $in: jobIds}})
+      res.json(sappliedjobs);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  router.delete("/applied-jobs/:workerId/:jobId", async (req, res) => {
+    try {
+      const { workerId, jobId } = req.params;
+      const appliedJob = await AppliedJob.findOne({ workerId });
+      if (!appliedJob) {
+        return res.status(404).json({ message: "Applied job not found" });
+      }
+      const updatedJobs = appliedJob.jobs.filter((id) => id.toString() !== jobId);
+      appliedJob.jobs = updatedJobs;
+      await appliedJob.save();
+      res.json({ message: "Application withdrawn successfully" });
+    } catch (error) {
+      console.error("Error withdrawing application:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
   
 
 module.exports = router;
