@@ -23,7 +23,12 @@ const JobList = () => {
 
   const handleApplyJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/apply-job/${jobId}`);
+      console.log(jobId);
+      console.log(workerId);
+      await axios.post(`http://localhost:3000/api/v1/worker/apply`, {
+        workerId,
+        jobId
+      });
       toast.info('Applied for job successfully', {
         position: "bottom-center",
         autoClose: 3000,
@@ -34,7 +39,8 @@ const JobList = () => {
         progress: undefined,
         theme: "dark",
         transition: Flip,
-        });
+      });
+
     } catch (error) {
       console.error('Error applying for job:', error);
     }
