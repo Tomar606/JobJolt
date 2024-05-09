@@ -1,6 +1,10 @@
+import React from "react"
+import { Flip, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 
 export const Dashboard = () => {
   const wtoken = localStorage.getItem("wtoken");
@@ -8,7 +12,17 @@ export const Dashboard = () => {
 
   const kickOut = () => {
     if (!wtoken) {
-      window.alert("You need to log in first as a worker");
+      toast.warn('You need to log in first as a worker', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+        });
       navigate("/");
     }
   };
@@ -19,6 +33,7 @@ export const Dashboard = () => {
 
   return (
     <div>
+      <Navbar/>
       <Welcome />
       <div className="flex flex-wrap justify-center mt-10">
         {/* Tile 1: Job Search */}

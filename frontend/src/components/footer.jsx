@@ -77,6 +77,7 @@ const Footer = () => {
         </a>
         <a href="https://github.com/pranshu0604/jobjolt" className="flex items-center space-x-2 hover:underline">
           <img
+            className='invert'
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
             height="30px"
             width="30px"

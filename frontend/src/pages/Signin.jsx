@@ -85,7 +85,17 @@ export const Signin = () => {
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
                   } else {
-                    window.alert("Invalid Inputs");
+                    toast.error('Invalid Inputs', {
+                      position: "bottom-center",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                      transition: Flip,
+                      });
                   }
 
                   console.log("Successfully signed in !!!");

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Flip, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios';
 
 const JobList = () => {
@@ -27,7 +29,18 @@ const JobList = () => {
         workerId,
         jobId
       });
-      window.alert("Applied for job successfully")
+      toast.info('Applied for job successfully', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
+
     } catch (error) {
       console.error('Error applying for job:', error);
     }
