@@ -3,11 +3,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import homegraphic2 from "@/assets/homegraphic2.png";
 import { Link } from "react-scroll";
+import { UsInShort } from "@/components/UsInShort";
+import { WhyInShort } from "@/components/WhyInShort";
 
 export const Home = () => {
     const aboutUsRef = useRef(null);
     const whyJobjoltRef = useRef(null);
-    const contactUsRef = useRef(null);
 
     const scrollToRef = (ref) => {
         window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" });
@@ -15,26 +16,17 @@ export const Home = () => {
 
     return (
         <div>
-            <Navbar />
-            <div className="w-full h-screen bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center relative">
+            <Navbar/>
+            <div className="w-full h-screen bg-cover bg-black bg-center flex justify-between items-center pl-20 pr-20 text-white text-center">
                 <div className="flex flex-col justify-center items-start space-y-4">
                     <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
-                        <div className="wrapper">
-                            Welcome to JobJolt
-                            <div className="shine"></div>
-                        </div>
+                        Welcome to JobJolt
                     </div>
                     <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-black bg-opacity-65 relative">
-                        <div className="wrapper">
-                            No more stress in HRM
-                            <div className="shine"></div>
-                        </div>
+                        No more stress in HRM
                     </div>
                     <div className="text-2xl p-4 pt-0 rounded-lg bg-black bg-opacity-65 relative">
-                        <div className="wrapper">
-                            You got this!
-                            <div className="shine"></div>
-                        </div>
+                        You got this!
                     </div>
                 </div>
                 <div className="flex justify-center items-center">
@@ -45,15 +37,8 @@ export const Home = () => {
                     />
                 </div>
             </div>
-            <div ref={aboutUsRef} className="h-screen bg-gray-100 flex items-center justify-center">
-                <div className="text-4xl">About Us</div>
-            </div>
-            <div ref={whyJobjoltRef} className="h-screen bg-gray-200 flex items-center justify-center">
-                <div className="text-4xl">Why JobJolt?</div>
-            </div>
-            <div ref={contactUsRef} className="h-screen bg-gray-300 flex items-center justify-center">
-                <div className="text-4xl">Contact Us</div>
-            </div>
+            <WhyInShort/>
+            <UsInShort />
             <Link to="home" smooth={true} duration={1000} className="fixed bottom-10 right-10 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full">
                 <i className="fas fa-arrow-up"></i>
             </Link>
