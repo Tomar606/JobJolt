@@ -238,7 +238,7 @@ router.get('/jobs', async (req, res) => {
   });
   
   // Route to save a job for a worker
-  router.post("/saved-jobs/:workerId", async (req, res) => {
+  router.post("/saved-jobs", async (req, res) => {
     try {
       const { workerId, jobId } = req.body;
       const savedJobs = await SavedJobs.findOneAndUpdate(
