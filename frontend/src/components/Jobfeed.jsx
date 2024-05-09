@@ -21,13 +21,16 @@ const JobList = () => {
     }
   };
 
-  const handleApplyJob = async (jobId) => {
+  const handleApplyJob = async (jobId, hirerId) => {
     try {
-      console.log(jobId);
-      console.log(workerId);
       await axios.post(`http://localhost:3000/api/v1/worker/apply`, {
         workerId,
         jobId
+      });
+      await axios.post(`http://localhost:3000/api/v1/hirer/application`, {
+        workerId,
+        jobId,
+        hirerId
       });
       toast.info('Applied for job successfully', {
         position: "bottom-center",
@@ -57,7 +60,6 @@ const JobList = () => {
 
   const handleSaveJob = async (jobId) => {
     try {
-      console.log(jobId)
       await axios.post(`http://localhost:3000/api/v1/worker/saved-jobs`, {
         workerId,
         jobId
@@ -78,7 +80,7 @@ const JobList = () => {
           <p>Salary: {job.salary}</p>
           <p>Location: {job.location}</p>
           <div className="d-flex justify-content-between">
-            <button onClick={() => handleApplyJob(job._id)} className="mr-2 bg-blue-500 text-white px-4 py-2 rounded-md">Apply</button>
+            <button onClick={() => handleApplyJob(job._id, job.hirerId)} className="mr-2 bg-blue-500 text-white px-4 py-2 rounded-md">Apply</button>
             <button onClick={() => handleLikeJob(job._id)} className="mr-2 bg-green-500 text-white px-4 py-2 rounded-md">Like</button>
             <button onClick={() => handleSaveJob(job._id)} className="bg-yellow-500 text-white px-4 py-2 rounded-md">Save</button>
           </div>
