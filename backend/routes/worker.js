@@ -1,12 +1,14 @@
 // backend/routes/worker.js
-const express = require('express');const router = express.Router();
+const express = require('express');
+const router = express.Router();
 const multer = require('multer');
 const zod = require("zod");
 const { authMiddleware } = require("../middleware");
-const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJob} = require("../db");
+const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJobs } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
+
 const signupBody = zod.object({
     username: zod.string(),
     firstName: zod.string(),
@@ -73,14 +75,15 @@ router.post("/signin", async (req, res) => {
     });
 
     if (worker) {
-        const token = jwt.sign({
+        const wtoken = jwt.sign({
             workerId: worker._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
+            wtoken: wtoken,
             redirectTo: "/dashboard",
-            fname: worker.firstName
+            wfname: worker.firstName,
+            workerId: worker._id
         })
         return;
     }
@@ -113,36 +116,38 @@ router.put("/", authMiddleware, async (req, res) => {
     })
 })
 
-router.put('/profile', async (req, res) => {
-    try {
-      const { firstName, lastName, dateOfBirth, jobTitle, skills, experience, qualifications, hobbies, portfolioLinks } = req.body;
-      let profilePicture;
-      if (req.file) {
-        profilePicture = req.file.filename; // Get the filename of the uploaded file
-      }  
-      // Update the worker's profile information
-      const updatedProfile = {
-        firstName,
-        lastName,
-        dateOfBirth,
-        jobTitle,
-        skills,
-        experience,
-        qualifications,
-        hobbies,
-        portfolioLinks,
-        profilePicture
+router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePicture', maxCount: 1 }]), async (req, res) => {
+  try {
+    const { workerId } = req.params;
+    const worker = await Worker.findByIdAndUpdate(workerId, req.body, { new: true });
+
+    // Handle file upload for resume if a file is present
+    if (req.files && req.files.resume) {
+      worker.resume = {
+        data: req.files.resume[0].buffer,
+        contentType: req.files.resume[0].mimetype
       };
-  
-      // Save updated profile information to the database
-      const worker = await Worker.findByIdAndUpdate(req.workerId, updatedProfile, { new: true });
-  
-      res.json({ message: 'Profile updated successfully', worker });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
     }
-  });
+
+    // Handle file upload for profile picture if a file is present
+    if (req.files && req.files.profilePicture) {
+      worker.profilePicture = {
+        data: req.files.profilePicture[0].buffer,
+        contentType: req.files.profilePicture[0].mimetype
+      };
+    }
+
+    await worker.save();
+
+    res.json({ message: 'Profile updated successfully', worker });
+    } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
   
 
 router.get('/jobs', async (req, res) => {
@@ -164,27 +169,20 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
-  router.get('/profile', authMiddleware, async (req, res) => {
+  router.get('/profile/:workerId', async (req, res) => {
     try {
-      // Fetch profile details from the database based on user's ID
-      const worker = await Worker.findById(req.workerId);
-  
+      const { workerId } = req.params;
+      const worker = await Worker.findById(workerId);
       if (!worker) {
         return res.status(404).json({ message: 'Profile not found' });
       }
-
-      // Return profile details in the response
-      res.json({
-        firstName: worker.firstName,
-        lastName: worker.lastName,
-        username: worker.username,
-        // Add other profile fields here
-      });
+      res.json(worker);
     } catch (error) {
       console.error('Error fetching profile data:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
 
   router.post('/like-job/:jobId', async (req, res) => {
     try {
@@ -208,36 +206,110 @@ router.get('/jobs', async (req, res) => {
   });
   
   
-  
-  // Route to save a job
-  router.post('/save-job/:jobId', async (req, res) => {
+
+
+  router.get("/saved-jobs/:workerId", async (req, res) => {
     try {
-      const workerId = req.user.id; // Assuming you have authentication middleware
-      const { jobId } = req.params;
-      
-      // Update worker's saved jobs
-      await Worker.findByIdAndUpdate(workerId, { $addToSet: { savedJobs: jobId } });
-  
-      res.json({ message: 'Job saved successfully' });
+      const savedJobs = await SavedJobs.findOne({ workerId: req.params.workerId });
+      const jobIds = savedJobs.savedJobs;
+      const sjobs = await Job.find({ _id: { $in: jobIds } });
+      res.json(sjobs);
     } catch (error) {
-      console.error('Error saving job:', error);
-      res.status(500).json({ message: 'Internal server error' });
+      console.log("error");
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
   
-  // Route to apply to a job
-  router.post('/apply-job/:jobId', async (req, res) => {
+  // Route to save a job for a worker
+  router.post("/saved-jobs", async (req, res) => {
     try {
-      const workerId = req.user.id; // Assuming you have authentication middleware
-      const { jobId } = req.params;
-      
-      // Update worker's applied jobs
-      await Worker.findByIdAndUpdate(workerId, { $addToSet: { appliedJobs: { jobId: jobId } } });
-  
-      res.json({ message: 'Job application submitted successfully' });
+      const { workerId, jobId } = req.body;
+      const savedJobs = await SavedJobs.findOneAndUpdate(
+        { workerId },
+        { $addToSet: { savedJobs: jobId } }, // Add jobId to the savedJobs array if it's not already present
+        { upsert: true, new: true }
+      );
+      res.json(savedJobs);
     } catch (error) {
-      console.error('Error applying for job:', error);
-      res.status(500).json({ message: 'Internal server error' });
+      console.error("Error saving job:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  router.delete("/saved-jobs/:workerId/:jobId", async (req, res) => {
+    try {
+      const { workerId, jobId } = req.params;
+      const savedJobs = await SavedJobs.findOne({ workerId });
+      if (!savedJobs) {
+        return res.status(404).json({ message: "Saved jobs not found" });
+      }
+      const updatedSavedJobs = savedJobs.savedJobs.filter((id) => id.toString() !== jobId);
+      savedJobs.savedJobs = updatedSavedJobs;
+      await savedJobs.save();
+      res.json({ message: "Job unsaved successfully" });
+    } catch (error) {
+      console.error("Error unsaving job:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // worker can apply to jobs and acess the jobs he has applied to
+
+
+  router.post('/apply', async (req, res) => {
+    try {
+      const { workerId, jobId } = req.body;
+  
+      // Check if the worker has already applied to this job
+      const existingApplication = await AppliedJob.findOne({ workerId });
+  
+      if (existingApplication) {
+        // If the worker has already applied to this job, update the existing document
+        existingApplication.jobs.push(jobId);
+        await existingApplication.save();
+        res.status(200).json({ message: 'Job application updated successfully' });
+      } else {
+        // If the worker hasn't applied to any job yet, create a new document
+        const newApplication = new AppliedJob({
+          workerId,
+          jobs: [jobId]
+        });
+        await newApplication.save();
+        res.status(201).json({ message: 'Job application created successfully' });
+      }
+    } catch (error) {
+      console.error('Error applying for a job:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  router.get('/applied-jobs/:workerId', async (req, res) => {
+    try {
+      const appliedJobs = await AppliedJob.findOne({ workerId: req.params.workerId });
+      const jobIds = appliedJobs.jobs;
+      const sappliedjobs = await Job.find({ _id: { $in: jobIds}})
+      res.json(sappliedjobs);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  router.delete("/applied-jobs/:workerId/:jobId", async (req, res) => {
+    try {
+      const { workerId, jobId } = req.params;
+      const appliedJob = await AppliedJob.findOne({ workerId });
+      if (!appliedJob) {
+        return res.status(404).json({ message: "Applied job not found" });
+      }
+      const updatedJobs = appliedJob.jobs.filter((id) => id.toString() !== jobId);
+      appliedJob.jobs = updatedJobs;
+      await appliedJob.save();
+      res.json({ message: "Application withdrawn successfully" });
+    } catch (error) {
+      console.error("Error withdrawing application:", error);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
   

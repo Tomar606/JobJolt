@@ -79,14 +79,23 @@ export const Signin = () => {
                   if (response.data.redirectTo === "/dashboard") {
                     localStorage.setItem("wtoken", response.data.wtoken);
                     localStorage.setItem("wfname", response.data.wfname);
+                    localStorage.setItem("workerId", response.data.workerId);
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
-                    
-                    console.log(localStorage.getItem("hirerId"))
                   } else {
-                    window.alert("Invalid Inputs");
+                    toast.error('Invalid Inputs', {
+                      position: "bottom-center",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                      transition: Flip,
+                      });
                   }
 
                   console.log("Successfully signed in !!!");

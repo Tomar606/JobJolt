@@ -3,7 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 const zod = require("zod");
-const { Hirer, Haccount, Job, } = require("../db");
+const { Hirer, Haccount, Job, Applications, } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { hauthMiddleware } = require("../middleware");
@@ -48,14 +48,14 @@ router.post("/hsignup", async (req, res) => {
     })
 
 
-    const token = jwt.sign({
+    const htoken = jwt.sign({
         hirerId
     }, JWT_SECRET);
 
     res.json({
         message: "Hirer created successfully",
-        token: token,
-        fname: hfirstName
+        htoken: htoken,
+        hfname: hfirstName
     })
 })
 
@@ -78,13 +78,14 @@ router.post("/signin", async (req, res) => {
     });
 
     if (hirer) {
-        const token = jwt.sign({
-            hirerId: worker._id
+        const htoken = jwt.sign({
+            hirerId: hirer._id
         }, JWT_SECRET);
 
         res.json({
-            token: token,
-            redirectTo: '/hdashboard'
+            htoken: htoken,
+            redirectTo: '/hdashboard',
+            hirerId: hirer._id
         })
         return;
     }
@@ -146,19 +147,63 @@ router.post('/post-job', async (req, res) => {
     }
   });
 
-  router.get('/jobs',  async (req, res) => {
+  router.get('/posted-jobs/:hirerId', async (req, res) => {
     try {
-      console.log("Fetching jobs for hirerId:", req._id);
-      // Fetch jobs posted by the hirer from the database based on hirerId
-      const jobs = await Job.find({ IdOfHirer: req._id });
-      console.log("Jobs found:", jobs);
-      res.json(jobs);
+        const hirerId = req.params.hirerId;
+        const jobs = await Job.find({ hirerId });
+        res.json(jobs);
     } catch (error) {
-      console.error('Error fetching jobs:', error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error('Error fetching posted jobs:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+  
+router.post('/application', async (req, res) => {
+    try {
+      const { workerId, jobId, hirerId } = req.body;
+  
+      // Check if the hirer has already applications
+      let application = await Applications.findOne({ hirerId, jobId });
+  
+      if (!application) {
+        // If the hirer has no applications for this job, create a new document
+        application = new Applications({
+          hirerId,
+          jobId,
+          applicants: [workerId]
+        });
+        await application.save();
+        res.status(201).json({ message: 'Application created successfully' });
+      } else {
+        // If the hirer has applications for this job, update the existing document
+        if (!application.applicants.includes(workerId)) {
+          application.applicants.push(workerId);
+          await application.save();
+          res.status(200).json({ message: 'Application updated successfully' });
+        } else {
+          res.status(400).json({ error: 'Worker already applied to this job' });
+        }
+      }
+    } catch (error) {
+      console.error('Error creating application:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
   
+  router.get('/applications/:jobId', async (req, res) => {
+    try {
+      const jobId = req.params.jobId;
+      const applications = await Applications.findOne({ jobId }).populate('applicants', 'firstName lastName');
+      res.json(applications);
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
+  
+
   
 
 module.exports = router; 

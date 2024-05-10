@@ -1,53 +1,59 @@
 const mongoose = require('mongoose');
+const { array } = require('zod');
 mongoose.connect("mongodb+srv://Tomar606:Tomar606@jobjolt.udtlr0d.mongodb.net/")
 
 
 const workerSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        minLength: 3,
-        maxLength: 30
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: 6
-    },
-    firstName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    },
-    lastName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    },
-    dob: {
-      type: String,
-      maxLength: 10
-    },
-    jobTitle: String,
-    skills: [String],
-    experience: String,
-    qualifications: String,
-    hobbies: String,
-    portfolioLinks: [String],
-    resume: {
-      data: Buffer,
-      contentType: String
-    },
-    profilePicture: {
-      data: Buffer,
-      contentType: String
-    }
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+    minLength: 3,
+    maxLength: 30
+  },
+  password: {
+    type: String,
+    required: true,
+    minLength: 6
+  },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 50
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 50
+  },
+  dateOfBirth: {
+    type: Date,
+  },
+  gender: {
+    type: String,
+    enum: ["male", "female", "other"]
+  },
+  jobTitle: String,
+  skills: [String],
+  experience: String,
+  qualifications: String,
+  hobbies: String,
+  portfolioLinks: [String],
+  resume: {
+    data: Buffer,
+    contentType: String
+  },
+  profilePicture: {
+    data: Buffer,
+    contentType: String
+  }
 });
+
+
 
 
 
@@ -159,20 +165,21 @@ const jobSchema = new mongoose.Schema({
   
   const LikedJob = mongoose.model('LikedJob', likedJobSchema);
 
-  const savedJobSchema = new mongoose.Schema({
+  const savedJobsSchema = new mongoose.Schema({
     workerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Worker', // Reference to the Worker model
-      required: true
+      ref: "Worker", // Reference to the Worker model
+      required: true,
     },
-    jobId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
-      required: true
-    }
+    savedJobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job", // Reference to the Job model
+      },
+    ],
   });
   
-  const SavedJob = mongoose.model('SavedJob', savedJobSchema);
+  const SavedJobs = mongoose.model("SavedJobs", savedJobsSchema);
 
   const appliedJobSchema = new mongoose.Schema({
     workerId: {
@@ -180,15 +187,37 @@ const jobSchema = new mongoose.Schema({
       ref: 'Worker', // Reference to the Worker model
       required: true
     },
-    jobId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
-      required: true
-    }
+    jobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job', // Reference to the Job model
+        required: true
+      }
+    ]
   });
   
   const AppliedJob = mongoose.model('AppliedJob', appliedJobSchema);
   
+  const applicationsSchema = new mongoose.Schema({
+    hirerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Hirer', // Reference to the Hirer model
+      required: true
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Job', // Reference to the Job model
+      required: true
+    },
+    applicants: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Worker' // Reference to the Worker model
+    }]
+  });
+  
+  const Applications = mongoose.model('Applications', applicationsSchema);
+
+
 module.exports = {
 	Worker,
     Waccount,
@@ -196,6 +225,7 @@ module.exports = {
     Haccount,
     Job,
     LikedJob,
-    SavedJob,
-    AppliedJob
+    SavedJobs,
+    AppliedJob,
+    Applications
 };

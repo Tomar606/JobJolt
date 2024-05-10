@@ -20,11 +20,11 @@ export const Choose = () => {
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat"
             style={{
-                backgroundImage: 'url(https://images.pexels.com/photos/4067126/pexels-photo-4067126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
+                backgroundImage: 'url(https://img.freepik.com/free-vector/office-wallpaper-theme_23-2148650606.jpg?w=996&t=st=1713880982~exp=1713881582~hmac=67c0459bc0117070a1a6a80f4f600f188a6af62de82a3e127f11422b29b1b142)',
             }}
         >
-            <div className="flex justify-between h-16 bg-white bg-opacity-50 p-3">
-                <button onClick={()=>navigate("/")} className="font-league-spartan text-xl bg-white rounded-lg p-1 font-semibold text-center">JobJolt v1.0</button>
+            <div className="flex justify-between h-16 p-3">
+                <button onClick={()=>navigate("/")} className="font-league-spartan text-xl bg-white bg-opacity-75 rounded-lg p-1 font-semibold text-center">JobJolt v1.0</button>
             </div>
             <div className="flex flex-col justify-center items-center px-6 py-12 lg:px-8 h-full">
                 <div className="bg-white bg-opacity-75 p-6 rounded-lg shadow-lg text-center w-96">
