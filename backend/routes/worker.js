@@ -116,37 +116,37 @@ router.put("/", authMiddleware, async (req, res) => {
     })
 })
 
-router.put('/profile', async (req, res) => {
+router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePicture', maxCount: 1 }]), async (req, res) => {
   try {
-    const { firstName, lastName, dateOfBirth, gender, jobTitle, skills, experience, qualifications, hobbies, portfolioLinks } = req.body;
-    let profilePicture;
-    if (req.file) {
-      profilePicture = req.file.filename; // Get the filename of the uploaded file
-    }  
-    // Update the worker's profile information
-    const updatedProfile = {
-      firstName,
-      lastName,
-      dateOfBirth,
-      gender,
-      jobTitle,
-      skills,
-      experience,
-      qualifications,
-      hobbies,
-      portfolioLinks,
-      profilePicture,
-    };
+    const { workerId } = req.params;
+    const worker = await Worker.findByIdAndUpdate(workerId, req.body, { new: true });
 
-    // Save updated profile information to the database
-    const worker = await Worker.findByIdAndUpdate(req.params.workerId, updatedProfile, { new: true });
+    // Handle file upload for resume if a file is present
+    if (req.files && req.files.resume) {
+      worker.resume = {
+        data: req.files.resume[0].buffer,
+        contentType: req.files.resume[0].mimetype
+      };
+    }
+
+    // Handle file upload for profile picture if a file is present
+    if (req.files && req.files.profilePicture) {
+      worker.profilePicture = {
+        data: req.files.profilePicture[0].buffer,
+        contentType: req.files.profilePicture[0].mimetype
+      };
+    }
+
+    await worker.save();
 
     res.json({ message: 'Profile updated successfully', worker });
-  } catch (error) {
-    console.error(error);
+    } catch (error) {
+    console.error('Error updating profile:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
 
   
 
@@ -172,27 +172,11 @@ router.get('/jobs', async (req, res) => {
   router.get('/profile/:workerId', async (req, res) => {
     try {
       const { workerId } = req.params;
-      console.log('Worker ID :', workerId);
-      // Fetch profile details from the database based on user's ID
       const worker = await Worker.findById(workerId);
       if (!worker) {
         return res.status(404).json({ message: 'Profile not found' });
       }
-  
-      // Return profile details in the response
-      res.json({
-        username: worker.username,
-        firstName: worker.firstName,
-        lastName: worker.lastName,
-        dateOfBirth: worker.dob, // Make sure this matches the field name in your schema
-        jobTitle: worker.jobTitle,
-        skills: worker.skills,
-        experience: worker.experience,
-        qualifications: worker.qualifications,
-        hobbies: worker.hobbies,
-        portfolioLinks: worker.portfolioLinks,
-        // Add other profile fields here
-      });
+      res.json(worker);
     } catch (error) {
       console.error('Error fetching profile data:', error);
       res.status(500).json({ message: 'Internal server error' });
