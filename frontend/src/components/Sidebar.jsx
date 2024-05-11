@@ -51,7 +51,7 @@ export const Sidebar = () => {
                     <ListItemPrefix>
                         <ShoppingBagIcon className="h-5 w-5" />
                     </ListItemPrefix>
-                    Proposals
+                    Notifications
                 </ListItem>
                 <ListItem>
                     <ListItemPrefix>

@@ -9,7 +9,7 @@ export const WProfile = () => {
 
     return <div>
         <Navbar/>
-        <div className="flex max-w-full">
+        <div className="flex">
         <Sidebar/>
         <WProfilePage/>
         </div>
