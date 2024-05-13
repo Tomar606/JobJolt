@@ -24,17 +24,35 @@ export const HirerApplicationsPage = () => {
   const fetchApplications = async (jobId) => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/hirer/applications/${jobId}`);
-      setApplications(response.data.applicants); // Update this line
+      setApplications(response.data.applicants);
       setSelectedJob(jobId);
     } catch (error) {
       console.error('Error fetching applications:', error);
     }
   };
-  
 
   const handleCloseModal = () => {
     setSelectedJob(null);
     setApplications([]);
+  };
+
+  const rejectApplicant = async (applicantId) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/v1/hirer/application/${applicantId}`);
+      setApplications(applications.filter(applicant => applicant._id !== applicantId));
+    } catch (error) {
+      console.error('Error rejecting applicant:', error);
+    }
+  };
+
+  const addToWatchlist = async (applicantId) => {
+    try {
+      await axios.post(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`, { applicantId });
+      setApplications(applications.filter(applicant => applicant._id !== applicantId));
+    } catch (error) {
+      console.error('Error adding to watchlist:', error);
+      console.log(applicantId);
+    }
   };
 
   return (
@@ -73,9 +91,15 @@ export const HirerApplicationsPage = () => {
             </div>
             {applications.map(applicant => (
               <div key={applicant._id} className="border-b border-gray-200 pb-4 mb-4">
-                <h3 className="text-xl font-semibold">{applicant.firstName} {applicant.lastName}</h3>
-                <p className="text-gray-600">{applicant.email}</p>
-                {/* Add more applicant information here */}
+                <h3 className="text-xl font-semibold">Name: {applicant.firstName} {applicant.lastName}</h3>
+                <p className="text-gray-600">E-mail: {applicant.username}</p>
+                <p className="text-gray-600">Gender: {applicant.gender}</p>
+                <p className="text-gray-600">Experience: {applicant.experience}</p>
+                <p className="text-gray-600">Hobbies: {applicant.hobbies}</p>
+                <div className="mt-4">
+                  <button onClick={() => rejectApplicant(applicant._id)} className="bg-red-500 text-white px-4 py-2 rounded-md mr-2">Reject</button>
+                  <button onClick={() => addToWatchlist(applicant._id)} className="bg-green-500 text-white px-4 py-2 rounded-md">Add to Watchlist</button>
+                </div>
               </div>
             ))}
           </div>
@@ -85,4 +109,4 @@ export const HirerApplicationsPage = () => {
   );
 };
 
-
+export default HirerApplicationsPage;
