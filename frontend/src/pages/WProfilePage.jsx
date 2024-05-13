@@ -83,6 +83,7 @@ const WProfilePage = () => {
     }
   };
 
+  
   return (
     <div>
       <div className="flex justify-between h-16">
@@ -96,8 +97,8 @@ const WProfilePage = () => {
           </button>
         )}
       </div>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="flex ">
+        <form onSubmit={handleSubmit} className="space-y-6 mx-auto w-full">
           {profilePicture && (
             <div className="flex justify-center mb-6">
               <img src={profilePicture} alt="Profile" className="w-32 h-32 rounded-full object-cover" />

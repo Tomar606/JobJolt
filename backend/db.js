@@ -217,6 +217,20 @@ const jobSchema = new mongoose.Schema({
   
   const Applications = mongoose.model('Applications', applicationsSchema);
 
+  const WatchlistSchema = new mongoose.Schema({
+    hirer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hirer",
+      required: true,
+    },
+    applicants: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Worker",
+    }],
+  });
+  
+  const Watchlist = mongoose.model("Watchlist", WatchlistSchema);
+
 
 module.exports = {
 	Worker,
@@ -227,5 +241,6 @@ module.exports = {
     LikedJob,
     SavedJobs,
     AppliedJob,
-    Applications
+    Applications,
+    Watchlist
 };
