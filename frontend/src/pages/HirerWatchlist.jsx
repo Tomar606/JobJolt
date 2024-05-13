@@ -46,11 +46,11 @@ export const WatchlistPage = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold mb-4">Watchlist</h1>
+    <div className="h-screen bg-black p-4">
+      <h1 className="text-2xl font-semibold mb-4 text-center text-white">Watchlist</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {applicants.map((applicant) => (
-          <div key={applicant._id} className="bg-white shadow-md rounded-lg p-4">
+          <div key={applicant._id} className="bg-gray-900 border-2 border-gray-500 text-white shadow-md rounded-lg p-4">
             <h2 className="text-lg font-semibold mb-2">{applicant.firstName} {applicant.lastName}</h2>
             <p className="text-gray-500 mb-2">{applicant.jobTitle}</p>
             <div className="flex justify-between items-center">
