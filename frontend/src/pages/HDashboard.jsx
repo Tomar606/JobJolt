@@ -1,57 +1,65 @@
-import React from "react"
-import { Flip, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
-// import { HirerBar } from "@/components/HirerBar"
-// import { Sidebar } from "@/components/Sidebar"
-import {  useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom"
-import Navbar from "@/components/Navbar"
-
+import React, { useEffect } from "react";
+import { Flip, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const HDashboard = () => {
-  const navigate = useNavigate()
-  const htoken = localStorage.getItem("htoken")
-  if (!htoken) {
-    toast.warn('Please sign in as a hirer first...', {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Flip,
+  const navigate = useNavigate();
+  const htoken = localStorage.getItem("htoken");
+
+  useEffect(() => {
+    if (!htoken) {
+      toast.warn('Please sign in as a hirer first...', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
       });
-    navigate("/")
-  }
-  
-  return <div>
-    <Navbar />
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Hirer Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Link to="/hirer/new-job">
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Post a New Job
-          </button>
-        </Link>
-        <Link to="/hirer/posted-jobs">
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            View Posted Jobs
-          </button>
-        </Link>
-        <Link to="/hirer/applications">
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            View Applications
-          </button>
-        </Link>
-        <Link to="/hirer/watchlist">
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            View Watchlist
-          </button>
-        </Link>
+      navigate("/");
+    }
+  }, [htoken, navigate]);
+
+  return (
+    <>
+      <Navbar />
+      <div className="bg-black text-white min-h-screen pt-8">
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-bold mb-6">Hirer Dashboard</h1>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <Link to="/hirer/new-job" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4">Post a New Job</h2>
+                <p>Create a new job listing and attract talented candidates.</p>
+              </div>
+            </Link>
+            <Link to="/hirer/posted-jobs" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4">View Posted Jobs</h2>
+                <p>View all the jobs you have posted and manage them.</p>
+              </div>
+            </Link>
+            <Link to="/hirer/applications" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4">View Applications</h2>
+                <p>Browse through the applications you have received for your jobs.</p>
+              </div>
+            </Link>
+            <Link to="/hirer/watchlist" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4">View Watchlist</h2>
+                <p>See the candidates you've saved in your watchlist for future reference.</p>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-}
+    </>
+  );
+};
