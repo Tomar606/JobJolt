@@ -90,6 +90,7 @@ const Navbar = ({ isScrolled }) => {
     });
     localStorage.clear();
     setIsLoggedIn(false);
+    navigate('/')
   };
 
   const toAboutUs = () => {
