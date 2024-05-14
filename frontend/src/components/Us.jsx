@@ -1,6 +1,6 @@
 import React from "react"
 import PP from "@/assets/PP.jpg"
-import GST from "@/assets/GST.jpg"
+import GST from "@/assets/GST.png"
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export const Us = () => {

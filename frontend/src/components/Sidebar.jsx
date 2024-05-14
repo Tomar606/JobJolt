@@ -25,13 +25,6 @@ export const Sidebar = () => {
 
     return (
         <Card className="flex flex-col h-full w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-            <div className="mb-2 p-4">
-                <Typography variant="h5" color="blue-gray">
-                    <button onClick={()=>{navigate("/")}}>
-                    JobJolt v1.0
-                    </button>
-                </Typography>
-            </div>
             <List className="flex-grow">
                 <ListItem>
                     <ListItemPrefix>

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import PP from "@/assets/PP.jpg";
-import GST from "@/assets/GST.jpg";
+import GST from "@/assets/GST.png";
 
 export const UsInShort = () => {
     return (
