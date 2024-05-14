@@ -75,23 +75,24 @@ const Navbar = ({ isScrolled }) => {
       });
     }
   };
+  
+    const logout = () => {
+        toast.info('Successfully logged out!', {
+            position: "bottom-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+        });
+        localStorage.clear();
+        setIsLoggedIn(false); 
+        navigate('/')
+    };
 
-  const logout = () => {
-    toast.info("Successfully logged out!", {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Flip,
-    });
-    localStorage.clear();
-    setIsLoggedIn(false);
-    navigate('/')
-  };
 
   const toAboutUs = () => {
     navigate("/aboutus");

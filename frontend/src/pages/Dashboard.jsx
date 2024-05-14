@@ -34,6 +34,7 @@ export const Dashboard = () => {
   return (
     <div>
       <Navbar/>
+      <div className="bg-black h-screen">
       <Welcome />
       <div className="flex flex-wrap justify-center mt-10">
         {/* Tile 1: Job Search */}
@@ -69,6 +70,7 @@ export const Dashboard = () => {
           <h2 className="text-2xl font-semibold text-center">Messages</h2>
         </Link>
       </div>
+      </div>
     </div>
   );
 };
@@ -77,7 +79,7 @@ function Welcome() {
   return (
     <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md">
       <p
-        className="text-lg font-semibold mb-2"
+        className="text-lg font-semibold mb-2 text-white"
         style={{ fontFamily: "Arial, sans-serif" }}
       >
         Hi there {localStorage.getItem("wfname")}!

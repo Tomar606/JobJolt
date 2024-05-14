@@ -34,7 +34,7 @@ router.post("/hsignup", async (req, res) => {
     }
 
     let hfirstName = req.body.hfirstName;
-    
+
     const hirer = await Hirer.create({
         husername: req.body.husername,
         hpassword: req.body.hpassword,
@@ -56,42 +56,6 @@ router.post("/hsignup", async (req, res) => {
         message: "Hirer created successfully",
         htoken: htoken,
         hfname: hfirstName
-    })
-})
-
-const signinBody = zod.object({
-    husername: zod.string().email(),
-    hpassword: zod.string()
-})
-
-router.post("/signin", async (req, res) => {
-    const { success } = signinBody.safeParse(req.body)
-    if (!success) {
-        return res.status(411).json({
-            message: 'Incorrect inputs'
-        })
-    }
-
-    const hirer = await Hirer.findOne({
-        husername: req.body.husername,
-        hpassword: req.body.hpassword
-    });
-
-    if (hirer) {
-        const htoken = jwt.sign({
-            hirerId: hirer._id
-        }, JWT_SECRET);
-
-        res.json({
-            htoken: htoken,
-            redirectTo: '/hdashboard',
-            hirerId: hirer._id
-        })
-        return;
-    }
-
-    res.status(411).json({
-        message: "Error while logging in"
     })
 })
 
@@ -119,35 +83,35 @@ router.put("/", hauthMiddleware, async (req, res) => {
 })
 
 router.post('/post-job', async (req, res) => {
-  
+
     try {
         const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, location } = req.body;
 
-      // Create a new job
-      const newJob = new Job({
-        hirerId,
-        title,
-        description,
-        eligibilityRequirements,
-        salary,
-        experience,
-        jobType,
-        postedDate,
-        company,
-        location
-      });
-  
-      // Save the job to the database
-      await newJob.save();
-  
-      res.status(201).json(newJob);
-    } catch (error) {
-      console.error('Error creating job:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  });
+        // Create a new job
+        const newJob = new Job({
+            hirerId,
+            title,
+            description,
+            eligibilityRequirements,
+            salary,
+            experience,
+            jobType,
+            postedDate,
+            company,
+            location
+        });
 
-  router.get('/posted-jobs/:hirerId', async (req, res) => {
+        // Save the job to the database
+        await newJob.save();
+
+        res.status(201).json(newJob);
+    } catch (error) {
+        console.error('Error creating job:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+router.get('/posted-jobs/:hirerId', async (req, res) => {
     try {
         const hirerId = req.params.hirerId;
         const jobs = await Job.find({ hirerId });
