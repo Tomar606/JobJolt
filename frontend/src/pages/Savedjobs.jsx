@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "@/components/Navbar";
 
 export const SavedJobsPage = () => {
   const [savedJobs, setSavedJobs] = useState([]);
@@ -29,24 +30,29 @@ export const SavedJobsPage = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-semibold mb-4">Saved Jobs</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {savedJobs.map((job) => (
-          <div key={job._id} className="bg-white rounded-lg shadow-md p-4">
-            <h2 className="text-xl font-semibold">{job.title}</h2>
-            <p className="text-gray-600 mb-2">{job.company}</p>
-            <p className="mb-2">{job.description}</p>
-            <p className="text-gray-600">Location: {job.location}</p>
-            <button
-              onClick={() => handleUnsave(job._id)}
-              className="mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-            >
-              Unsave
-            </button>
+    <>
+      <Navbar />
+      <div className="bg-black text-white min-h-screen pt-8">
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-bold mb-6">Saved Jobs</h1>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {savedJobs.map((job) => (
+              <div key={job._id} className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-2">{job.title}</h2>
+                <p className="text-gray-400 mb-2">{job.company}</p>
+                <p className="text-gray-300 mb-4">{job.description}</p>
+                <p className="text-gray-400">Location: {job.location}</p>
+                <button
+                  onClick={() => handleUnsave(job._id)}
+                  className="mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                >
+                  Unsave
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

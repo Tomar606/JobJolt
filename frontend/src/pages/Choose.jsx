@@ -17,29 +17,24 @@ export const Choose = () => {
     };
 
     return (
-        <div
-            className="min-h-screen bg-cover bg-center bg-no-repeat"
-            style={{
-                backgroundImage: 'url(https://img.freepik.com/free-vector/office-wallpaper-theme_23-2148650606.jpg?w=996&t=st=1713880982~exp=1713881582~hmac=67c0459bc0117070a1a6a80f4f600f188a6af62de82a3e127f11422b29b1b142)',
-            }}
-        >
+        <div className="min-h-screen bg-black text-white">
             <div className="flex justify-between h-16 p-3">
-                <button onClick={()=>navigate("/")} className="font-league-spartan text-xl bg-white bg-opacity-75 rounded-lg p-1 font-semibold text-center">JobJolt v1.0</button>
+                <button onClick={()=>navigate("/")} className="font-league-spartan text-xl bg-black bg-opacity-75 text-white rounded-lg p-1 font-semibold text-center">JobJolt v1.0</button>
             </div>
             <div className="flex flex-col justify-center items-center px-6 py-12 lg:px-8 h-full">
-                <div className="bg-white bg-opacity-75 p-6 rounded-lg shadow-lg text-center w-96">
-                    <h2 className="text-3xl font-bold leading-9 tracking-tight text-gray-900 mb-6">
+                <div className="bg-gray-900 bg-opacity-75 p-6 rounded-lg shadow-lg text-center w-96">
+                    <h2 className="text-3xl font-bold leading-9 tracking-tight text-white mb-6">
                         Hiring or Looking for a job?
                     </h2>
                     <div className="flex justify-center space-x-6 mt-4">
                         <button
-                            className="w-60 h-52 bg-green-200 text-gray-900 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+                            className="w-60 h-52 bg-black text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
                             onClick={toHSignup}
                         >
                             I'm hiring for a project.
                         </button>
                         <button
-                            className="w-60 h-52 bg-blue-200 text-gray-900 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+                            className="w-60 h-52 bg-black text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
                             onClick={toSignup}
                         >
                             I'm looking for work.
@@ -48,10 +43,10 @@ export const Choose = () => {
                 </div>
             </div>
             <div className="flex justify-center p-4">
-                <div className="bg-white bg-opacity-75 rounded-lg p-2 text-center">
+                <div className="bg-black bg-opacity-75 rounded-lg p-2 text-center">
                     Already have an account?{' '}
                     <button
-                        className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                        className="font-semibold leading-6 text-indigo-500 hover:text-white"
                         onClick={toSignin}
                     >
                         Login
@@ -61,4 +56,3 @@ export const Choose = () => {
         </div>
     );
 };
-

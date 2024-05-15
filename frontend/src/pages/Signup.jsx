@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -31,14 +31,9 @@ export const Signup = () => {
     };
 
     return (
-        <div
-            className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center"
-            style={{
-                backgroundImage: 'url()',
-            }}
-        >
-            <div className="flex justify-between h-16 w-full bg-white bg-opacity-75 p-3">
-                <div className="font-league-spartan">JobJolt v1.0</div>
+        <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center">
+            <div className="absolute top-4 left-4 text-white text-2xl font-bold">
+                JobJolt v1.0
             </div>
 
             <div className="sm:mx-auto sm:w-full sm:max-w-sm bg-white bg-opacity-75 p-6 rounded-lg shadow-lg">
@@ -105,7 +100,6 @@ export const Signup = () => {
 
                     <div>
                         <button
-                            type="button"
                             onClick={handleSignup}
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
@@ -129,3 +123,4 @@ export const Signup = () => {
         </div>
     );
 };
+

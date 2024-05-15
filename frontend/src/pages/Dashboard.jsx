@@ -1,16 +1,14 @@
-import React from "react"
-import { Flip, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
-import { useEffect } from "react";
-import { Sidebar } from "@/components/Sidebar";
+import React, { useEffect } from "react";
+import { Flip, toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Dashboard = () => {
-  const wtoken = localStorage.getItem("wtoken");
   const navigate = useNavigate();
+  const wtoken = localStorage.getItem("wtoken");
 
-  const kickOut = () => {
+  useEffect(() => {
     if (!wtoken) {
       toast.warn('You need to log in first as a worker', {
         position: "bottom-center",
@@ -22,68 +20,55 @@ export const Dashboard = () => {
         progress: undefined,
         theme: "dark",
         transition: Flip,
-        });
+      });
       navigate("/");
     }
-  };
-
-  useEffect(() => {
-    kickOut();
-  }, [wtoken]);
+  }, [wtoken, navigate]);
 
   return (
-    <div>
-      <Navbar/>
-      <div className="bg-black h-screen">
-      <Welcome />
-      <div className="flex flex-wrap justify-center mt-10">
-        {/* Tile 1: Job Search */}
-        <Link
-          to="/findWork"
-          className="m-4 p-8 bg-blue-200 rounded-lg shadow-md w-96"
-        >
-          <h2 className="text-2xl font-semibold text-center">Job Search</h2>
-        </Link>
-
-        {/* Tile 2: Applications */}
-        <Link
-          to="/applications"
-          className="m-4 p-8 bg-green-200 rounded-lg shadow-md w-96"
-        >
-          <h2 className="text-2xl font-semibold text-center">Applications</h2>
-        </Link>
+    <>
+      <Navbar />
+      <div className="bg-black text-white min-h-screen pt-16">
+        <div className="container mx-auto">
+          <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md mb-4">
+            <p
+              className="text-lg font-semibold mb-2  text-indigo-400"
+              style={{ fontFamily: "Arial, sans-serif" }}
+            >
+              Hi there {localStorage.getItem("wfname")}!
+            </p>
+          </div>
+          <h1 className="text-3xl font-bold mb-6">Worker Dashboard</h1>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <Link to="/findWork" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4 text-indigo-400">Job Search</h2>
+                <p>Search for new job opportunities that match your skills.</p>
+              </div>
+            </Link>
+            <Link to="/applications" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4 text-indigo-400">Applications</h2>
+                <p>View and manage your job applications.</p>
+              </div>
+            </Link>
+            <Link to="/saved-jobs" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4 text-indigo-400">Saved Jobs</h2>
+                <p>Access the jobs you have saved for later.</p>
+              </div>
+            </Link>
+            <Link to="/messages" className="block">
+              <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
+                <h2 className="text-xl font-bold mb-4 text-indigo-400">Messages</h2>
+                <p>Check your messages and communicate with employers.</p>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-wrap justify-center mt-10">
-        {/* Tile 3: Saved Jobs */}
-        <Link
-          to="/saved-jobs"
-          className="m-4 p-8 bg-yellow-200 rounded-lg shadow-md w-96"
-        >
-          <h2 className="text-2xl font-semibold text-center">Saved Jobs</h2>
-        </Link>
-
-        {/* Tile 4: Messages */}
-        <Link
-          to="/messages"
-          className="m-4 p-8 bg-red-200 rounded-lg shadow-md w-96"
-        >
-          <h2 className="text-2xl font-semibold text-center">Messages</h2>
-        </Link>
-      </div>
-      </div>
-    </div>
+    </>
   );
 };
 
-function Welcome() {
-  return (
-    <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md">
-      <p
-        className="text-lg font-semibold mb-2 text-white"
-        style={{ fontFamily: "Arial, sans-serif" }}
-      >
-        Hi there {localStorage.getItem("wfname")}!
-      </p>
-    </div>
-  );
-}
+export default Dashboard;
