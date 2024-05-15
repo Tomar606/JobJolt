@@ -5,7 +5,7 @@ import { WhyUs } from "@/components/WhyUs";
 
 export const WhyJobJolt = () => {
     return (
-        <div className="bg-black text-white">
+        <div className="bg-black text-white py-14">
             {/* Add the Navbar at the top */}
             <Navbar />
 

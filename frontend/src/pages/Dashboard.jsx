@@ -25,6 +25,20 @@ export const Dashboard = () => {
     }
   }, [wtoken, navigate]);
 
+  const messages = () => {
+    toast.info('Chat API is still under development.', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+    });
+};
+
   return (
     <>
       <Navbar />
@@ -58,7 +72,7 @@ export const Dashboard = () => {
                 <p>Access the jobs you have saved for later.</p>
               </div>
             </Link>
-            <Link to="/messages" className="block">
+            <Link onClick={messages} to="/dashboard" className="block">
               <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
                 <h2 className="text-xl font-bold mb-4 text-indigo-400">Messages</h2>
                 <p>Check your messages and communicate with employers.</p>

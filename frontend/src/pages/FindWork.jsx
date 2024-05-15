@@ -1,19 +1,18 @@
 import { Sidebar } from "@/components/Sidebar";
 import JobList from "../components/Jobfeed";
 import { SearchBar } from "@/components/SearchBar";
-import { WorkerBar } from "@/components/WorkerBar";
+import Navbar from "@/components/Navbar";
 
 export const FindWork = () => {
 
     return (
         <div>
-            <WorkerBar/>
-          <div className="flex h-screen">
-            {/* Sidebar */}
+            <Navbar/>
+          <div className="flex h-full py-14">
             <Sidebar className="h-full" />
             
             {/* Main content area */}
-            <div className="flex flex-col flex-grow bg-light-gray h-full overflow-y-auto">
+            <div className="flex flex-col flex-grow bg-light-gray h-full overflow-y-auto bg-black text-white">
                 <Welcome />
                 <SearchBar/>
                 <div className="flex-grow p-4 bg-pastel-peach rounded-md">

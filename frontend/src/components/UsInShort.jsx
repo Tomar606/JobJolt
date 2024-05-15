@@ -22,16 +22,16 @@ export const UsInShort = () => {
                                 Pranshu's deep understanding of technology and software development has been crucial in creating JobJolt. 
                             </p>
                             <div className="text-center mt-4">
-                                <p>Follow Pranshu on:</p>
+                                <p>Connect with Pranshu on:</p>
                                 <div className="flex justify-center space-x-4 mt-2">
                                     <a href="https://github.com/pranshu0604" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-gray-300 text-3xl" />
                                     </a>
                                     <a href="https://twitter.com/notoriouspran" target="_blank" rel="noopener noreferrer">
-                                        <FaTwitter className="text-gray-400 hover:text-gray-300 text-3xl" />
+                                        <FaTwitter className="text-gray-400  hover:text-blue-300 text-3xl" />
                                     </a>
                                     <a href="https://www.linkedin.com/in/pranshu-pandey-5889b8279/" target="_blank" rel="noopener noreferrer">
-                                        <FaLinkedin className="text-gray-400 hover:text-gray-300 text-3xl" />
+                                        <FaLinkedin className="text-gray-400 hover:text-blue-700 text-3xl" />
                                     </a>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@ export const UsInShort = () => {
                                 Gaurav's extensive experience in human resources and recruitment has been instrumental in developing JobJolt.
                             </p>
                             <div className="text-center mt-4">
-                                <p>Follow Gaurav on:</p>
+                                <p>Connect with Gaurav on:</p>
                                 <div className="flex justify-center space-x-4 mt-2">
                                     <a href="https://github.com/tomar606" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-white text-3xl" />
