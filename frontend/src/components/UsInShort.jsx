@@ -53,13 +53,13 @@ export const UsInShort = () => {
                                 <p>Follow Gaurav on:</p>
                                 <div className="flex justify-center space-x-4 mt-2">
                                     <a href="https://github.com/tomar606" target="_blank" rel="noopener noreferrer">
-                                        <FaGithub className="text-gray-400 hover:text-gray-300 text-3xl" />
+                                        <FaGithub className="text-gray-400 hover:text-white text-3xl" />
                                     </a>
                                     <a href="https://twitter.com/Gauravtomar606" target="_blank" rel="noopener noreferrer">
-                                        <FaTwitter className="text-gray-400 hover:text-gray-300 text-3xl" />
+                                        <FaTwitter className="text-gray-400 hover:text-blue-300 text-3xl" />
                                     </a>
                                     <a href="https://www.linkedin.com/in/gaurav-singh-tomar-046a6a26a/" target="_blank" rel="noopener noreferrer">
-                                        <FaLinkedin className="text-gray-400 hover:text-gray-300 text-3xl" />
+                                        <FaLinkedin className="text-gray-400 hover:text-blue-700 text-3xl" />
                                     </a>
                                 </div>
                             </div>
