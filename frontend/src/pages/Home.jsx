@@ -40,7 +40,7 @@ export const Home = () => {
           backgroundPosition: "right center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
-          marginTop: isScrolled ? "64px" : "0px", // Adjust margin-top based on navbar height
+          marginTop: isScrolled ? "64px" : "64px", // Adjust margin-top based on navbar height
         }}
       >
         <div className="flex flex-col justify-center items-start space-y-4">
