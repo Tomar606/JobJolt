@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import 'react-toastify/dist/ReactToastify.css';
+import { WeavyComponent } from "@/components/Wychat";
 
 export const HDashboard = () => {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ export const HDashboard = () => {
                 <p>See the candidates you've saved in your watchlist for future reference.</p>
               </div>
             </Link>
-            <Link onClick={messages} to="/hdashboard" className="block">
+            <Link onClick={WeavyComponent} to="/hmessages" className="block">
               <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">
                 <h2 className="text-xl font-bold mb-4 text-indigo-400">Messages</h2>
                 <p>Contact the shortlisted candidates.</p>

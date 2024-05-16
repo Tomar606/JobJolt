@@ -25,6 +25,8 @@ import { Applications } from "./pages/Applications"
 import { SavedJobsPage } from "./pages/Savedjobs"
 import { HirerApplicationsPage } from "./pages/HApplications"
 import { WatchlistPage } from "./pages/HirerWatchlist"
+import { Hmessages } from "./pages/HMessages"
+
 
 function App() {
   return (
@@ -48,6 +50,7 @@ function App() {
           <Route path="/saved-jobs" element={<SavedJobsPage />} />
           <Route path="/hirer/applications" element={<HirerApplicationsPage />} />
           <Route path="/hirer/watchlist" element={<WatchlistPage />} />
+          <Route path="/hmessages" element={<Hmessages/>} />
         </Routes>
       </BrowserRouter>
       <ToastContainer
