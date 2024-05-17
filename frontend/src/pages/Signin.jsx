@@ -93,10 +93,12 @@ export const Signin = () => {
                     localStorage.setItem("wtoken", response.data.wtoken);
                     localStorage.setItem("wfname", response.data.wfname);
                     localStorage.setItem("workerId", response.data.workerId);
+                    localStorage.setItem("username", username)
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
+                    localStorage.setItem("username", username)
                   } else {
                     toast.error("Invalid Inputs", {
                       position: "bottom-center",
