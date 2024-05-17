@@ -83,27 +83,15 @@ const WProfilePage = () => {
     }
   };
 
-  
   return (
-    <div>
-      <div className="flex justify-between h-16">
-        {!isEditMode && (
-          <button
-            type="button"
-            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 mr-4"
-            onClick={handleEditProfile}
-          >
-            Edit Profile
-          </button>
-        )}
-      </div>
-      <div className="flex ">
+    <div className="">
+      {profilePicture && (
+        <div className="absolute top-4 right-4">
+          <img src={profilePicture} alt="Profile" className="w-32 h-32 rounded-full object-cover" />
+        </div>
+      )}
+      <div className="flex justify-center">
         <form onSubmit={handleSubmit} className="space-y-6 mx-auto w-full">
-          {profilePicture && (
-            <div className="flex justify-center mb-6">
-              <img src={profilePicture} alt="Profile" className="w-32 h-32 rounded-full object-cover" />
-            </div>
-          )}
           <div className="mb-4">
             <label htmlFor="profilePicture" className="block font-medium text-gray-700">Profile Picture:</label>
             <input
@@ -116,8 +104,7 @@ const WProfilePage = () => {
               className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="firstName" className="block font-medium text-gray-700">First Name:</label>
+          <div className="flex">
             <input
               type="text"
               id="firstName"
@@ -125,11 +112,8 @@ const WProfilePage = () => {
               value={formData.firstName}
               onChange={handleChange}
               disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="text-5xl font-serif font-extrabold"
             />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="lastName" className="block font-medium text-gray-700">Last Name:</label>
             <input
               type="text"
               id="lastName"
@@ -137,7 +121,7 @@ const WProfilePage = () => {
               value={formData.lastName}
               onChange={handleChange}
               disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="text-5xl font-serif font-extrabold"
             />
           </div>
           <div className="mb-4">
@@ -251,6 +235,16 @@ const WProfilePage = () => {
               disabled={!isEditMode}
               className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             />
+          </div>          <div className="flex justify-between h-16">
+            {!isEditMode && (
+              <button
+                type="button"
+                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 mr-4"
+                onClick={handleEditProfile}
+              >
+                Edit Profile
+              </button>
+            )}
           </div>
           {isEditMode && (
             <div className="mt-4">

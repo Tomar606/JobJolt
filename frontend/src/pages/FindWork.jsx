@@ -27,7 +27,7 @@ export const FindWork = () => {
 function Welcome() {
   return (
       <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md">
-          <p className="text-lg font-semibold mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
+          <p className="text-lg font-semibold mb-2 text-indigo-400" style={{ fontFamily: 'Arial, sans-serif' }}>
               Hi there {localStorage.getItem("wfname")}!
           </p>
           <p style={{ fontFamily: 'Arial, sans-serif' }}>

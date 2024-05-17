@@ -7,9 +7,9 @@ import WProfilePage from "./WProfilePage"
 
 export const WProfile = () => {
 
-    return <div>
+    return <div className="bg-black">
         <Navbar/>
-        <div className="flex">
+        <div className="flex py-16">
         <Sidebar/>
         <WProfilePage/>
         </div>
