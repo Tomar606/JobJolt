@@ -1,4 +1,4 @@
-import { WeavyComponent } from "@/components/Wychat"
+import { WeavyComponent } from "@/components/WyMessenger"
 import React from "react"
 
 
