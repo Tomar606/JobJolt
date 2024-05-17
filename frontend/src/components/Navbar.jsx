@@ -62,17 +62,7 @@ const Navbar = ({ isScrolled }) => {
     if (localStorage.getItem("wtoken")) {
       navigate("/wprofile");
     } else if (localStorage.getItem("htoken")) {
-      toast.info("Hirer profile page is currently under development", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Flip,
-      });
+        navigate("/hprofile");
     }
   };
   

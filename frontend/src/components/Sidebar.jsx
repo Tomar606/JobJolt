@@ -33,21 +33,21 @@ export const Sidebar = () => {
           onClick={() => navigate("/dashboard")}
         >
           <ListItemPrefix>
-            <PresentationChartBarIcon className="h-5 w-5" />
+            <PresentationChartBarIcon className="h-5 w-5 text-white" />
           </ListItemPrefix>
-          Dashboard
+          <span className="text-white">Dashboard</span>
         </ListItem>
         <ListItem className={sidebarItemStyle}>
           <ListItemPrefix>
-            <ShoppingBagIcon className="h-5 w-5" />
+            <ShoppingBagIcon className="h-5 w-5 text-white" />
           </ListItemPrefix>
-          Notifications
+          <span className="text-white">Notifications</span>
         </ListItem>
         <ListItem className={sidebarItemStyle}>
           <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
+            <InboxIcon className="h-5 w-5 text-white" />
           </ListItemPrefix>
-          Inbox
+          <span className="text-white">Inbox</span>
           <ListItemSuffix>
             <Chip
               value="14"
@@ -60,9 +60,9 @@ export const Sidebar = () => {
         </ListItem>
         <ListItem className={sidebarItemStyle}>
           <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
+            <Cog6ToothIcon className="h-5 w-5 text-white" />
           </ListItemPrefix>
-          Settings
+          <span className="text-white">Settings</span>
         </ListItem>
         <ListItem
           className={sidebarItemStyle}
@@ -83,9 +83,9 @@ export const Sidebar = () => {
           }}
         >
           <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
+            <PowerIcon className="h-5 w-5 text-white" />
           </ListItemPrefix>
-          Logout
+          <span className="text-white">Logout</span>
         </ListItem>
       </List>
     </Card>

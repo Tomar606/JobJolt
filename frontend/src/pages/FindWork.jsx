@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 export const FindWork = () => {
 
     return (
-        <div>
+        <div className="bg-black">
             <Navbar/>
           <div className="flex h-full py-14">
             <Sidebar className="h-full" />

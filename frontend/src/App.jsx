@@ -26,6 +26,7 @@ import { SavedJobsPage } from "./pages/Savedjobs"
 import { HirerApplicationsPage } from "./pages/HApplications"
 import { WatchlistPage } from "./pages/HirerWatchlist"
 import { Hmessages } from "./pages/HMessages"
+import { HProfile } from "./pages/HProfile"
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/hsignup" element={<HSignup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/wprofile" element={<WProfile />} />
+          <Route path="/hprofile" element={<HProfile/>} />
           <Route path="/findWork" element={<FindWork />} />
           <Route path="/hdashboard" element={<HDashboard />} />
           <Route path="/hirer/new-job" element={<JobPost />} />

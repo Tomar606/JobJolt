@@ -233,6 +233,25 @@ router.delete("/watchlist/:hirerId/:workerId", async (req, res) => {
   }
 });
 
+router.put('/update-profile', async (req, res) => {
+  try {
+      const { hirerId, gender, dateOfBirth, companyName, companyLogo } = req.body;
+      const updatedHirer = await Hirer.findByIdAndUpdate(
+          hirerId,
+          { gender, dateOfBirth, companyName, companyLogo },
+          { new: true, runValidators: true }
+      );
+
+      if (!updatedHirer) {
+          return res.status(404).json({ message: 'Hirer not found' });
+      }
+
+      res.status(200).json(updatedHirer);
+  } catch (error) {
+      res.status(500).json({ message: 'Error updating profile', error });
+  }
+});
+
   
 
 module.exports = router; 

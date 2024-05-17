@@ -66,32 +66,51 @@ const waccountSchema = new mongoose.Schema({
 });
 
 const hirerSchema = new mongoose.Schema({
-    husername: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        minLength: 3,
-        maxLength: 30
-    },
-    hpassword: {
-        type: String,
-        required: true,
-        minLength: 6
-    },
-    hfirstName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    },
-    hlastName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    }
+  husername: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      minLength: 3,
+      maxLength: 30
+  },
+  hpassword: {
+      type: String,
+      required: true,
+      minLength: 6
+  },
+  hfirstName: {
+      type: String,
+      required: true,
+      trim: true,
+      maxLength: 50
+  },
+  hlastName: {
+      type: String,
+      required: true,
+      trim: true,
+      maxLength: 50
+  },
+  gender: {
+      type: String,
+      enum: ['Male', 'Female', 'Other'],
+      default: null
+  },
+  dateOfBirth: {
+      type: Date,
+      default: null
+  },
+  companyName: {
+      type: String,
+      trim: true,
+      maxLength: 100,
+      default: null
+  },
+  companyLogo: {
+      type: String, // Assuming you will store a URL to the logo image
+      default: null
+  }
 });
 
 const haccountSchema = new mongoose.Schema({
