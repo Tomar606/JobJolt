@@ -94,13 +94,44 @@ export const Signin = () => {
                     localStorage.setItem("wfname", response.data.wfname);
                     localStorage.setItem("workerId", response.data.workerId);
                     localStorage.setItem("username", username)
+                    localStorage.setItem("utype",'Worker')
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
                     localStorage.setItem("username", username)
-                  } else {
-                    toast.error("Invalid Inputs", {
+                    localStorage.setItem("utype",'Hirer')
+                  }
+                  console.log("Successfully signed in !!!");
+                  toast.success(`Signed In Successfully as ${(localStorage.getItem('wfname'))?(localStorage.getItem('wfname')):(localStorage.getItem('hfname'))}!`, {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Flip,
+                    });
+                  navigate(response.data.redirectTo);
+                } 
+                catch (error) {
+                  const statusCode=error.response.status
+                  if(statusCode===401){
+                    toast.error("Icorrect e-mail or password!", {
+                      position: "bottom-center",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                      transition: Flip,
+                    });
+                  }else if(statusCode===411){
+                    toast.error("Invalid format for e-mail!", {
                       position: "bottom-center",
                       autoClose: 3000,
                       hideProgressBar: false,
@@ -112,10 +143,6 @@ export const Signin = () => {
                       transition: Flip,
                     });
                   }
-
-                  console.log("Successfully signed in !!!");
-                  navigate(response.data.redirectTo);
-                } catch (error) {
                   console.error("Error signing in:", error);
                 }
               }}

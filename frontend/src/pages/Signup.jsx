@@ -24,6 +24,8 @@ export const Signup = () => {
             console.log("Account created");
             localStorage.setItem("wtoken", response.data.wtoken);
             localStorage.setItem("wfname", firstName);
+            localStorage.setItem("username", username);
+            localStorage.setItem("utype",'Worker')
             navigate("/dashboard");
         } catch (error) {
             console.error("Error creating account:", error);

@@ -25,6 +25,8 @@ export const HSignup = () => {
       localStorage.setItem("htoken", response.data.htoken);
       localStorage.setItem("hfname", hfirstName);
       navigate("/hdashboard");
+      localStorage.setItem('username', husername)
+      localStorage.setItem('utype', 'Hirer')
     } catch (error) {
       console.error("Error signing up:", error);
     }
