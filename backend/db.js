@@ -30,6 +30,11 @@ const workerSchema = new mongoose.Schema({
     trim: true,
     maxLength: 50
   },
+  aboutMe: {
+    type: String,
+    maxLength: 700,
+    trim: true
+  },
   dateOfBirth: {
     type: Date,
   },
@@ -39,10 +44,16 @@ const workerSchema = new mongoose.Schema({
   },
   jobTitle: String,
   skills: [String],
+  education : {
+    type: Array
+  },
   experience: String,
   qualifications: String,
   hobbies: String,
   portfolioLinks: [String],
+  languages: {
+    type: Array
+  },
   resume: {
     data: Buffer,
     contentType: String

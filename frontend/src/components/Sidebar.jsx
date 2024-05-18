@@ -25,6 +25,7 @@ export const Sidebar = () => {
     "flex items-center gap-x-4 p-3 rounded-lg transition duration-300 ease-in-out transform hover:bg-gray-800 cursor-pointer";
 
   return (
+    <div className="pt-16">
     <Card className="flex flex-col h-full w-full max-w-[20rem] p-4 shadow-xl bg-black text-white">
       <List className="flex-grow">
         <ListItem
@@ -91,5 +92,6 @@ export const Sidebar = () => {
         </ListItem>
       </List>
     </Card>
+    </div>
   );
 };

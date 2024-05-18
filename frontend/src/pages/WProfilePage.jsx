@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DefPFP from "@/assets/DefPFP.jpg";
+import WStats from "@/components/WStats";
 
 const WProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -25,21 +27,31 @@ const WProfilePage = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    aboutMe: "",
     dateOfBirth: "",
     gender: "",
     jobTitle: "",
     skills: "",
+    languages: "",
+    education: "",
     experience: "",
     qualifications: "",
     hobbies: "",
     portfolioLinks: "",
-    resume: null,
-    profilePicture: null,
+    resume: "",
+    profilePicture: "",
   });
 
   useEffect(() => {
     if (profileData) {
-      setFormData(profileData);
+      setFormData({
+        ...profileData,
+        skills: Array.isArray(profileData.skills) ? profileData.skills.join(", ") : "",
+        languages: Array.isArray(profileData.languages) ? profileData.languages.join(", ") : "",
+        education: Array.isArray(profileData.education) ? profileData.education.join(", ") : "",
+        hobbies: Array.isArray(profileData.hobbies) ? profileData.hobbies.join(", ") : "",
+        portfolioLinks: Array.isArray(profileData.portfolioLinks) ? profileData.portfolioLinks.join(", ") : "",
+      });
     }
   }, [profileData]);
 
@@ -84,179 +96,69 @@ const WProfilePage = () => {
   };
 
   return (
-    <div className="">
-      {profilePicture && (
-        <div className="absolute top-4 right-4">
-          <img src={profilePicture} alt="Profile" className="w-32 h-32 rounded-full object-cover" />
+    <div className="w-full h-full pt-16 bg-indigo-100 overflow-hidden">
+      <div className="flex">
+        <div className="w-7/12 bg-indigo-300 bg-cover bg-center rounded-t">
+          {/* Add your cover photo here */}
         </div>
-      )}
-      <div className="flex justify-center">
-        <form onSubmit={handleSubmit} className="space-y-6 mx-auto w-full">
-          <div className="mb-4">
-            <label htmlFor="profilePicture" className="block font-medium text-gray-700">Profile Picture:</label>
-            <input
-              type="file"
-              id="profilePicture"
-              name="profilePicture"
-              accept="image/*"
-              onChange={handleFileChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="flex">
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="text-5xl font-serif font-extrabold"
-            />
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="text-5xl font-serif font-extrabold"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="dateOfBirth" className="block font-medium text-gray-700">Date of Birth:</label>
-            <input
-              type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              value={formData.dateOfBirth}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="gender" className="block font-medium text-gray-700">Gender:</label>
-            <select
-              id="gender"
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="jobTitle" className="block font-medium text-gray-700">Job Title:</label>
-            <input
-              type="text"
-              id="jobTitle"
-              name="jobTitle"
-              value={formData.jobTitle}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="skills" className="block font-medium text-gray-700">Skills:</label>
-            <input
-              type="text"
-              id="skills"
-              name="skills"
-              value={formData.skills}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="experience" className="block font-medium text-gray-700">Experience:</label>
-            <input
-              type="text"
-              id="experience"
-              name="experience"
-              value={formData.experience}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="qualifications" className="block font-medium text-gray-700">Qualifications:</label>
-            <input
-              type="text"
-              id="qualifications"
-              name="qualifications"
-              value={formData.qualifications}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="hobbies" className="block font-medium text-gray-700">Hobbies:</label>
-            <input
-              type="text"
-              id="hobbies"
-              name="hobbies"
-              value={formData.hobbies}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="portfolioLinks" className="block font-medium text-gray-700">Portfolio Links:</label>
-            <input
-              type="text"
-              id="portfolioLinks"
-              name="portfolioLinks"
-              value={formData.portfolioLinks}
-              onChange={handleChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="resume" className="block font-medium text-gray-700">Resume:</label>
-            <input
-              type="file"
-              id="resume"
-              name="resume"
-              accept=".pdf"
-              onChange={handleFileChange}
-              disabled={!isEditMode}
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>          <div className="flex justify-between h-16">
-            {!isEditMode && (
-              <button
-                type="button"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 mr-4"
-                onClick={handleEditProfile}
-              >
-                Edit Profile
-              </button>
-            )}
-          </div>
-          {isEditMode && (
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-              >
-                Save Changes
-              </button>
+        <WStats />
+      </div>
+      <div className="absolute top-20 left-96">
+        <img src={profilePicture || DefPFP} alt="Profile" className="w-40 h-40 rounded-full object-cover border-4 border-solid border-black" />
+      </div>
+      <div className="h-full p-4">
+        <div className="flex pl-2 h-full">
+          <div className="w-1/4 space-y-4">
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <div className="font-bold">Skills</div>
+              <div>{formData.skills}</div>
             </div>
-          )}
-        </form>
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <div className="font-bold">Education</div>
+              <div>{formData.education}</div>
+            </div>
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <div className="font-bold">Hobbies</div>
+              <div>{formData.hobbies}</div>
+            </div>
+          </div>
+          <div className="w-full space-y-4">
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName + " " + formData.lastName}
+                onChange={handleChange}
+                disabled={!isEditMode}
+                className="text-4xl font-serif font-extrabold min-h-12 bg-white rounded-xl p-2 w-full"
+              />
+            </div>
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <div className="font-bold">About Me</div>
+              <div>{formData.aboutMe}</div>
+            </div>
+            <div className="bg-white p-2 border-2 border-white rounded-2xl">
+              <div className="font-bold">Experience</div>
+              <div>{formData.experience}</div>
+            </div>
+            <div className="flex space-x-4">
+              <div className="w-1/2 bg-white p-2 m-2 border-2 border-white rounded-2xl">
+                <div className="font-bold">Languages</div>
+                <div>{formData.languages}</div>
+              </div>
+              <div className="w-1/2 bg-white p-2 border-2 border-white rounded-2xl">
+  <div className="font-bold">Contact Me</div>
+  <div>
+    {formData.portfolioLinks.split(",").map((link, index) => (
+      <a key={index} href={link.trim()} className="block text-blue-600 hover:underline">{link.trim()}</a>
+    ))}
+  </div>
+</div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

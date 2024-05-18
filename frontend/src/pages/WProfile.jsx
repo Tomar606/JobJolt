@@ -1,17 +1,16 @@
-import { Sidebar } from "../components/Sidebar"
-import Navbar from "@/components/Navbar"
-import WProfilePage from "./WProfilePage"
-
-
-
+import React from 'react';
+import Navbar from "@/components/Navbar";
+import WProfilePage from "./WProfilePage";
+import Sidebar from "@/components/Sidebar"
 
 export const WProfile = () => {
-
-    return <div className="bg-black">
-        <Navbar/>
-        <div className="flex py-16">
-        <Sidebar/>
-        <WProfilePage/>
+    return (
+        <div className="h-screen flex flex-col">
+            <Navbar />
+            <div className="flex flex-1 overflow-hidden">
+                <Sidebar/>
+                <WProfilePage />
+            </div>
         </div>
-    </div>
-}
+    );
+};
