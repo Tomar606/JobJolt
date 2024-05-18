@@ -261,6 +261,18 @@ const jobSchema = new mongoose.Schema({
   
   const Watchlist = mongoose.model("Watchlist", WatchlistSchema);
 
+  const CTokenSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      trim: true
+    },
+    access_token: {
+      type: String,
+      trim: true
+    }
+  })
+
+  const CToken = mongoose.model("CToken", CTokenSchema);
 
 module.exports = {
 	Worker,
@@ -272,5 +284,6 @@ module.exports = {
     SavedJobs,
     AppliedJob,
     Applications,
-    Watchlist
+    Watchlist,
+    CToken
 };

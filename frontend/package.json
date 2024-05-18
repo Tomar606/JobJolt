@@ -19,6 +19,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@splinetool/react-spline": "^2.2.6",
+    "@weavy/uikit-react": "^22.2.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "heroicons": "^2.1.3",

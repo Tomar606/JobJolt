@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import 'react-toastify/dist/ReactToastify.css';
-import { WeavyComponent } from "@/components/Wychat";
+import { WeavyComponent } from "@/components/WyMessenger";
 
 export const HDashboard = () => {
   const navigate = useNavigate();
