@@ -102,11 +102,15 @@ router.get("/token", async (req, res) => {
             await newToken.save();
             return res.json(data);
         } else {
+            console.error("Error: Unable to get token from Weavy server:", response.data);
             return res.status(response.status).json({ message: "Could not get access token from server" });
         }
     } catch (error) {
+        console.error("Error requesting access token:", error); // Log the error
         return res.status(500).json({ message: "Error requesting access token", error: error.message });
     }
 });
+
+
 
 module.exports = router;
