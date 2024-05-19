@@ -1,4 +1,4 @@
-import { Sidebar } from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import JobList from "../components/Jobfeed";
 import { SearchBar } from "@/components/SearchBar";
 import Navbar from "@/components/Navbar";

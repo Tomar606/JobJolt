@@ -47,10 +47,10 @@ export const Home = () => {
           <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
             Welcome to JobJolt
           </div>
-          <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-black bg-opacity-65 relative">
+          <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-transparent bg-opacity-65 relative">
             No more stress in HRM
           </div>
-          <div className="text-2xl p-4 pt-0 rounded-lg bg-black bg-opacity-65 relative">
+          <div className="text-2xl p-4 pt-0 rounded-lg bg- bg-transparent opacity-65 relative">
             You got this!
           </div>
         </div>

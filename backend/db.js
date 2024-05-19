@@ -30,6 +30,11 @@ const workerSchema = new mongoose.Schema({
     trim: true,
     maxLength: 50
   },
+  aboutMe: {
+    type: String,
+    maxLength: 700,
+    trim: true
+  },
   dateOfBirth: {
     type: Date,
   },
@@ -39,10 +44,18 @@ const workerSchema = new mongoose.Schema({
   },
   jobTitle: String,
   skills: [String],
-  experience: String,
+  education : {
+    type: Array
+  },
+  experience: {
+    type: String
+  },
   qualifications: String,
   hobbies: String,
   portfolioLinks: [String],
+  languages: {
+    type: Array
+  },
   resume: {
     data: Buffer,
     contentType: String
@@ -250,18 +263,6 @@ const jobSchema = new mongoose.Schema({
   
   const Watchlist = mongoose.model("Watchlist", WatchlistSchema);
 
-  const CTokenSchema = new mongoose.Schema({
-    username: {
-      type: String,
-      trim: true
-    },
-    access_token: {
-      type: String,
-      trim: true
-    }
-  })
-
-  const CToken = mongoose.model("CToken", CTokenSchema);
 
 module.exports = {
 	Worker,
@@ -273,6 +274,5 @@ module.exports = {
     SavedJobs,
     AppliedJob,
     Applications,
-    Watchlist,
-    CToken
+    Watchlist
 };

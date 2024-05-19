@@ -8,6 +8,8 @@ const { Worker, Waccount, Job, LikedJob, AppliedJob, SavedJobs } = require("../d
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const upload = multer();
+const fs = require("fs");
+
 
 const signupBody = zod.object({
     username: zod.string(),
@@ -131,24 +133,23 @@ router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 },
 
     // Handle file upload for profile picture if a file is present
     if (req.files && req.files.profilePicture) {
+      const profilePictureData = req.files.profilePicture[0].buffer.toString('base64'); // Convert buffer to Base64 string
+      const profilePictureContentType = req.files.profilePicture[0].mimetype;
       worker.profilePicture = {
-        data: req.files.profilePicture[0].buffer,
-        contentType: req.files.profilePicture[0].mimetype
+        data: profilePictureData,
+        contentType: profilePictureContentType
       };
     }
 
     await worker.save();
 
     res.json({ message: 'Profile updated successfully', worker });
-    } catch (error) {
+  } catch (error) {
     console.error('Error updating profile:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-
-
-  
 
 router.get('/jobs', async (req, res) => {
     const { page } = req.query;
@@ -169,19 +170,33 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
+  const base64Encode = (buffer) => {
+    return Buffer.from(buffer).toString('base64');
+  };
+  
   router.get('/profile/:workerId', async (req, res) => {
     try {
       const { workerId } = req.params;
       const worker = await Worker.findById(workerId);
+  
       if (!worker) {
         return res.status(404).json({ message: 'Profile not found' });
       }
+  
+      // Convert profile picture data to Base64 if it's not already encoded
+      if (worker.profilePicture && worker.profilePicture.data.type === 'Buffer' && Array.isArray(worker.profilePicture.data.data)) {
+        const base64Data = base64Encode(Buffer.from(worker.profilePicture.data.data));
+        worker.profilePicture.data = `data:${worker.profilePicture.contentType};base64,${base64Data}`;
+      }
+  
       res.json(worker);
     } catch (error) {
       console.error('Error fetching profile data:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
+  
   
 
   router.post('/like-job/:jobId', async (req, res) => {
