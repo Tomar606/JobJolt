@@ -26,7 +26,7 @@ import { SavedJobsPage } from "./pages/Savedjobs"
 import { HirerApplicationsPage } from "./pages/HApplications"
 import { WatchlistPage } from "./pages/HirerWatchlist"
 import { Messages } from "./pages/Messages"
-import { HProfile } from "./pages/HProfile"
+import HProfile from "./pages/HProfile"
 import { IconContext } from "react-icons"
 
 
