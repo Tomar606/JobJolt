@@ -55,7 +55,8 @@ router.post("/hsignup", async (req, res) => {
     res.json({
         message: "Hirer created successfully",
         htoken: htoken,
-        hfname: hfirstName
+        hfname: hfirstName,
+        hirerId: hirerId
     })
 })
 
@@ -249,6 +250,29 @@ router.put('/update-profile', async (req, res) => {
       res.status(200).json(updatedHirer);
   } catch (error) {
       res.status(500).json({ message: 'Error updating profile', error });
+  }
+});
+
+router.get('/profile/:hirerId', async (req, res) => {
+  try {
+    const hirerId = req.params.hirerId;
+    const hirer = await Hirer.findById(hirerId);
+
+    if (!hirer) {
+      return res.status(404).json({ message: 'Hirer not found' });
+    }
+
+    res.json({
+      hfirstName: hirer.hfirstName,
+      hlastName: hirer.hlastName,
+      gender: hirer.gender,
+      dateOfBirth : hirer.dateOfBirth,
+      companyName: hirer.companyName,
+      companyLogo: hirer.companyLogo
+    });
+  } catch (error) {
+    console.error('Error fetching hirer profile:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

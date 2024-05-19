@@ -1,3 +1,4 @@
+const { access } = require('fs');
 const mongoose = require('mongoose');
 const { array } = require('zod');
 mongoose.connect("mongodb+srv://Tomar606:Tomar606@jobjolt.udtlr0d.mongodb.net/")
@@ -263,6 +264,16 @@ const jobSchema = new mongoose.Schema({
   
   const Watchlist = mongoose.model("Watchlist", WatchlistSchema);
 
+  const CTokenSchema=new mongoose.Schema({
+    username : {
+      type: String
+    },
+    access_token:{
+      type: String
+    }
+  })
+
+  const CToken= mongoose.model("CTokens", CTokenSchema)
 
 module.exports = {
 	Worker,
@@ -274,5 +285,6 @@ module.exports = {
     SavedJobs,
     AppliedJob,
     Applications,
-    Watchlist
+    Watchlist,
+    CToken
 };

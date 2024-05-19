@@ -17,6 +17,7 @@ async function getToken() {
   
     const username = localStorage.getItem('username');
     const usertype = localStorage.getItem('utype')
+
     if (!username) {
       throw new Error('Username not found in localStorage');
     }
@@ -37,7 +38,7 @@ async function getToken() {
       }, 
       {
         headers: {
-          Authorization: `Bearer wys_rAfdZh6veXhf4p10T4l7kSMO0Cc1fn2C4Xio`,
+          'Authorization': `Bearer wys_rAfdZh6veXhf4p10T4l7kSMO0Cc1fn2C4Xio`,
           'Content-Type': 'application/json'
         }
       });

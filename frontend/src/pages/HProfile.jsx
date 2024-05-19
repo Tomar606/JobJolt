@@ -15,10 +15,11 @@ const HProfile = () => {
 
     useEffect(() => {
         // Replace with actual hirer ID or retrieve it from authenticated user context
-        const hirerId = 'hirer_id_here';
-        axios.get(`/api/hirers/profile/${hirerId}`)
+        const hirerId = localStorage.getItem('hirerId') ;
+        axios.get(`http://localhost:3000/api/v1/hirer/profile/${hirerId}`)
             .then(response => {
                 setHirer(response.data);
+                console.log(response.data.hfirstName)
                 setFormData({
                     hfirstName: response.data.hfirstName,
                     hlastName: response.data.hlastName,
@@ -41,8 +42,8 @@ const HProfile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Replace with actual hirer ID or retrieve it from authenticated user context
-        const hirerId = 'hirer_id_here';
-        axios.put('/api/hirers/update-profile', { ...formData, hirerId })
+        const hirerId = localStorage.getItem('hirerId');
+        axios.put('http://localhost:3000/api/v1/hirer/update-profile', { ...formData, hirerId })
             .then(response => {
                 setHirer(response.data);
                 setEditMode(false);
@@ -139,7 +140,7 @@ const HProfile = () => {
                             className="w-full border p-2 rounded"
                         />
                     ) : (
-                        <img src={hirer.companyLogo} alt="Company Logo" className="h-20 w-20" />
+                        <img src={hirer.companyLogo} alt={formData.companyLogo} className="h-20 w-20" />
                     )}
                 </div>
                 <div className="flex space-x-4">
