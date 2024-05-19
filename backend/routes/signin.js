@@ -7,6 +7,7 @@ const { Worker, Hirer, CToken } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const mongoose = require('mongoose');
+const { MdOutlineSettingsAccessibility } = require('react-icons/md');
 
 
 const signinBody = zod.object({
@@ -72,7 +73,6 @@ router.post("/", async (req, res) => {
 
 router.get("/token", async (req, res) => {
     let username = req.header('username');
-
     try {
         // Check db for existing access_token
         let existingToken = await CToken.findOne({ username: username });

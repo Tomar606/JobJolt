@@ -47,7 +47,9 @@ const workerSchema = new mongoose.Schema({
   education : {
     type: Array
   },
-  experience: String,
+  experience: {
+    type: String
+  },
   qualifications: String,
   hobbies: String,
   portfolioLinks: [String],

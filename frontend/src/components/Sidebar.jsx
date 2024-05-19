@@ -18,7 +18,7 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const navigate = useNavigate();
 
   const sidebarItemStyle =
@@ -95,3 +95,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;

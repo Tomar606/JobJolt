@@ -16,7 +16,6 @@ async function getToken() {
   try {
   
     const username = localStorage.getItem('username');
-
     if (!username) {
       throw new Error('Username not found in localStorage');
     }
