@@ -2,7 +2,7 @@ import { WeavyComponent } from "@/components/WyMessenger"
 import React from "react"
 
 
-export const Hmessages = () => {
+export const Messages = () => {
 
     return (
         <div>

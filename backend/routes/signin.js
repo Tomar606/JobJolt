@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     const { success } = signinBody.safeParse(req.body)
     if (!success) {
         return res.status(411).json({
-            message: 'Incorrect inputs'
+            message: 'Invalid format for email and password'
         })
     }
 
@@ -63,8 +63,8 @@ router.post("/", async (req, res) => {
         }
     };
 
-    res.status(411).json({
-        message: "Error while logging in"
+    res.status(401).json({
+        message: "Incorrect email or password"
     })
 
 });

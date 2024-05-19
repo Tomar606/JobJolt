@@ -16,6 +16,7 @@ async function getToken() {
   try {
   
     const username = localStorage.getItem('username');
+    const usertype = localStorage.getItem('utype')
     if (!username) {
       throw new Error('Username not found in localStorage');
     }
@@ -32,7 +33,7 @@ async function getToken() {
       console.log('Access Token:', access_token);
       const nameUpdate = await axios.patch(`https://ec0233f4681040e6a0e5b1781baf756b.weavy.io/api/users/${username}`, 
       {
-        name: (localStorage.getItem("wfname")?(localStorage.getItem("wfname")):(localStorage.getItem("hfname")))
+        name: (((localStorage.getItem("wfname"))?(localStorage.getItem("wfname")):(localStorage.getItem("hfname"))))+` (${usertype})`
       }, 
       {
         headers: {

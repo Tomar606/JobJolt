@@ -25,13 +25,15 @@ import { Applications } from "./pages/Applications"
 import { SavedJobsPage } from "./pages/Savedjobs"
 import { HirerApplicationsPage } from "./pages/HApplications"
 import { WatchlistPage } from "./pages/HirerWatchlist"
-import { Hmessages } from "./pages/HMessages"
-import { HProfile } from "./pages/HProfile"
+import { Messages } from "./pages/Messages"
+import HProfile from "./pages/HProfile"
+import { IconContext } from "react-icons"
 
 
 function App() {
   return (
     <>
+    <IconContext.Provider value={{ size: "2em"}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -41,7 +43,7 @@ function App() {
           <Route path="/hsignup" element={<HSignup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/wprofile" element={<WProfile />} />
-          <Route path="/hprofile" element={<HProfile/>} />
+          <Route path="/hprofile" element={<HProfile />} />
           <Route path="/findWork" element={<FindWork />} />
           <Route path="/hdashboard" element={<HDashboard />} />
           <Route path="/hirer/new-job" element={<JobPost />} />
@@ -52,7 +54,7 @@ function App() {
           <Route path="/saved-jobs" element={<SavedJobsPage />} />
           <Route path="/hirer/applications" element={<HirerApplicationsPage />} />
           <Route path="/hirer/watchlist" element={<WatchlistPage />} />
-          <Route path="/hmessages" element={<Hmessages/>} />
+          <Route path="/messages" element={<Messages />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer
@@ -66,7 +68,8 @@ function App() {
         draggable
         pauseOnHover
         theme="dark"
-/>
+      />
+      </IconContext.Provider>
     </>
   )
 }
