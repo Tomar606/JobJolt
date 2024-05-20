@@ -151,7 +151,7 @@ const Navbar = ({ isScrolled }) => {
         <div className="flex items-center space-x-6">
           <button
             onClick={() => navigate("/")}
-            className="font-bold text-xl text-white hover:text-gray-200 max-w-xs transition duration-300 ease-in-out hover:scale-110 animate-blink"
+            className="font-bold text-xl text-white hover:text-gray-200 max-w-xs transition duration-400 ease-in-out hover:scale-110 animate-blink"
           >
             JobJolt v1.0
           </button>
