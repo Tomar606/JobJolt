@@ -139,6 +139,7 @@ router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 },
         data: profilePictureData,
         contentType: profilePictureContentType
       };
+      console.log(worker.profilePicture)
     }
 
     await worker.save();
@@ -149,6 +150,47 @@ router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 },
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.get('/profile/:workerId', async (req, res) => {
+  try {
+    const { workerId } = req.params;
+    const worker = await Worker.findById(workerId);
+
+    if (!worker) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+
+    // Add debug logging
+    console.log('Worker found:', worker);
+
+    // Manually create the formatted worker response
+    const formattedWorker = worker.toObject();
+    if (worker.profilePicture && worker.profilePicture.data) {
+      formattedWorker.profilePicture = {
+        data: worker.profilePicture.data.toString('base64'),
+        contentType: worker.profilePicture.contentType
+      };
+    }
+    if (worker.resume && worker.resume.data) {
+      formattedWorker.resume = {
+        data: worker.resume.data.toString('base64'),
+        contentType: worker.resume.contentType
+      };
+    }
+
+    // Add debug logging for formatted worker data
+    console.log('Formatted worker data:', formattedWorker);
+
+    res.json(formattedWorker);
+  } catch (error) {
+    console.error('Error fetching profile data:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
 
 
 router.get('/jobs', async (req, res) => {
@@ -173,30 +215,7 @@ router.get('/jobs', async (req, res) => {
   const base64Encode = (buffer) => {
     return Buffer.from(buffer).toString('base64');
   };
-  
-  router.get('/profile/:workerId', async (req, res) => {
-    try {
-      const { workerId } = req.params;
-      const worker = await Worker.findById(workerId);
-  
-      if (!worker) {
-        return res.status(404).json({ message: 'Profile not found' });
-      }
-  
-      // Convert profile picture data to Base64 if it's not already encoded
-      if (worker.profilePicture && worker.profilePicture.data.type === 'Buffer' && Array.isArray(worker.profilePicture.data.data)) {
-        const base64Data = base64Encode(Buffer.from(worker.profilePicture.data.data));
-        worker.profilePicture.data = `data:${worker.profilePicture.contentType};base64,${base64Data}`;
-      }
-  
-      res.json(worker);
-    } catch (error) {
-      console.error('Error fetching profile data:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  });
-  
-  
+    
   
 
   router.post('/like-job/:jobId', async (req, res) => {

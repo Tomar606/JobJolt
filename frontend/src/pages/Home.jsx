@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import girlworking from "@/assets/girlworking.gif";
@@ -27,30 +27,33 @@ export const Home = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
       <Navbar isScrolled={isScrolled} />
       <div
-        className="w-full h-screen flex justify-between items-center pl-20 pr-20 text-white text-center"
+        className="w-full h-screen flex justify-between items-center px-4 sm:px-20 text-white text-center"
         style={{
           backgroundImage: `url(${girlworking})`,
-          backgroundSize: "100%",
-          backgroundPosition: "right center",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
           marginTop: isScrolled ? "64px" : "64px", // Adjust margin-top based on navbar height
         }}
       >
         <div className="flex flex-col justify-center items-start space-y-4">
-          <div className="text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
+          <div className="text-3xl sm:text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
             Welcome to JobJolt
           </div>
-          <div className="text-2xl p-4 pb-0 pt-0 rounded-lg bg-transparent bg-opacity-65 relative">
+          <div className="text-xl sm:text-2xl p-4 pb-0 pt-0 rounded-lg bg-transparent bg-opacity-65 relative">
             No more stress in HRM
           </div>
-          <div className="text-2xl p-4 pt-0 rounded-lg bg- bg-transparent opacity-65 relative">
+          <div className="text-xl sm:text-2xl p-4 pt-0 rounded-lg bg-transparent opacity-65 relative">
             You got this!
           </div>
         </div>

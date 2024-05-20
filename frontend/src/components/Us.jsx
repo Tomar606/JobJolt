@@ -5,12 +5,12 @@ import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export const Us = () => {
     return <>
-        <div className="mx-auto p-8 space-y-8 text-white bg-black">
+        <div className="mx-auto p-8 space-y-8 text-white bg-black pt-20">
                 {/* About Us heading */}
-                <div className="text-3xl font-bold">About Us</div>
+                <div className="text-3xl font-bold flex justify-center">About Us</div>
 
                 {/* Cards for founders */}
-                <div className="flex space-x-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Card for Pranshu Pandey */}
                     <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img

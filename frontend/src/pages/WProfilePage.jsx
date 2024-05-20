@@ -17,11 +17,14 @@ const WProfilePage = () => {
     try {
       const workerId = localStorage.getItem('workerId');
       const response = await axios.get(`http://localhost:3000/api/v1/worker/profile/${workerId}`);
-      setProfileData(response.data);
-      console.log('Profile picture response:', response.data.profilePicture);
-
-            if (response.data.profilePicture) {
-        setProfilePicture(profilePicture);
+      const data = response.data;
+  
+      setProfileData(data);
+  
+      if (data.profilePicture) {
+        const base64String = `data:${data.profilePicture.contentType};base64,${data.profilePicture.data}`;
+        setProfilePicture(base64String);
+        console.log(base64String);
       } else {
         setProfilePicture(GSTback);
       }
@@ -29,6 +32,7 @@ const WProfilePage = () => {
       console.error('Error fetching profile data:', error);
     }
   };
+  
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -94,7 +98,6 @@ const WProfilePage = () => {
       console.log("Profile updated successfully:", response.data);
       setIsEditMode(false);
       fetchProfileData(); // Refresh profile data after update
-      setProfilePicture(response.data.profilePicture); // Update profile picture
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -105,9 +108,8 @@ const WProfilePage = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <div className="">
-          {profileData && profileData.profilePicture && (
-      <img src={`data:${profileData.profilePicture.contentType};base64,${profileData.profilePicture.data}`} alt="Profile" />
-    )}          </div>
+            <img src={profilePicture} alt="Profile" className="rounded-full w-32 h-32 border-4 border-gray-300 shadow-xl" />
+          </div>
           <div className="bg-white p-2 rounded-xl ml-4 border-2 border-gray-300 shadow-2xl">
             <div className="font-serif font-bold text-4xl">
               {formData.firstName} {formData.lastName}
@@ -386,7 +388,8 @@ const WProfilePage = () => {
                 <div>{profileData?.experience}</div>
               </div>
               <div className="flex space-x-4">
-                <div className="w-1/2 bg-white p-4 m-2 mt-2 border-2 border-gray-300 rounded-2xl shadow-2xl">
+               
+              <div className="w-1/2 bg-white p-4 m-2 mt-2 border-2 border-gray-300 rounded-2xl shadow-2xl">
                   <div className="font-bold">Languages</div>
                   <div>{profileData?.languages}</div>
                 </div>
@@ -410,3 +413,4 @@ const WProfilePage = () => {
 };
 
 export default WProfilePage;
+
