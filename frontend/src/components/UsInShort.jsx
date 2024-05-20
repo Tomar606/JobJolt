@@ -6,11 +6,11 @@ import GST from "@/assets/GST.png";
 export const UsInShort = () => {
     return (
         <>
-            <div className="mx-auto p-8 space-y-8 text-white bg-black">
-                <div className="text-3xl font-bold">About Us</div>
+            <div className="mx-auto p-8 space-y-8 text-white bg-black sm:p-8">
+                <div className="text-3xl sm:text-3xl font-bold sm:text-center">About Us</div>
 
-                <div className="flex space-x-4">
-                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-center bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={PP}
                             alt="Pranshu Pandey"

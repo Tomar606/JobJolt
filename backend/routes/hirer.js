@@ -196,18 +196,16 @@ router.post('/application', async (req, res) => {
   
   router.get('/watchlist/:hirerId', async (req, res) => {
     const { hirerId } = req.params;
-  
-    try {
-      const watchlist = await Watchlist.findOne({ hirer: hirerId }).populate('applicants');
-      if (!watchlist) {
-        return res.status(404).json({ msg: 'Watchlist not found' });
-      }
-  
-      res.json(watchlist.applicants);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server Error');
+    const hirer = hirerId
+    const applicant = await Watchlist.findById(hirerId);
+
+    if (!applicant) {
+      return res.status(404).json({message: 'Applicant not found'});
     }
+
+    const watched = applicant._id;
+    console.log(watched)
+
   });
 
   // Delete an applicant from the hirer's watchlist
