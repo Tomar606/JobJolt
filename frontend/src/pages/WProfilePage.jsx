@@ -24,14 +24,13 @@ const WProfilePage = () => {
       if (data.profilePicture) {
         const base64String = `data:${data.profilePicture.contentType};base64,${data.profilePicture.data}`;
         setProfilePicture(base64String);
-        console.log(base64String);
-      } else {
-        setProfilePicture(GSTback);
+        console.log(profilePicture)
       }
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
   };
+  
   
 
   const [formData, setFormData] = useState({
@@ -104,13 +103,13 @@ const WProfilePage = () => {
   };
 
   return (
-    <div className="w-full h-full pt-16 bg-indigo-100 overflow-hidden">
+    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 pl-8 pr-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <div className="">
-            <img src={profilePicture} alt="Profile" className="rounded-full w-32 h-32 border-4 border-gray-300 shadow-xl" />
+            <img src={profilePicture} alt="Profile" className="rounded-full w-48 h-48 border-4 border-gray-300 shadow-xl" />
           </div>
-          <div className="bg-white p-2 rounded-xl ml-4 border-2 border-gray-300 shadow-2xl">
+          <div className="bg-white p-2 rounded-xl ml-4 border-2 border-gray-300 shadow-xl">
             <div className="font-serif font-bold text-4xl">
               {formData.firstName} {formData.lastName}
             </div>
@@ -365,35 +364,35 @@ const WProfilePage = () => {
         <div className="w-full h-full bg-indigo-100 overflow-hidden">
           <div className="flex h-full">
             <div className="w-1/4 flex flex-col space-y-4 h-full overflow-hidden">
-              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl flex-grow overflow-y-auto">
+              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow overflow-y-auto">
                 <div className="font-bold">Skills</div>
                 <div>{profileData?.skills}</div>
               </div>
-              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl flex-grow overflow-y-auto">
+              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow overflow-y-auto">
                 <div className="font-bold">Education</div>
                 <div>{profileData?.education}</div>
               </div>
-              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl flex-grow overflow-y-auto">
+              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow overflow-y-auto">
                 <div className="font-bold">Hobbies</div>
                 <div>{profileData?.hobbies}</div>
               </div>
             </div>
             <div className="w-3/4 flex flex-col space-y-4 h-full overflow-hidden">
-              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl flex-grow">
+              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow">
                 <div className="font-bold">About Me</div>
                 <div>{profileData?.aboutMe}</div>
               </div>
-              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl flex-grow">
+              <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow">
                 <div className="font-bold">Experience</div>
                 <div>{profileData?.experience}</div>
               </div>
               <div className="flex space-x-4">
                
-              <div className="w-1/2 bg-white p-4 m-2 mt-2 border-2 border-gray-300 rounded-2xl shadow-2xl">
+              <div className="w-1/2 bg-white p-4 m-2 mt-2 border-2 border-gray-300 rounded-2xl shadow-xl">
                   <div className="font-bold">Languages</div>
                   <div>{profileData?.languages}</div>
                 </div>
-                <div className="w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-2xl">
+                <div className="w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl">
                   <div className="font-bold">Contact Me</div>
                   {/* <div>
                     {profileData?.portfolioLinks.split(",").map((link, index) => (

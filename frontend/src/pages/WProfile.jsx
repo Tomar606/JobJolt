@@ -7,8 +7,8 @@ export const WProfile = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="flex flex-1 overflow-hidden bg-black">
-        <Sidebar className="justify-self-end" />
+      <div className="flex flex-1 overflow-hidden bg-indigo-100">
+        {/* <Sidebar className="justify-self-end" /> */}
         <WProfilePage />
       </div>
     </div>
