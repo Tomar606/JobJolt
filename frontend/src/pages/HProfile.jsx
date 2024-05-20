@@ -14,12 +14,10 @@ const HProfile = () => {
     });
 
     useEffect(() => {
-        // Replace with actual hirer ID or retrieve it from authenticated user context
-        const hirerId = localStorage.getItem('hirerId') ;
+        const hirerId = localStorage.getItem('hirerId');
         axios.get(`http://localhost:3000/api/v1/hirer/profile/${hirerId}`)
             .then(response => {
                 setHirer(response.data);
-                console.log(response.data.hfirstName)
                 setFormData({
                     hfirstName: response.data.hfirstName,
                     hlastName: response.data.hlastName,
@@ -41,7 +39,6 @@ const HProfile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Replace with actual hirer ID or retrieve it from authenticated user context
         const hirerId = localStorage.getItem('hirerId');
         axios.put('http://localhost:3000/api/v1/hirer/update-profile', { ...formData, hirerId })
             .then(response => {
@@ -52,121 +49,123 @@ const HProfile = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-4 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold mb-4">Hirer Profile</h1>
-            <div className="space-y-4">
-                <div>
-                    <label className="block font-semibold">First Name:</label>
-                    {editMode ? (
-                        <input
-                            type="text"
-                            name="hfirstName"
-                            value={formData.hfirstName}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        />
-                    ) : (
-                        <p>{hirer.hfirstName}</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block font-semibold">Last Name:</label>
-                    {editMode ? (
-                        <input
-                            type="text"
-                            name="hlastName"
-                            value={formData.hlastName}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        />
-                    ) : (
-                        <p>{hirer.hlastName}</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block font-semibold">Gender:</label>
-                    {editMode ? (
-                        <select
-                            name="gender"
-                            value={formData.gender}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        >
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    ) : (
-                        <p>{hirer.gender}</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block font-semibold">Date of Birth:</label>
-                    {editMode ? (
-                        <input
-                            type="date"
-                            name="dateOfBirth"
-                            value={formData.dateOfBirth}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        />
-                    ) : (
-                        <p>{hirer.dateOfBirth ? new Date(hirer.dateOfBirth).toDateString() : 'N/A'}</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block font-semibold">Company Name:</label>
-                    {editMode ? (
-                        <input
-                            type="text"
-                            name="companyName"
-                            value={formData.companyName}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        />
-                    ) : (
-                        <p>{hirer.companyName}</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block font-semibold">Company Logo URL:</label>
-                    {editMode ? (
-                        <input
-                            type="text"
-                            name="companyLogo"
-                            value={formData.companyLogo}
-                            onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        />
-                    ) : (
-                        <img src={hirer.companyLogo} alt={formData.companyLogo} className="h-20 w-20" />
-                    )}
-                </div>
-                <div className="flex space-x-4">
-                    {editMode ? (
-                        <button
-                            onClick={handleSubmit}
-                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-                        >
-                            Save Changes
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => setEditMode(true)}
-                            className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-700"
-                        >
-                            Edit Profile
-                        </button>
-                    )}
-                    {editMode && (
-                        <button
-                            onClick={() => setEditMode(false)}
-                            className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
-                        >
-                            Cancel
-                        </button>
-                    )}
+        <div className='bg-[#0f0e0d] min-h-screen content-center'>
+            <div className="max-w-4xl mx-auto p-4 my-10 bg-black text-white shadow-md rounded-lg border-gray-400 border">
+                <h1 className="text-3xl font-bold mb-4">Hirer Profile</h1>
+                <div className="space-y-4">
+                    <div>
+                        <label className="block font-semibold">First Name:</label>
+                        {editMode ? (
+                            <input
+                                type="text"
+                                name="hfirstName"
+                                value={formData.hfirstName}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            />
+                        ) : (
+                            <p className='m-2 p-2 border border-gray-300 rounded-sm'>{hirer.hfirstName}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label className="block font-semibold">Last Name:</label>
+                        {editMode ? (
+                            <input
+                                type="text"
+                                name="hlastName"
+                                value={formData.hlastName}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            />
+                        ) : (
+                            <p className='m-2 p-2 border border-gray-300 rounded-sm'>{hirer.hlastName}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label className="block font-semibold">Gender:</label>
+                        {editMode ? (
+                            <select
+                                name="gender"
+                                value={formData.gender}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            >
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        ) : (
+                            <p className='m-2 p-2 border border-gray-300 rounded-sm'>{hirer.gender}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label className="block font-semibold">Date of Birth:</label>
+                        {editMode ? (
+                            <input
+                                type="date"
+                                name="dateOfBirth"
+                                value={formData.dateOfBirth}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            />
+                        ) : (
+                            <p className='m-2 p-2 border border-gray-300 rounded-sm'>{hirer.dateOfBirth ? new Date(hirer.dateOfBirth).toDateString() : 'N/A'}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label className="block font-semibold">Company Name:</label>
+                        {editMode ? (
+                            <input
+                                type="text"
+                                name="companyName"
+                                value={formData.companyName}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            />
+                        ) : (
+                            <p className='m-2 p-2 border border-gray-300 rounded-sm'>{hirer.companyName}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label className="block font-semibold">Company Logo:</label>
+                        {editMode ? (
+                            <input
+                                type="text"
+                                name="companyLogo"
+                                value={formData.companyLogo}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded text-black"
+                            />
+                        ) : (
+                            <img src={hirer.companyLogo} alt="Company Logo" className="h-20 w-20 object-cover rounded m-2" />
+                        )}
+                    </div>
+                    <div className="flex space-x-4">
+                        {editMode ? (
+                            <button
+                                onClick={handleSubmit}
+                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+                            >
+                                Save Changes
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => setEditMode(true)}
+                                className="bg-indigo-400 font-semibold text-white py-2 px-4 rounded hover:bg-indigo-700"
+                            >
+                                Edit Profile
+                            </button>
+                        )}
+                        {editMode && (
+                            <button
+                                onClick={() => setEditMode(false)}
+                                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+                            >
+                                Cancel
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
