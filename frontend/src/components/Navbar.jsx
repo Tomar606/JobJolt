@@ -12,11 +12,11 @@ const Navbar = ({ isScrolled }) => {
     !!localStorage.getItem("wtoken") || !!localStorage.getItem("htoken")
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 830);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 830);
+      setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -189,7 +189,7 @@ const Navbar = ({ isScrolled }) => {
         <div className="flex items-center space-x-6">
           <button
             onClick={() => navigate("/")}
-            className="font-bold text-xl text-white hover:text-gray-200 max-w-xs transition duration-400 ease-in-out hover:scale-110 animate-blink text-nowrap"
+            className="font-bold text-xl text-white hover:text-gray-200 max-w-xs transition duration-400 ease-in-out hover:scale-110 animate-blink"
           >
             JobJolt v1.0
           </button>
