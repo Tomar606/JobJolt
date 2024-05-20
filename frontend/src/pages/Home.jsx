@@ -5,7 +5,7 @@ import girlworking from "@/assets/girlworking.gif";
 import { UsInShort } from "@/components/UsInShort";
 import { WhyInShort } from "@/components/WhyInShort";
 
-export const Home = () => {
+const Home = () => {
   const aboutUsRef = useRef(null);
   const whyJobjoltRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,7 +43,7 @@ export const Home = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
-          marginTop: isScrolled ? "64px" : "64px", // Adjust margin-top based on navbar height
+          marginTop: "64px",
         }}
       >
         <div className="flex flex-col justify-center items-start space-y-4">
@@ -63,10 +63,10 @@ export const Home = () => {
       {isScrolled && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-10 right-10 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full"
+          className="scroll-to-top-btn"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
           </svg>
         </button>
       )}

@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import ("./navbar.css");
+import "./navbar.css";
+import { FiAlignJustify } from "react-icons/fi";
 
 const Navbar = ({ isScrolled }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("wtoken") || !!localStorage.getItem("htoken")
   );
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const toWork = () => {
     if (localStorage.getItem("wtoken")) {
@@ -62,27 +75,26 @@ const Navbar = ({ isScrolled }) => {
     if (localStorage.getItem("wtoken")) {
       navigate("/wprofile");
     } else if (localStorage.getItem("htoken")) {
-        navigate("/hprofile");
+      navigate("/hprofile");
     }
   };
-  
-    const logout = () => {
-        toast.info('Successfully logged out!', {
-            position: "bottom-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Flip,
-        });
-        localStorage.clear();
-        setIsLoggedIn(false); 
-        navigate('/')
-    };
 
+  const logout = () => {
+    toast.info("Successfully logged out!", {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+    });
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/");
+  };
 
   const toAboutUs = () => {
     navigate("/aboutus");
@@ -155,23 +167,53 @@ const Navbar = ({ isScrolled }) => {
           >
             Work
           </button>
+          {!isMobile && (
+            <>
+              <button
+                onClick={toAboutUs}
+                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+              >
+                About Us
+              </button>
+              <button
+                onClick={toWhyPage}
+                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+              >
+                Why JobJolt
+              </button>
+            </>
+          )}
+        </div>
+        <div className="flex items-center space-x-4">
+          {isMobile ? (
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+            >
+              <FiAlignJustify />
+            </button>
+          ) : (
+            <ProfileButtons />
+          )}
+        </div>
+      </div>
+      {isDropdownOpen && isMobile && (
+        <div className="bg-black border-t border-white py-2">
           <button
             onClick={toAboutUs}
-            className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+            className="block py-2 px-4 text-sm font-medium text-white transition duration-300 ease-in-out hover:scale-110"
           >
             About Us
           </button>
           <button
             onClick={toWhyPage}
-            className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+            className="block py-2 px-4 text-sm font-medium text-white transition duration-300 ease-in-out hover:scale-110"
           >
             Why JobJolt
           </button>
-        </div>
-        <div className="flex items-center space-x-4">
           <ProfileButtons />
         </div>
-      </div>
+      )}
     </div>
   );
 };
