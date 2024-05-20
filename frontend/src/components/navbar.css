@@ -2,11 +2,9 @@
   0% {
     opacity: 1;
   }
-
   50% {
     opacity: 0.5;
   }
-
   100% {
     opacity: 1;
   }
@@ -14,6 +12,24 @@
 
 .animate-blink {
   animation: blink 1.5s infinite;
+}
+
+/* Scroll to Top Button Styles */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: gray;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px; /* Makes the button fully rounded */
+  z-index: 100; /* Ensure it stays above other elements */
+  transition: background-color 0.3s ease;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: darkgray;
 }
 
 /* General styles */
@@ -48,7 +64,6 @@
 
 /* Media Queries */
 @media (max-width: 767px) {
-
   .flex.items-center.space-x-6>button:nth-child(4),
   .flex.items-center.space-x-6>button:nth-child(5) {
     display: none;
