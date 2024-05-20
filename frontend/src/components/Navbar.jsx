@@ -209,13 +209,13 @@ const Navbar = ({ isScrolled }) => {
             <>
               <button
                 onClick={toAboutUs}
-                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110 text-nowrap"
               >
                 About Us
               </button>
               <button
                 onClick={toWhyPage}
-                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110"
+                className="py-2 px-4 rounded-lg text-sm font-medium text-white max-w-xs transition duration-300 ease-in-out hover:scale-110 text-nowrap"
               >
                 Why JobJolt
               </button>
