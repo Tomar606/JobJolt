@@ -23,6 +23,15 @@ const HirerJobsPage = () => {
     fetchJobs();
   }, []);
 
+  const handleDeleteJob = async (jobId) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/v1/hirer/jobs/${jobId}`);
+      setJobs(jobs.filter(job => job._id !== jobId));
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center mx-auto min-h-screen h-auto bg-black p-4">
       <div className="w-full flex justify-start mb-4">
@@ -46,6 +55,14 @@ const HirerJobsPage = () => {
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {job.salary}
                 </span>
+              </div>
+              <div className="px-6 py-4 flex justify-end">
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handleDeleteJob(job._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))

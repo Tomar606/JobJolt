@@ -112,6 +112,25 @@ router.post('/post-job', async (req, res) => {
     }
 });
 
+router.delete('/jobs/:id', async (req, res) => {
+  const jobId = req.params.id;
+
+  try {
+    // Find the job by ID and delete it
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    if (!deletedJob) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    res.status(200).json({ message: 'Job deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting job:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 router.get('/posted-jobs/:hirerId', async (req, res) => {
     try {
         const hirerId = req.params.hirerId;

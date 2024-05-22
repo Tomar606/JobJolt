@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
-import {BackButton} from "@/components/HButtons"; // Ensure the correct path is used
+import { BackButton } from "@/components/HButtons"; // Ensure the correct path is used
 
 export const JobPost = () => {
   const hirerId = localStorage.getItem("hirerId");
@@ -43,7 +43,7 @@ export const JobPost = () => {
       <Navbar />
 
       <div className="bg-black py-8 w-screen h-auto min-h-screen content-center">
-      <BackButton/>
+        <BackButton />
         <div className="w-4/5 mx-auto p-6 bg-gray-900 rounded-lg border-2 border-gray-400 pt-16 mt-20">
           <div className="flex justify-between items-center">
             <h2 className="text-4xl font-semibold mb-4 text-white">Post a Job</h2>
@@ -81,7 +81,7 @@ export const JobPost = () => {
             <div className="flex justify-between">
               <div>
                 <label htmlFor="postedDate" className="block text-gray-400 font-bold">Posted Date</label>
-                <input type="text" id="postedDate" name="postedDate" value={formData.postedDate} onChange={handleChange} className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <input type="date" id="postedDate" name="postedDate" value={formData.postedDate} onChange={handleChange} className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
               </div>
               <div>
                 <label htmlFor="company" className="block text-gray-400 font-bold">Company</label>
