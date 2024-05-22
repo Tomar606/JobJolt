@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import {BackButton} from "@/components/HButtons";
+import { BackButton } from "@/components/HButtons";
 
 export const WatchlistPage = () => {
   const [applicants, setApplicants] = useState([]);
@@ -48,9 +48,11 @@ export const WatchlistPage = () => {
   return (
     <>
       <Navbar />
-      <div className="h-screen bg-black pt-20">
-      <BackButton/>
-        <h1 className="text-2xl font-semibold mb-4 text-center text-white">Watchlist</h1>
+      <div className="min-h-screen h-auto bg-black pt-20">
+        <div className="w-full flex justify-start mb-8"> {/* Adjusted margin-bottom */}
+          <BackButton />
+        </div>
+        <h1 className="text-2xl font-semibold mb-4 text-center text-white mt-5">Watchlist</h1> {/* Added margin-top */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {applicants.map((applicant) => (
             <div key={applicant._id} className="bg-gray-900 border-2 border-gray-500 text-white shadow-md rounded-lg p-4">

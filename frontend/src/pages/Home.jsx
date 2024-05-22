@@ -63,8 +63,8 @@ const Home = () => {
             You got this!
           </div>
           {(!htoken)&&(!wtoken)&&<button className="button-64 relative left-5" role="button" onClick={toSignUp}><span className="text">Sign Up Now!</span></button>}
-          {(htoken)&&<button className="button-89 text-white font-semibold text-lg  relative left-5" role="button" onClick={tohdashboard}> Checkout Dashboard!</button>}
-          {(wtoken)&&<button className="button-89 text-white font-semibold text-lg relative left-5" role="button" onClick={towdashboard}> Checkout Dashboard!</button>}
+          {(htoken)&&<button className="button-59 relative left-5" role="button" onClick={tohdashboard}> Checkout Dashboard!</button>}
+          {(wtoken)&&<button className="button-59 relative left-5" role="button" onClick={towdashboard}> Checkout Dashboard!</button>}
         </div>
       </div>
       <WhyInShort />

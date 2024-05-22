@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {BackButton} from '@/components/HButtons';
+import { BackButton } from '@/components/HButtons';
 
 const HirerJobsPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,7 +11,7 @@ const HirerJobsPage = () => {
       try {
         const hirerId = localStorage.getItem('hirerId');
         console.log(hirerId);
-        
+
         const response = await axios.get(`http://localhost:3000/api/v1/hirer/posted-jobs/${hirerId}`);
         setJobs(response.data);
         console.log(response.data);
@@ -24,12 +24,14 @@ const HirerJobsPage = () => {
   }, []);
 
   return (
-    <div className="mx-auto h-screen bg-black p-4">
-      <BackButton/>
-      <h1 className="text-3xl font-bold mb-8 text-center text-white">Jobs Posted By You</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="flex flex-col items-center mx-auto min-h-screen h-auto bg-black p-4">
+      <div className="w-full flex justify-start mb-4">
+        <BackButton />
+      </div>
+      <h1 className="text-3xl font-bold mb-8 mt-5 text-center text-white">Jobs Posted By You</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
         {jobs.length === 0 ? (
-          <p className="text-gray-500">No jobs posted yet.</p>
+          <p className="text-gray-500 text-center col-span-full">No jobs posted yet.</p>
         ) : (
           jobs.map((job) => (
             <div key={job._id} className="bg-gray-900 border-2 border-gray-500 shadow-lg rounded-lg overflow-hidden">

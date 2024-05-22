@@ -31,9 +31,9 @@ export const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <HomeButton/>
-      <div className="bg-black text-white min-h-screen pt-16">
-        <div className="container mx-auto mb-4">
+      <HomeButton />
+      <div className="bg-black text-white min-h-screen pt-16 pb-8 flex flex-col">
+        <div className="container mx-auto mb-4 flex-grow">
           <div className="bg-pastel-yellow text-charcoal-gray text-center py-4 antialiased rounded-md mb-4">
             <p
               className="text-2xl font-semibold mb-2 text-indigo-400"
