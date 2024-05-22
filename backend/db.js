@@ -257,10 +257,17 @@ const jobSchema = new mongoose.Schema({
       required: true,
     },
     applicants: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Worker",
+      applicant: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Worker",
+      },
+      job: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job",
+      }
     }],
   });
+  
   
   const Watchlist = mongoose.model("Watchlist", WatchlistSchema);
 

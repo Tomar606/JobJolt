@@ -8,9 +8,11 @@ export const HirerApplicationsPage = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [applications, setApplications] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
     fetchPostedJobs();
+    fetchWatchlist();
   }, []);
 
   const fetchPostedJobs = async () => {
@@ -21,7 +23,16 @@ export const HirerApplicationsPage = () => {
       console.error('Error fetching posted jobs:', error);
     }
   };
-  
+
+  const fetchWatchlist = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`);
+      setWatchlist(response.data);
+    } catch (error) {
+      console.error('Error fetching watchlist:', error);
+    }
+  };
+
   const fetchApplications = async (jobId) => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/hirer/applications/${jobId}`);
@@ -46,14 +57,17 @@ export const HirerApplicationsPage = () => {
     }
   };
 
-  const addToWatchlist = async (applicantId) => {
+  const addToWatchlist = async (applicantId, jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`, { applicantId });
-      setApplications(applications.filter(applicant => applicant._id !== applicantId));
+      await axios.post(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`, { applicantId, jobId });
+      setWatchlist([...watchlist, { applicantId, jobId }]);
     } catch (error) {
       console.error('Error adding to watchlist:', error);
-      console.log(applicantId);
     }
+  };
+
+  const isAddedToWatchlist = (jobId) => {
+    return watchlist.some(item => item.job._id === jobId);
   };
 
   return (
@@ -102,7 +116,13 @@ export const HirerApplicationsPage = () => {
                 <p className="text-gray-600">Hobbies: {applicant.hobbies}</p>
                 <div className="mt-4">
                   <button onClick={() => rejectApplicant(applicant._id)} className="bg-red-500 text-white px-4 py-2 rounded-md mr-2">Reject</button>
-                  <button onClick={() => addToWatchlist(applicant._id)} className="bg-green-500 text-white px-4 py-2 rounded-md">Add to Watchlist</button>
+                  <button
+                    onClick={() => addToWatchlist(applicant._id, selectedJob)}
+                    className={`text-white px-4 py-2 rounded-md mr-2 ${isAddedToWatchlist(selectedJob) ? 'bg-gray-500 cursor-default' : 'bg-green-500 hover:bg-green-600'}`}
+                    disabled={isAddedToWatchlist(selectedJob)}
+                  >
+                    {isAddedToWatchlist(selectedJob) ? 'Already Added to Watchlist' : 'Add to Watchlist'}
+                  </button>
                 </div>
               </div>
             ))}
