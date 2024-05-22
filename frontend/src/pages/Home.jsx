@@ -4,16 +4,22 @@ import Footer from "@/components/footer";
 import girlworking from "@/assets/girlworking.gif";
 import { UsInShort } from "@/components/UsInShort";
 import { WhyInShort } from "@/components/WhyInShort";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const aboutUsRef = useRef(null);
-  const whyJobjoltRef = useRef(null);
+  const navigate=useNavigate()
+  const htoken=localStorage.getItem('htoken')
+  const wtoken=localStorage.getItem('wtoken')
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const scrollToRef = (ref) => {
-    window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" });
-  };
-
+  const toSignUp=()=>{
+    navigate('/choose')
+  }
+  const towdashboard=()=>{
+    navigate('/dashboard')
+  }
+  const tohdashboard=()=>{
+    navigate('/hdashboard')
+  }
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 50) {
@@ -56,6 +62,9 @@ const Home = () => {
           <div className="text-xl sm:text-2xl p-4 pt-0 rounded-lg bg-transparent opacity-65 relative">
             You got this!
           </div>
+          {(!htoken)&&(!wtoken)&&<button className="button-64 relative left-5" role="button" onClick={toSignUp}><span className="text">Sign Up Now!</span></button>}
+          {(htoken)&&<button className="button-89 text-white font-semibold text-lg  relative left-5" role="button" onClick={tohdashboard}> Checkout Dashboard!</button>}
+          {(wtoken)&&<button className="button-89 text-white font-semibold text-lg relative left-5" role="button" onClick={towdashboard}> Checkout Dashboard!</button>}
         </div>
       </div>
       <WhyInShort />
@@ -76,3 +85,4 @@ const Home = () => {
 };
 
 export default Home;
+

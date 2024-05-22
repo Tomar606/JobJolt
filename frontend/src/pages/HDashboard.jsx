@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import 'react-toastify/dist/ReactToastify.css';
 import { WeavyComponent } from "@/components/WyMessenger";
 import { GoBriefcase, GoChecklist, GoCommentDiscussion, GoPlus, GoStar } from "react-icons/go";
+import { HomeButton } from "@/components/HButtons";
 
 export const HDashboard = () => {
   const navigate = useNavigate();
@@ -31,9 +32,10 @@ export const HDashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-black text-white min-h-screen pt-8">
+      <HomeButton/>
+      <div className="bg-black text-white min-h-screen h-auto pt-8">
         <div className="container mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Hirer Dashboard</h1>
+          <h1 className="text-3xl font-bold mb-6 relative left-52">Dashboard</h1>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
             <Link to="/hirer/new-job" className="block">
               <div className="border border-white p-6 rounded-lg cursor-pointer hover:bg-gray-800 transition duration-300">

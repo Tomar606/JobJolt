@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '@/components/Navbar';
-
+import {BackButton} from '@/components/WButtons';
 export const Applications = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
-
   useEffect(() => {
     const fetchAppliedJobs = async () => {
       try {
@@ -33,6 +32,7 @@ export const Applications = () => {
     <div>
       <Navbar/>
     <div className="min-h-screen bg-black text-white py-16">
+      <BackButton/>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-8 text-white">Jobs You Have Applied To</h1>
         {appliedJobs.length === 0 ? (

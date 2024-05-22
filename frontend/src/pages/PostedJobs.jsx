@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {BackButton} from '@/components/HButtons';
 
 const HirerJobsPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -24,6 +25,7 @@ const HirerJobsPage = () => {
 
   return (
     <div className="mx-auto h-screen bg-black p-4">
+      <BackButton/>
       <h1 className="text-3xl font-bold mb-8 text-center text-white">Jobs Posted By You</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {jobs.length === 0 ? (

@@ -196,15 +196,13 @@ router.post('/application', async (req, res) => {
   
   router.get('/watchlist/:hirerId', async (req, res) => {
     const { hirerId } = req.params;
-    const hirer = hirerId
-    const applicant = await Watchlist.findById(hirerId);
+    const applicant = await Watchlist.findOne({hirer:hirerId});
 
     if (!applicant) {
       return res.status(404).json({message: 'Applicant not found'});
     }
-
-    const watched = applicant._id;
-    console.log(watched)
+    res.json(applicant.applicants)
+  
 
   });
 

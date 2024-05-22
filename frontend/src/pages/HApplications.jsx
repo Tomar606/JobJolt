@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import {BackButton} from '@/components/HButtons';
 export const HirerApplicationsPage = () => {
   const hirerId = localStorage.getItem("hirerId");
 
@@ -57,6 +57,7 @@ export const HirerApplicationsPage = () => {
 
   return (
     <div className="h-screen bg-black p-4">
+      <BackButton/>
       <h1 className="text-center text-white text-3xl font-bold mb-8">Jobs Posted By You</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {jobs.map((job) => (
