@@ -93,7 +93,7 @@ const WProfilePage = () => {
       });
       console.log("Profile updated successfully:", response.data);
       setIsEditMode(false);
-      fetchProfileData(); // Refresh profile data after update
+      fetchProfileData();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -139,7 +139,6 @@ const WProfilePage = () => {
 
       {isEditMode ? (
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="mt-4">
-          {/* Input fields for editing profile data */}
           <div className="flex flex-col space-y-4">
             <label htmlFor="profilePicture" className="font-bold">
               Profile Picture:

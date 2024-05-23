@@ -67,7 +67,6 @@ export const UsInShort = () => {
                     </div>
                 </div>
 
-                {/* Add more space between the text and the footer */}
                 <div className="h-12"></div>
             </div>
         </>

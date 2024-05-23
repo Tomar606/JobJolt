@@ -6,7 +6,6 @@ const HirerJobsPage = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    // Fetch jobs posted by the hirer from the backend API
     const fetchJobs = async () => {
       try {
         const hirerId = localStorage.getItem('hirerId');

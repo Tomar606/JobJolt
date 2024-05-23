@@ -31,7 +31,6 @@ export const WatchlistPage = () => {
 
   const handleAcceptApplicant = async (applicantId, jobId) => {
     try {
-      // Implement your logic to accept the applicant with the given applicantId and jobId
       console.log(`Applicant ${applicantId} accepted for job ${jobId}`);
     } catch (error) {
       console.error("Error accepting applicant:", error);

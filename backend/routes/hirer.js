@@ -88,7 +88,6 @@ router.post('/post-job', async (req, res) => {
     try {
         const { hirerId, title, description, eligibilityRequirements, salary, experience, jobType, postedDate, company, location } = req.body;
 
-        // Create a new job
         const newJob = new Job({
             hirerId,
             title,
@@ -102,7 +101,6 @@ router.post('/post-job', async (req, res) => {
             location
         });
 
-        // Save the job to the database
         await newJob.save();
 
         res.status(201).json(newJob);
@@ -116,7 +114,6 @@ router.delete('/jobs/:id', async (req, res) => {
   const jobId = req.params.id;
 
   try {
-    // Find the job by ID and delete it
     const deletedJob = await Job.findByIdAndDelete(jobId);
 
     if (!deletedJob) {
@@ -147,11 +144,9 @@ router.post('/application', async (req, res) => {
     try {
       const { workerId, jobId, hirerId } = req.body;
   
-      // Check if the hirer has already applications
       let application = await Applications.findOne({ hirerId, jobId });
   
       if (!application) {
-        // If the hirer has no applications for this job, create a new document
         application = new Applications({
           hirerId,
           jobId,
@@ -160,7 +155,6 @@ router.post('/application', async (req, res) => {
         await application.save();
         res.status(201).json({ message: 'Application created successfully' });
       } else {
-        // If the hirer has applications for this job, update the existing document
         if (!application.applicants.includes(workerId)) {
           application.applicants.push(workerId);
           await application.save();
@@ -197,7 +191,6 @@ router.post('/application', async (req, res) => {
         watchlist = new Watchlist({ hirer: hirerId });
       }
   
-      // Check if the applicant-job pair is already in the watchlist
       const isAlreadyInWatchlist = watchlist.applicants.some(
         (app) => app.applicant.toString() === applicantId && app.job.toString() === jobId
       );
@@ -239,12 +232,10 @@ router.post('/application', async (req, res) => {
   
   
 
-  // Delete an applicant from the hirer's watchlist
   router.delete("/watchlist/:hirerId/:workerId/:jobId", async (req, res) => {
     try {
       const { hirerId, workerId, jobId } = req.params;
   
-      // Remove applicant from hirer's watchlist for the specific job
       await Watchlist.findOneAndUpdate(
         { hirer: hirerId },
         { $pull: { applicants: { $elemMatch: { applicant: workerId, job: jobId } } } }

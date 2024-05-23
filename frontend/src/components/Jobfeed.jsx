@@ -19,7 +19,7 @@ const JobList = () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/worker/jobs`);
       setJobs(response.data);
-      fetchAppliedJobs(); // Fetch applied jobs after fetching all jobs
+      fetchAppliedJobs();
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
