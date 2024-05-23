@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Flip, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import Navbar from "@/components/Navbar";
 
 const JobList = () => {
   const workerId = localStorage.getItem("workerId");
@@ -20,8 +19,22 @@ const JobList = () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/worker/jobs`);
       setJobs(response.data);
+      fetchAppliedJobs(); // Fetch applied jobs after fetching all jobs
     } catch (error) {
       console.error('Error fetching jobs:', error);
+    }
+  };
+
+  const fetchAppliedJobs = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/worker/applied-jobs/${workerId}`);
+      const appliedJobsMap = {};
+      response.data.forEach(job => {
+        appliedJobsMap[job._id] = true;
+      });
+      setAppliedJobs(appliedJobsMap);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
     }
   };
 

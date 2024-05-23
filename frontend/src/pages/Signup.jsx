@@ -112,7 +112,7 @@ export const Signup = () => {
             </div>
 
             <div className="p-2 text-center mt-10">
-                <div className="bg-white bg-opacity-75 rounded-lg p-2 inline-block">
+                <div className="bg-white text-black bg-opacity-75 rounded-lg p-2 inline-block">
                     Already have an account?{' '}
                     <button
                         className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"

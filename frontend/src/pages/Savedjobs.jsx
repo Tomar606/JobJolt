@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
+import {BackButton} from "@/components/WButtons";
 
 export const SavedJobsPage = () => {
   const [savedJobs, setSavedJobs] = useState([]);
@@ -34,6 +35,7 @@ export const SavedJobsPage = () => {
       <Navbar />
       <div className="bg-black text-white min-h-screen pt-8">
         <div className="container mx-auto">
+          <BackButton />
           <h1 className="text-3xl font-bold mb-6">Saved Jobs</h1>
           {savedJobs.length === 0 ? (
             <p className="text-center text-gray-400">You haven't saved any jobs.</p>
@@ -60,3 +62,5 @@ export const SavedJobsPage = () => {
     </>
   );
 };
+
+export default SavedJobsPage;

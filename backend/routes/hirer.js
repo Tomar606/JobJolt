@@ -112,6 +112,25 @@ router.post('/post-job', async (req, res) => {
     }
 });
 
+router.delete('/jobs/:id', async (req, res) => {
+  const jobId = req.params.id;
+
+  try {
+    // Find the job by ID and delete it
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    if (!deletedJob) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    res.status(200).json({ message: 'Job deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting job:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 router.get('/posted-jobs/:hirerId', async (req, res) => {
     try {
         const hirerId = req.params.hirerId;
@@ -169,7 +188,7 @@ router.post('/application', async (req, res) => {
 
   router.post('/watchlist/:hirerId', async (req, res) => {
     const { hirerId } = req.params;
-    const { applicantId } = req.body;
+    const { applicantId, jobId } = req.body;
   
     try {
       let watchlist = await Watchlist.findOne({ hirer: hirerId });
@@ -178,12 +197,16 @@ router.post('/application', async (req, res) => {
         watchlist = new Watchlist({ hirer: hirerId });
       }
   
-      // Check if applicant is already in the watchlist
-      if (watchlist.applicants.includes(applicantId)) {
-        return res.status(400).json({ error: 'Applicant already in watchlist' });
+      // Check if the applicant-job pair is already in the watchlist
+      const isAlreadyInWatchlist = watchlist.applicants.some(
+        (app) => app.applicant.toString() === applicantId && app.job.toString() === jobId
+      );
+  
+      if (isAlreadyInWatchlist) {
+        return res.status(400).json({ error: 'Applicant already in watchlist for this job' });
       }
   
-      watchlist.applicants.push(applicantId);
+      watchlist.applicants.push({ applicant: applicantId, job: jobId });
       await watchlist.save();
   
       res.status(201).json(watchlist);
@@ -194,43 +217,45 @@ router.post('/application', async (req, res) => {
   });
   
   
+  
   router.get('/watchlist/:hirerId', async (req, res) => {
-    const { hirerId } = req.params;
-    const hirer = hirerId
-    const applicant = await Watchlist.findById(hirerId);
-
-    if (!applicant) {
-      return res.status(404).json({message: 'Applicant not found'});
+    try {
+      const { hirerId } = req.params;
+      const watchlist = await Watchlist.findOne({ hirer: hirerId })
+        .populate('applicants.applicant')
+        .populate('applicants.job');
+  
+      if (!watchlist) {
+        return res.status(404).json({ message: 'Watchlist not found' });
+      }
+  
+      res.json(watchlist.applicants);
+    } catch (error) {
+      console.error('Error fetching watchlist:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-
-    const watched = applicant._id;
-    console.log(watched)
-
   });
+  
+  
+  
 
   // Delete an applicant from the hirer's watchlist
-router.delete("/watchlist/:hirerId/:workerId", async (req, res) => {
-  try {
-    const { hirerId, workerId } = req.params;
-
-    // Remove applicant from hirer's watchlist
-    await Watchlist.findOneAndUpdate(
-      { hirer: hirerId },
-      { $pull: { applicants: workerId } }
-    );
-
-    // Remove job application from worker's applied jobs
-    await AppliedJob.findOneAndUpdate(
-      { workerId : workerId },
-      { $pull: { jobs : { hirer: hirerId } } }
-    );
-
-    res.status(200).json({ message: "Applicant removed from watchlist" });
-  } catch (error) {
-    console.error("Error removing applicant from watchlist:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+  router.delete("/watchlist/:hirerId/:workerId/:jobId", async (req, res) => {
+    try {
+      const { hirerId, workerId, jobId } = req.params;
+  
+      // Remove applicant from hirer's watchlist for the specific job
+      await Watchlist.findOneAndUpdate(
+        { hirer: hirerId },
+        { $pull: { applicants: { $elemMatch: { applicant: workerId, job: jobId } } } }
+      );
+      res.status(200).json({ message: "Applicant removed from watchlist" });
+    } catch (error) {
+      console.error("Error removing applicant from watchlist:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+  
 
 router.put('/update-profile', async (req, res) => {
   try {

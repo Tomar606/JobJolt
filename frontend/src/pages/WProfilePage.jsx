@@ -103,14 +103,14 @@ const WProfilePage = () => {
   };
 
   return (
-    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 pl-8 pr-8">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <div className="">
-            <img src={profilePicture} alt="Profile" className="rounded-full w-48 h-48 border-4 border-gray-300 shadow-xl" />
+    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 pl-4 pr-4 sm:pl-8 sm:pr-8">
+      <div className="flex flex-col sm:flex-row items-center justify-between">
+        <div className="flex items-center flex-col sm:flex-row">
+          <div className="flex-shrink-0">
+            <img src={profilePicture} alt="Profile" className="rounded-full w-32 h-32 sm:w-48 sm:h-48 border-4 border-gray-300 shadow-xl" />
           </div>
-          <div className="bg-white p-2 rounded-xl ml-4 border-2 border-gray-300 shadow-xl">
-            <div className="font-serif font-bold text-4xl">
+          <div className="bg-white p-2 rounded-xl sm:ml-4 border-2 border-gray-300 shadow-xl mt-4 sm:mt-0">
+            <div className="font-serif font-bold text-2xl sm:text-4xl">
               {formData.firstName} {formData.lastName}
             </div>
             <div className="font-bold">{formData.jobTitle}</div>
@@ -118,7 +118,7 @@ const WProfilePage = () => {
           {!isEditMode && (
             <button
               onClick={handleEditProfile}
-              className="ml-2 flex items-center justify-center w-12 h-12 rounded-full bg-white text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none focus:bg-gray-300 focus:text-gray-700 shadow-xl border-2 border-gray-300"
+              className="mt-4 sm:mt-0 sm:ml-2 flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none focus:bg-gray-300 focus:text-gray-700 shadow-xl border-2 border-gray-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ const WProfilePage = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-4 h-4 sm:w-6 sm:h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -141,7 +141,7 @@ const WProfilePage = () => {
       </div>
 
       {isEditMode ? (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className="mt-4">
           {/* Input fields for editing profile data */}
           <div className="flex flex-col space-y-4">
             <label htmlFor="profilePicture" className="font-bold">
@@ -361,9 +361,9 @@ const WProfilePage = () => {
           </button>
         </form>
       ) : (
-        <div className="w-full h-full bg-indigo-100 overflow-hidden">
-          <div className="flex h-full">
-            <div className="w-1/4 flex flex-col space-y-4 h-full overflow-hidden">
+        <div className="w-full h-full bg-indigo-100 overflow-hidden mt-4 sm:mt-0">
+          <div className="flex flex-col sm:flex-row h-full">
+            <div className="w-full sm:w-1/4 flex flex-col space-y-4 h-full overflow-hidden">
               <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow overflow-y-auto">
                 <div className="font-bold">Skills</div>
                 <div>{profileData?.skills}</div>
@@ -377,7 +377,7 @@ const WProfilePage = () => {
                 <div>{profileData?.hobbies}</div>
               </div>
             </div>
-            <div className="w-3/4 flex flex-col space-y-4 h-full overflow-hidden">
+            <div className="w-full sm:w-3/4 flex flex-col space-y-4 h-full overflow-hidden">
               <div className="bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl flex-grow">
                 <div className="font-bold">About Me</div>
                 <div>{profileData?.aboutMe}</div>
@@ -386,13 +386,12 @@ const WProfilePage = () => {
                 <div className="font-bold">Experience</div>
                 <div>{profileData?.experience}</div>
               </div>
-              <div className="flex space-x-4">
-               
-              <div className="w-1/2 bg-white p-4 m-2 mt-2 border-2 border-gray-300 rounded-2xl shadow-xl">
+              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <div className="w-full sm:w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl">
                   <div className="font-bold">Languages</div>
                   <div>{profileData?.languages}</div>
                 </div>
-                <div className="w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl">
+                <div className="w-full sm:w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl">
                   <div className="font-bold">Contact Me</div>
                   {/* <div>
                     {profileData?.portfolioLinks.split(",").map((link, index) => (
@@ -412,4 +411,3 @@ const WProfilePage = () => {
 };
 
 export default WProfilePage;
-
