@@ -16,7 +16,7 @@ export const HSignup = () => {
 
   const signup = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/hirer/hsignup", {
+      const response = await axios.post("https://jobjolt.onrender.com/api/v1/hirer/hsignup", {
         husername,
         hpassword,
         hfirstName,

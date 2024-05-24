@@ -11,7 +11,7 @@ const HirerJobsPage = () => {
         const hirerId = localStorage.getItem('hirerId');
         console.log(hirerId);
 
-        const response = await axios.get(`http://localhost:3000/api/v1/hirer/posted-jobs/${hirerId}`);
+        const response = await axios.get(`https://jobjolt.onrender.com/api/v1/hirer/posted-jobs/${hirerId}`);
         setJobs(response.data);
         console.log(response.data);
       } catch (error) {
@@ -24,7 +24,7 @@ const HirerJobsPage = () => {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/hirer/jobs/${jobId}`);
+      await axios.delete(`https://jobjolt.onrender.com/api/v1/hirer/jobs/${jobId}`);
       setJobs(jobs.filter(job => job._id !== jobId));
     } catch (error) {
       console.error('Error deleting job:', error);

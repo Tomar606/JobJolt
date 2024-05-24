@@ -15,7 +15,7 @@ const WProfilePage = () => {
   const fetchProfileData = async () => {
     try {
       const workerId = localStorage.getItem('workerId');
-      const response = await axios.get(`http://localhost:3000/api/v1/worker/profile/${workerId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/profile/${workerId}`);
       const data = response.data;
 
       setProfileData(data);
@@ -86,7 +86,7 @@ const WProfilePage = () => {
         formDataToSend.append(key, formData[key]);
       }
 
-      const response = await axios.put(`http://localhost:3000/api/v1/worker/profile/${workerId}`, formDataToSend, {
+      const response = await axios.put(`https://jobjolt.onrender.com/api/v1/worker/profile/${workerId}`, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

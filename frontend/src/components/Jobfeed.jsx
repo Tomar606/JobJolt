@@ -17,7 +17,7 @@ const JobList = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/worker/jobs`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/jobs`);
       setJobs(response.data);
       fetchAppliedJobs();
     } catch (error) {
@@ -27,7 +27,7 @@ const JobList = () => {
 
   const fetchAppliedJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/worker/applied-jobs/${workerId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/applied-jobs/${workerId}`);
       const appliedJobsMap = {};
       response.data.forEach(job => {
         appliedJobsMap[job._id] = true;
@@ -54,11 +54,11 @@ const JobList = () => {
       return;
     }
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/apply`, {
+      await axios.post(`https://jobjolt.onrender.com/api/v1/worker/apply`, {
         workerId,
         jobId
       });
-      await axios.post(`http://localhost:3000/api/v1/hirer/application`, {
+      await axios.post(`https://jobjolt.onrender.com/api/v1/hirer/application`, {
         workerId,
         jobId,
         hirerId
@@ -82,7 +82,7 @@ const JobList = () => {
 
   const handleLikeJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/like-job/${jobId}`);
+      await axios.post(`https://jobjolt.onrender.com/api/v1/worker/like-job/${jobId}`);
       setLikedJobs({ ...likedJobs, [jobId]: true });
     } catch (error) {
       console.error('Error liking job:', error);
@@ -91,7 +91,7 @@ const JobList = () => {
 
   const handleSaveJob = async (jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/worker/saved-jobs`, {
+      await axios.post(`https://jobjolt.onrender.com/api/v1/worker/saved-jobs`, {
         workerId,
         jobId
       });

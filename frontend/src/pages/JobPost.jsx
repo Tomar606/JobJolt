@@ -28,7 +28,7 @@ export const JobPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/hirer/post-job', formData);
+      const response = await axios.post('https://jobjolt.onrender.com/api/v1/hirer/post-job', formData);
       console.log('Job posted successfully:', response.data);
     } catch (error) {
       console.error('Error posting job:', error);
