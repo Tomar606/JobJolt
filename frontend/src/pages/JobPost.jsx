@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
-import { BackButton } from "@/components/HButtons"; // Ensure the correct path is used
+import { BackButton } from "@/components/HButtons";
 
 export const JobPost = () => {
   const hirerId = localStorage.getItem("hirerId");

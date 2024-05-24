@@ -28,7 +28,6 @@ async function getToken() {
       }
     });
 
-    // Handle the response
     if (response.status === 200) {
       const { access_token } = response.data;
       console.log('Access Token:', access_token);
