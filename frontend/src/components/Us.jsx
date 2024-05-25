@@ -1,31 +1,32 @@
-import React from "react"
-import PP from "@/assets/PP.jpg"
-import GST from "@/assets/GST.png"
+import React from "react";
+import PP from "@/assets/PP.jpg";
+import GST from "@/assets/GST.png";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export const Us = () => {
-    return <>
-        <div className="mx-auto p-8 space-y-8 text-white bg-black pt-20">
+    return (
+        <>
+            <div className="mx-auto p-8 space-y-8 text-white bg-black pt-20">
                 {/* About Us heading */}
                 <div className="text-3xl font-bold flex justify-center">About Us</div>
 
                 {/* Cards for founders */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Card for Pranshu Pandey */}
-                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex flex-col sm:flex-row items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={PP}
                             alt="Pranshu Pandey"
-                            className="w-32 h-32 rounded-full object-cover"
+                            className="w-32 h-32 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
                         />
-                        <div className="ml-4">
+                        <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
                             <div className="text-xl font-semibold">Pranshu Pandey</div>
                             <p className="mt-2">
                                 Pranshu's deep understanding of technology and software development has been crucial in creating a user-friendly platform that simplifies the hiring process.
                             </p>
-                            <div className="text-center mt-4">
+                            <div className="mt-4">
                                 <p>Follow Pranshu on:</p>
-                                <div className="flex justify-center space-x-4 mt-2">
+                                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
                                     <a href="https://github.com/pranshu0604" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-gray-300 text-3xl" />
                                     </a>
@@ -41,20 +42,20 @@ export const Us = () => {
                     </div>
 
                     {/* Card for Gaurav Singh Tomar */}
-                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex flex-col sm:flex-row items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={GST}
                             alt="Gaurav Singh Tomar"
-                            className="w-32 h-32 rounded-full object-cover"
+                            className="w-32 h-32 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
                         />
-                        <div className="ml-4">
+                        <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
                             <div className="text-xl font-semibold">Gaurav Singh Tomar</div>
                             <p className="mt-2">
                                 Gaurav's extensive experience in human resources and recruitment has been instrumental in developing a platform that caters to the needs of both workers and employers alike.
                             </p>
-                            <div className="text-center mt-4">
+                            <div className="mt-4">
                                 <p>Follow Gaurav on:</p>
-                                <div className="flex justify-center space-x-4 mt-2">
+                                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
                                     <a href="https://github.com/tomar606" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-gray-300 text-3xl" />
                                     </a>
@@ -96,6 +97,6 @@ export const Us = () => {
                 {/* Add more space between the text and the footer */}
                 <div className="h-12"></div>
             </div>
-
-    </>
-}
+        </>
+    );
+};

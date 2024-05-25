@@ -181,7 +181,7 @@ const Navbar = ({ isScrolled }) => {
 
   return (
     <div
-      className={`fixed w-full top-0 bg-black shadow-md px-5 border-white border-b z-50 ${
+      className={`fixed w-full top-0 bg-black shadow-md px-2 border-white border-b z-50 ${
         isScrolled ? "py-1" : "py-0"
       } transition-all duration-300`}
     >
