@@ -10,25 +10,25 @@ export const UsInShort = () => {
                 <div className="text-3xl sm:text-3xl font-bold sm:text-center">About Us</div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col sm:flex-row items-center bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex items-center bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={PP}
                             alt="Pranshu Pandey"
-                            className="w-32 h-32 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
+                            className="w-32 h-32 rounded-full object-cover"
                         />
-                        <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
+                        <div className="ml-4">
                             <div className="text-xl font-semibold">Pranshu Pandey</div>
                             <p className="mt-2">
-                                Pranshu's deep understanding of technology and software development has been crucial in creating JobJolt.
+                                Pranshu's deep understanding of technology and software development has been crucial in creating JobJolt. 
                             </p>
-                            <div className="mt-4">
+                            <div className="text-center mt-4">
                                 <p>Connect with Pranshu on:</p>
-                                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
+                                <div className="flex justify-center space-x-4 mt-2">
                                     <a href="https://github.com/pranshu0604" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-gray-300 text-3xl" />
                                     </a>
                                     <a href="https://twitter.com/notoriouspran" target="_blank" rel="noopener noreferrer">
-                                        <FaTwitter className="text-gray-400 hover:text-blue-300 text-3xl" />
+                                        <FaTwitter className="text-gray-400  hover:text-blue-300 text-3xl" />
                                     </a>
                                     <a href="https://www.linkedin.com/in/pranshu-pandey-5889b8279/" target="_blank" rel="noopener noreferrer">
                                         <FaLinkedin className="text-gray-400 hover:text-blue-700 text-3xl" />
@@ -38,21 +38,20 @@ export const UsInShort = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
+                    <div className="flex items-center bg-black p-4 rounded-lg shadow-sm border border-gray-100">
                         <img
                             src={GST}
                             alt="Gaurav Singh Tomar"
-                            className="w-32 h-32 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
+                            className="w-32 h-32 rounded-full object-cover"
                         />
-                        <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
+                        <div className="ml-4">
                             <div className="text-xl font-semibold">Gaurav Singh Tomar</div>
-                            <p className="mt-2">                            </p>
-                            <div className="mt-4">
-                                <p>
-I'm the Developer, Bxtch.                            </p>
+                            <p className="mt-2">
+                                I'm the Developer Bxtch.
+                            </p>
                             <div className="text-center mt-4">
                                 <p>Connect with Gaurav on:</p>
-                                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
+                                <div className="flex justify-center space-x-4 mt-2">
                                     <a href="https://github.com/tomar606" target="_blank" rel="noopener noreferrer">
                                         <FaGithub className="text-gray-400 hover:text-white text-3xl" />
                                     </a>
