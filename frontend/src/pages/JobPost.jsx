@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
-import { BackButton } from "@/components/HButtons"; // Ensure the correct path is used
+import { BackButton } from "@/components/HButtons";
 
 export const JobPost = () => {
   const hirerId = localStorage.getItem("hirerId");
@@ -28,13 +28,11 @@ export const JobPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/hirer/post-job', formData);
+      const response = await axios.post('https://jobjolt.onrender.com/api/v1/hirer/post-job', formData);
       console.log('Job posted successfully:', response.data);
-      // Redirect to a success page or display a success message
     } catch (error) {
       console.error('Error posting job:', error);
       console.log(localStorage.getItem.hirerId);
-      // Display an error message to the user
     }
   };
 

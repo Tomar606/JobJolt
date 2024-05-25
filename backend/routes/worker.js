@@ -123,7 +123,6 @@ router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 },
     const { workerId } = req.params;
     const worker = await Worker.findByIdAndUpdate(workerId, req.body, { new: true });
 
-    // Handle file upload for resume if a file is present
     if (req.files && req.files.resume) {
       worker.resume = {
         data: req.files.resume[0].buffer,
@@ -131,9 +130,8 @@ router.put('/profile/:workerId', upload.fields([{ name: 'resume', maxCount: 1 },
       };
     }
 
-    // Handle file upload for profile picture if a file is present
     if (req.files && req.files.profilePicture) {
-      const profilePictureData = req.files.profilePicture[0].buffer.toString('base64'); // Convert buffer to Base64 string
+      const profilePictureData = req.files.profilePicture[0].buffer.toString('base64'); 
       const profilePictureContentType = req.files.profilePicture[0].mimetype;
       worker.profilePicture = {
         data: profilePictureData,
@@ -160,10 +158,8 @@ router.get('/profile/:workerId', async (req, res) => {
       return res.status(404).json({ message: 'Profile not found' });
     }
 
-    // Add debug logging
     console.log('Worker found:', worker);
 
-    // Manually create the formatted worker response
     const formattedWorker = worker.toObject();
     if (worker.profilePicture && worker.profilePicture.data) {
       formattedWorker.profilePicture = {
@@ -178,7 +174,6 @@ router.get('/profile/:workerId', async (req, res) => {
       };
     }
 
-    // Add debug logging for formatted worker data
     console.log('Formatted worker data:', formattedWorker);
 
     res.json(formattedWorker);
@@ -195,15 +190,14 @@ router.get('/profile/:workerId', async (req, res) => {
 
 router.get('/jobs', async (req, res) => {
     const { page } = req.query;
-    const pageSize = 10; // Number of jobs per page
+    const pageSize = 10; 
     const skip = (page - 1) * pageSize;
   
     try {
-      // Fetch paginated jobs from the database
       const jobs = await Job.find()
         .skip(skip)
         .limit(pageSize)
-        .sort({ createdAt: -1 }); // Assuming jobs are sorted by creation date
+        .sort({ createdAt: -1 }); 
   
       res.json(jobs);
     } catch (error) {
@@ -220,16 +214,14 @@ router.get('/jobs', async (req, res) => {
 
   router.post('/like-job/:jobId', async (req, res) => {
     try {
-      // Check if user is authenticated
       if (!req._id) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
   
-      const workerId = req.user._id; // Access _id from req.user
+      const workerId = req.user._id;
       console.log("found!!")
       const { jobId } = req.params;
   
-      // Update worker's liked jobs
       await LikedJob.create({ workerId, jobId });
   
       res.json({ message: 'Job liked successfully' });
@@ -255,13 +247,12 @@ router.get('/jobs', async (req, res) => {
     }
   });
   
-  // Route to save a job for a worker
   router.post("/saved-jobs", async (req, res) => {
     try {
       const { workerId, jobId } = req.body;
       const savedJobs = await SavedJobs.findOneAndUpdate(
         { workerId },
-        { $addToSet: { savedJobs: jobId } }, // Add jobId to the savedJobs array if it's not already present
+        { $addToSet: { savedJobs: jobId } }, 
         { upsert: true, new: true }
       );
       res.json(savedJobs);
@@ -288,23 +279,19 @@ router.get('/jobs', async (req, res) => {
     }
   });
 
-  // worker can apply to jobs and acess the jobs he has applied to
 
 
   router.post('/apply', async (req, res) => {
     try {
       const { workerId, jobId } = req.body;
   
-      // Check if the worker has already applied to this job
       const existingApplication = await AppliedJob.findOne({ workerId });
   
       if (existingApplication) {
-        // If the worker has already applied to this job, update the existing document
         existingApplication.jobs.push(jobId);
         await existingApplication.save();
         res.status(200).json({ message: 'Job application updated successfully' });
       } else {
-        // If the worker hasn't applied to any job yet, create a new document
         const newApplication = new AppliedJob({
           workerId,
           jobs: [jobId]

@@ -15,7 +15,7 @@ const HProfile = () => {
 
     useEffect(() => {
         const hirerId = localStorage.getItem('hirerId');
-        axios.get(`http://localhost:3000/api/v1/hirer/profile/${hirerId}`)
+        axios.get(`https://jobjolt.onrender.com/api/v1/hirer/profile/${hirerId}`)
             .then(response => {
                 setHirer(response.data);
                 setFormData({
@@ -40,7 +40,7 @@ const HProfile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const hirerId = localStorage.getItem('hirerId');
-        axios.put('http://localhost:3000/api/v1/hirer/update-profile', { ...formData, hirerId })
+        axios.put('https://jobjolt.onrender.com/api/v1/hirer/update-profile', { ...formData, hirerId })
             .then(response => {
                 setHirer(response.data);
                 setEditMode(false);

@@ -122,14 +122,14 @@ const hirerSchema = new mongoose.Schema({
       default: null
   },
   companyLogo: {
-      type: String, // Assuming you will store a URL to the logo image
+      type: String,
       default: null
   }
 });
 
 const haccountSchema = new mongoose.Schema({
     hirerId: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to Worker model
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Hirer',
         required: true
     }
@@ -186,12 +186,12 @@ const jobSchema = new mongoose.Schema({
   const likedJobSchema = new mongoose.Schema({
     workerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Worker', // Reference to the Worker model
+      ref: 'Worker',
       required: true
     },
     jobId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
+      ref: 'Job',
       required: true
     }
   });
@@ -201,13 +201,13 @@ const jobSchema = new mongoose.Schema({
   const savedJobsSchema = new mongoose.Schema({
     workerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Worker", // Reference to the Worker model
+      ref: "Worker",
       required: true,
     },
     savedJobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Job", // Reference to the Job model
+        ref: "Job",
       },
     ],
   });
@@ -217,13 +217,13 @@ const jobSchema = new mongoose.Schema({
   const appliedJobSchema = new mongoose.Schema({
     workerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Worker', // Reference to the Worker model
+      ref: 'Worker',
       required: true
     },
     jobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Job', // Reference to the Job model
+        ref: 'Job',
         required: true
       }
     ]
@@ -234,17 +234,17 @@ const jobSchema = new mongoose.Schema({
   const applicationsSchema = new mongoose.Schema({
     hirerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Hirer', // Reference to the Hirer model
+      ref: 'Hirer',
       required: true
     },
     jobId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job', // Reference to the Job model
+      ref: 'Job',
       required: true
     },
     applicants: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Worker' // Reference to the Worker model
+      ref: 'Worker'
     }]
   });
   

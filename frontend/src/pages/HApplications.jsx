@@ -17,7 +17,7 @@ export const HirerApplicationsPage = () => {
 
   const fetchPostedJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/hirer/posted-jobs/${hirerId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/hirer/posted-jobs/${hirerId}`);
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching posted jobs:', error);
@@ -26,7 +26,7 @@ export const HirerApplicationsPage = () => {
 
   const fetchWatchlist = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/hirer/watchlist/${hirerId}`);
       setWatchlist(response.data);
     } catch (error) {
       console.error('Error fetching watchlist:', error);
@@ -35,7 +35,7 @@ export const HirerApplicationsPage = () => {
 
   const fetchApplications = async (jobId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/hirer/applications/${jobId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/hirer/applications/${jobId}`);
       setApplications(response.data.applicants);
       setSelectedJob(jobId);
     } catch (error) {
@@ -50,7 +50,7 @@ export const HirerApplicationsPage = () => {
 
   const rejectApplicant = async (applicantId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/hirer/application/${applicantId}`);
+      await axios.delete(`https://jobjolt.onrender.com/api/v1/hirer/application/${applicantId}`);
       setApplications(applications.filter(applicant => applicant._id !== applicantId));
     } catch (error) {
       console.error('Error rejecting applicant:', error);
@@ -59,7 +59,7 @@ export const HirerApplicationsPage = () => {
 
   const addToWatchlist = async (applicantId, jobId) => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/hirer/watchlist/${hirerId}`, { applicantId, jobId });
+      await axios.post(`https://jobjolt.onrender.com/api/v1/hirer/watchlist/${hirerId}`, { applicantId, jobId });
       setWatchlist([...watchlist, { applicantId, jobId }]);
     } catch (error) {
       console.error('Error adding to watchlist:', error);

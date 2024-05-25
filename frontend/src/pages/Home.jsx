@@ -53,7 +53,7 @@ const Home = () => {
         }}
       >
         <div className="flex flex-col justify-center items-start space-y-4">
-          <div className="text-3xl sm:text-5xl font-bold p-4 rounded-lg bg-black bg-opacity-65 relative">
+          <div className="text-3xl sm:text-5xl font-bold p-4 rounded-lg sm:bg-black bg-opacity-65 relative">
             Welcome to JobJolt
           </div>
           <div className="text-xl sm:text-2xl p-4 pb-0 pt-0 rounded-lg bg-transparent bg-opacity-65 relative">

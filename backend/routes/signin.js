@@ -74,13 +74,11 @@ router.post("/", async (req, res) => {
 router.get("/token", async (req, res) => {
     let username = req.header('username');
     try {
-        // Check db for existing access_token
         let existingToken = await CToken.findOne({ username: username });
         if (existingToken) {
             return res.json({ access_token: existingToken.access_token });
         }
 
-        // Request token from Weavy environment
         let response = await axios.post(
             `https://ec0233f4681040e6a0e5b1781baf756b.weavy.io/api/users/${username}/tokens`,
             { expires_in: 1577847600 },
@@ -94,7 +92,6 @@ router.get("/token", async (req, res) => {
 
         if (response.status === 200) {
             let data = response.data;
-            // Store the new access token in the database
             let newToken = new CToken({
                 username: username,
                 access_token: data.access_token
@@ -106,7 +103,7 @@ router.get("/token", async (req, res) => {
             return res.status(response.status).json({ message: "Could not get access token from server" });
         }
     } catch (error) {
-        console.error("Error requesting access token:", error); // Log the error
+        console.error("Error requesting access token:", error);
         return res.status(500).json({ message: "Error requesting access token", error: error.message });
     }
 });

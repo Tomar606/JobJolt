@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
@@ -15,7 +15,7 @@ export const Signup = () => {
 
     const handleSignup = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/worker/signup", {
+            const response = await axios.post("https://jobjolt.onrender.com/api/v1/worker/signup", {
                 username,
                 password,
                 firstName,

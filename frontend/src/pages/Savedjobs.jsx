@@ -10,7 +10,7 @@ export const SavedJobsPage = () => {
     const fetchSavedJobs = async () => {
       try {
         const workerId = localStorage.getItem("workerId");
-        const response = await axios.get(`http://localhost:3000/api/v1/worker/saved-jobs/${workerId}`);
+        const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/saved-jobs/${workerId}`);
         setSavedJobs(response.data);
       } catch (error) {
         console.error("Error fetching saved jobs:", error.message);
@@ -23,7 +23,7 @@ export const SavedJobsPage = () => {
   const handleUnsave = async (jobId) => {
     try {
       const workerId = localStorage.getItem("workerId");
-      await axios.delete(`http://localhost:3000/api/v1/worker/saved-jobs/${workerId}/${jobId}`);
+      await axios.delete(`https://jobjolt.onrender.com/api/v1/worker/saved-jobs/${workerId}/${jobId}`);
       setSavedJobs(savedJobs.filter((job) => job._id !== jobId));
     } catch (error) {
       console.error("Error unsaving job:", error.message);

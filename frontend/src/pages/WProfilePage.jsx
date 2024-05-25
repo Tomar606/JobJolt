@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import GSTback from "@/assets/GSTback.png";
 import WStats from "@/components/WStats";
 
 const WProfilePage = () => {
@@ -16,11 +15,11 @@ const WProfilePage = () => {
   const fetchProfileData = async () => {
     try {
       const workerId = localStorage.getItem('workerId');
-      const response = await axios.get(`http://localhost:3000/api/v1/worker/profile/${workerId}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/profile/${workerId}`);
       const data = response.data;
-  
+
       setProfileData(data);
-  
+
       if (data.profilePicture) {
         const base64String = `data:${data.profilePicture.contentType};base64,${data.profilePicture.data}`;
         setProfilePicture(base64String);
@@ -30,8 +29,6 @@ const WProfilePage = () => {
       console.error('Error fetching profile data:', error);
     }
   };
-  
-  
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -89,21 +86,21 @@ const WProfilePage = () => {
         formDataToSend.append(key, formData[key]);
       }
 
-      const response = await axios.put(`http://localhost:3000/api/v1/worker/profile/${workerId}`, formDataToSend, {
+      const response = await axios.put(`https://jobjolt.onrender.com/api/v1/worker/profile/${workerId}`, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       console.log("Profile updated successfully:", response.data);
       setIsEditMode(false);
-      fetchProfileData(); // Refresh profile data after update
+      fetchProfileData();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
 
   return (
-    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 pl-4 pr-4 sm:pl-8 sm:pr-8">
+    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 px-4 sm:px-8">
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center flex-col sm:flex-row">
           <div className="flex-shrink-0">
@@ -137,12 +134,11 @@ const WProfilePage = () => {
             </button>
           )}
         </div>
-        <WStats />
+        {/* <WStats /> */}
       </div>
 
       {isEditMode ? (
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="mt-4">
-          {/* Input fields for editing profile data */}
           <div className="flex flex-col space-y-4">
             <label htmlFor="profilePicture" className="font-bold">
               Profile Picture:
@@ -393,13 +389,13 @@ const WProfilePage = () => {
                 </div>
                 <div className="w-full sm:w-1/2 bg-white p-4 m-2 border-2 border-gray-300 rounded-2xl shadow-xl">
                   <div className="font-bold">Contact Me</div>
-                  {/* <div>
-                    {profileData?.portfolioLinks.split(",").map((link, index) => (
-                      <a key={index} href={link.trim()} className="block text-blue-600 hover:underline">
-                        {link.trim()}
-                      </a>
-                    ))}
-                  </div> */}
+                  <div>
+                  {typeof profileData?.portfolioLinks === 'string' && profileData.portfolioLinks.split(",").map((link, index) => (
+      <a key={index} href={link.trim()} className="block text-blue-600 hover:underline">
+        {link.trim()}
+      </a>
+    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "@/components/Navbar"; // Adjust the import path if needed
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Us } from "@/components/Us";
 

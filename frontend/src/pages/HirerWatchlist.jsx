@@ -13,7 +13,7 @@ export const WatchlistPage = () => {
 
   const fetchWatchlist = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/hirer/watchlist/${localStorage.getItem("hirerId")}`);
+      const response = await axios.get(`https://jobjolt.onrender.com/api/v1/hirer/watchlist/${localStorage.getItem("hirerId")}`);
       setApplicants(response.data);
     } catch (error) {
       console.error("Error fetching watchlist:", error);
@@ -22,7 +22,7 @@ export const WatchlistPage = () => {
 
   const handleRemoveFromWatchlist = async (applicantId, jobId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/hirer/watchlist/${localStorage.getItem("hirerId")}/${applicantId}/${jobId}`);
+      await axios.delete(`https://jobjolt.onrender.com/api/v1/hirer/watchlist/${localStorage.getItem("hirerId")}/${applicantId}/${jobId}`);
       fetchWatchlist();
     } catch (error) {
       console.error("Error removing applicant from watchlist:", error);
@@ -31,7 +31,6 @@ export const WatchlistPage = () => {
 
   const handleAcceptApplicant = async (applicantId, jobId) => {
     try {
-      // Implement your logic to accept the applicant with the given applicantId and jobId
       console.log(`Applicant ${applicantId} accepted for job ${jobId}`);
     } catch (error) {
       console.error("Error accepting applicant:", error);

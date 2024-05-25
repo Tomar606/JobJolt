@@ -8,7 +8,7 @@ export const Applications = () => {
     const fetchAppliedJobs = async () => {
       try {
         const workerId = localStorage.getItem("workerId");
-        const response = await axios.get(`http://localhost:3000/api/v1/worker/applied-jobs/${workerId}`);
+        const response = await axios.get(`https://jobjolt.onrender.com/api/v1/worker/applied-jobs/${workerId}`);
         setAppliedJobs(response.data);
       } catch (error) {
         console.error('Error fetching applied jobs:', error);
@@ -21,7 +21,7 @@ export const Applications = () => {
   const withdrawApplication = async (jobId) => {
     try {
       const workerId = localStorage.getItem("workerId");
-      await axios.delete(`http://localhost:3000/api/v1/worker/applied-jobs/${workerId}/${jobId}`);
+      await axios.delete(`https://jobjolt.onrender.com/api/v1/worker/applied-jobs/${workerId}/${jobId}`);
       setAppliedJobs(appliedJobs.filter(job => job._id !== jobId));
     } catch (error) {
       console.error('Error withdrawing application:', error);

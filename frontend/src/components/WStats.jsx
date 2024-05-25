@@ -1,5 +1,4 @@
 import React from "react";
-// import ProgressWheel from "./ProgressBar";
 
 
 const WStats = () => {

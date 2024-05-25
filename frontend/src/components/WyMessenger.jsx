@@ -22,13 +22,12 @@ async function getToken() {
       throw new Error('Username not found in localStorage');
     }
 
-    const response = await axios.get('http://localhost:3000/api/v1/signin/token', {
+    const response = await axios.get('https://jobjolt.onrender.com/api/v1/signin/token', {
       headers: {
         'username': username
       }
     });
 
-    // Handle the response
     if (response.status === 200) {
       const { access_token } = response.data;
       console.log('Access Token:', access_token);
