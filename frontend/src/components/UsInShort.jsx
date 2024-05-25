@@ -48,6 +48,7 @@ export const UsInShort = () => {
                             <div className="text-xl font-semibold">Gaurav Singh Tomar</div>
                             <p className="mt-2">                            </p>
                             <div className="mt-4">
+                                <p>
 I'm the Developer, Bxtch.                            </p>
                             <div className="text-center mt-4">
                                 <p>Connect with Gaurav on:</p>
