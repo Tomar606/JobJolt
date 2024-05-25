@@ -74,24 +74,13 @@ export const Us = () => {
                 {/* Additional content */}
                 <div className="space-y-6">
                     <p>
-                        JobJolt is the creation of two visionary entrepreneurs, Shri Pranshu Pandey and Shri Gaurav Singh Tomar. With a passion for innovation and a strong desire to transform the hiring process, they set out to build a platform that bridges the gap between talented job seekers and discerning employers.
-                    </p>
+                    On the frontend, we utilize React.js, a powerful JavaScript library for building interactive user interfaces. React's component-based architecture allows us to create modular, reusable UI elements, resulting in a more maintainable codebase. We further enhance the frontend with Tailwind CSS, a utility-first CSS framework that streamlines the styling process and ensures consistent design across the application.                    </p>
 
                     <p>
-                        Pranshu Pandey and Gaurav Singh Tomar bring a unique blend of expertise to the table. Pranshu's deep understanding of technology and software development, combined with Gaurav's extensive experience in human resources and recruitment, has resulted in a powerful platform that caters to the needs of both workers and employers alike.
-                    </p>
+                    For the backend infrastructure, we rely on Node.js and Express.js to build a fast and reliable server-side environment. Node.js provides a lightweight runtime for executing JavaScript code server-side, while Express.js simplifies the process of building RESTful APIs and handling HTTP requests. We store and manage our application data using MongoDB, a versatile NoSQL database, and leverage Mongoose, an Object Data Modeling (ODM) library, for seamless interaction with our database.                    </p>
 
                     <p>
-                        Their dedication to excellence and user satisfaction is evident in every aspect of JobJolt. Through their hard work and perseverance, they have created a user-friendly platform that simplifies the hiring process and enables meaningful connections.
-                    </p>
-
-                    <p>
-                        Both Pranshu and Gaurav are committed to continuously improving JobJolt, listening to feedback from users, and staying ahead of industry trends. Their goal is to make JobJolt the go-to platform for job seekers and employers alike, providing a seamless and efficient hiring experience for all.
-                    </p>
-
-                    <p>
-                        With Pranshu and Gaurav at the helm, JobJolt is poised for remarkable growth and success. Their commitment to their vision and mission ensures that the platform will continue to evolve and provide value to its users for years to come.
-                    </p>
+                    In addition to these core technologies, we employ JSON Web Tokens (JWT) for secure authentication and session management, ensuring that user data remains protected at all times. Our comprehensive tech stack enables us to deliver a feature-rich job portal that meets the needs of both job seekers and employers while maintaining high standards of performance and reliability.        </p>
                 </div>
 
                 {/* Add more space between the text and the footer */}
