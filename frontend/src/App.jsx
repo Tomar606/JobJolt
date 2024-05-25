@@ -1,6 +1,7 @@
 import React from "react"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import '@/index.css'
 import {
   BrowserRouter,
   Route,
@@ -58,7 +59,8 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ToastContainer
-        position="top-left"
+        position="bottom-center"
+        style={{ marginBottom: '25px' }}
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
