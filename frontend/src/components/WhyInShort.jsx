@@ -3,7 +3,7 @@ import { CiRead, CiTextAlignCenter, CiFileOn, CiPaperplane, CiMobile3, CiUser } 
 
 export const WhyInShort = () => {
     return (
-        <div className="mx-auto space-y-8 p-4 sm:p-8 bg-black text-white">
+        <div className="space-y-8 p-4 sm:p-8 bg-black text-white">
             <div className="space-y-8">
                 <div className="text-2xl sm:text-3xl font-bold text-center">Why JobJolt</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
