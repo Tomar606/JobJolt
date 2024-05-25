@@ -47,8 +47,7 @@ export const UsInShort = () => {
                         <div className="ml-4">
                             <div className="text-xl font-semibold">Gaurav Singh Tomar</div>
                             <p className="mt-2">
-                                Gaurav's extensive experience in human resources and recruitment has been instrumental in developing JobJolt.
-                            </p>
+I'm the Developer, Bxtch.                            </p>
                             <div className="text-center mt-4">
                                 <p>Connect with Gaurav on:</p>
                                 <div className="flex justify-center space-x-4 mt-2">

@@ -53,13 +53,13 @@ const Home = () => {
         }}
       >
         <div className="flex flex-col justify-center items-start space-y-4">
-          <div className="text-3xl sm:text-5xl font-bold p-4 rounded-lg sm:bg-black bg-opacity-65 relative">
+          <div className="text-3xl sm:text-5xl font-bold p-4 rounded-lg bg-opacity-50 bg-black relative">
             Welcome to JobJolt
           </div>
-          <div className="text-xl sm:text-2xl p-4 pb-0 pt-0 rounded-lg bg-transparent bg-opacity-65 relative">
+          <div className="text-xl sm:text-2xl p-4 pb-0 pt-0 rounded-lgt bg-opacity-50 bg-black relative">
             No more stress in HRM
           </div>
-          <div className="text-xl sm:text-2xl p-4 pt-0 rounded-lg bg-transparent opacity-65 relative">
+          <div className="text-xl sm:text-2xl p-4 pt-0 rounded-lg bg-opacity-50 bg-black relative">
             You got this!
           </div>
           {(!htoken)&&(!wtoken)&&<button className="button-64 relative left-5" role="button" onClick={toSignUp}><span className="text">Sign Up Now!</span></button>}

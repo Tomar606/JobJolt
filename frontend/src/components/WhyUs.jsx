@@ -34,19 +34,6 @@ export const WhyUs = () => {
                             Our mission is to empower workers and hirers by providing them with a user-friendly platform that enhances the hiring process. We strive to simplify the journey for all parties, enabling them to focus on their core strengths and achieve their respective goals.
                         </p>
                     </div>
-
-                    <div className="space-y-4">
-                        <div className="text-xl font-semibold">About Us</div>
-                        <p>
-                            JobJolt is the brainchild of Shri Pranshu Pandey and Shri Gaurav Singh Tomar. With a shared passion for innovation and a desire to streamline the hiring process, they have poured their expertise into creating an application that serves both workers and hirers with equal dedication. Their combined experience in technology and human resources has resulted in an intuitive and efficient platform that transforms the way people find jobs and make hiring decisions.
-                        </p>
-                        <p>
-                            In developing JobJolt, Pranshu and Gaurav have demonstrated their commitment to excellence and customer satisfaction. By leveraging cutting-edge technology and focusing on user experience, they have crafted a platform that brings people together, fostering connections that lead to meaningful and productive collaborations.
-                        </p>
-                        <p>
-                            JobJolt represents a new era in hiring management, where the process is as dynamic and adaptable as the talent and opportunities it connects. Join us on this journey and experience the future of hiring today. Let JobJolt propel you toward your next great opportunity or exceptional hire!
-                        </p>
-                    </div>
                 </div>
             </div>
 
