@@ -39,10 +39,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-screen">
+    <div>
       <Navbar isScrolled={isScrolled} />
       <div
-        className="h-screen flex justify-between items-center px-4 sm:px-20 text-white text-center"
+        className="w-full h-screen flex justify-between items-center px-4 sm:px-20 text-white text-center"
         style={{
           backgroundImage: `url(${girlworking})`,
           backgroundSize: "cover",

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
 import { BackButton } from "@/components/HButtons";
+import { Flip, toast } from "react-toastify";
+
 
 export const JobPost = () => {
   const hirerId = localStorage.getItem("hirerId");
@@ -30,6 +32,17 @@ export const JobPost = () => {
     try {
       const response = await axios.post('https://jobjolt.onrender.com/api/v1/hirer/post-job', formData);
       console.log('Job posted successfully:', response.data);
+      toast.success(`Job posted successfully !!`, {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+        });
     } catch (error) {
       console.error('Error posting job:', error);
       console.log(localStorage.getItem.hirerId);
@@ -40,7 +53,7 @@ export const JobPost = () => {
     <>
       <Navbar />
 
-      <div className="bg-black py-8 w-screen h-auto min-h-screen content-center">
+      <div className="bg-black py-8 h-auto min-h-screen content-center w-screen">
         <BackButton />
         <div className="w-4/5 mx-auto p-6 bg-gray-900 rounded-lg border-2 border-gray-400 pt-16 mt-20">
           <div className="flex justify-between items-center">
