@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DefPFP from '@/assets/DefPFP.jpg'
 import WStats from "@/components/WStats";
-import GSTback from "@/assets/GSTback.png"
 
 const WProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [profileData, setProfileData] = useState(null);
-  const [profilePicture, setProfilePicture] = useState();
+  // const [profilePicture, setProfilePicture] = useState();
 
   useEffect(() => {
     fetchProfileData();
@@ -21,11 +21,11 @@ const WProfilePage = () => {
 
       setProfileData(data);
 
-      if (data.profilePicture) {
-        const base64String = `data:${data.profilePicture.contentType};base64,${data.profilePicture.data}`;
-        setProfilePicture(base64String);
-        console.log(profilePicture)
-      }
+      // if (data.profilePicture) {
+      //   const base64String = `data:${data.profilePicture.contentType};base64,${data.profilePicture.data}`;
+      //   setProfilePicture(base64String);
+      //   console.log(profilePicture)
+      // }
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
@@ -46,7 +46,6 @@ const WProfilePage = () => {
     hobbies: "",
     portfolioLinks: "",
     resume: "",
-    profilePicture: "",
   });
 
   useEffect(() => {
@@ -101,11 +100,11 @@ const WProfilePage = () => {
   };
 
   return (
-    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 px-4 sm:px-8">
+    <div className="w-full h-full bg-indigo-100 overflow-hidden pt-20 px-4 pb-10 sm:px-8">
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center flex-col sm:flex-row">
           <div className="flex-shrink-0">
-            <img src={GSTback} alt="Profile" className="rounded-full w-32 h-32 sm:w-48 sm:h-48 border-4 border-gray-300 shadow-xl" />
+            <img src={DefPFP} alt="Profile" className="rounded-full w-32 h-32 sm:w-48 sm:h-48 border-4 border-gray-300 shadow-xl" />
           </div>
           <div className="bg-white p-2 rounded-xl sm:ml-4 border-2 border-gray-300 shadow-xl mt-4 sm:mt-0">
             <div className="font-serif font-bold text-2xl sm:text-4xl">
@@ -140,7 +139,7 @@ const WProfilePage = () => {
 
       {isEditMode ? (
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="mt-4">
-          <div className="flex flex-col space-y-4">
+          {/* <div className="flex flex-col space-y-4">
             <label htmlFor="profilePicture" className="font-bold">
               Profile Picture:
             </label>
@@ -151,7 +150,7 @@ const WProfilePage = () => {
               onChange={handleFileChange}
               className="border border-gray-300 rounded-md p-2"
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col space-y-4">
             <label htmlFor="firstName" className="font-bold">
@@ -337,7 +336,7 @@ const WProfilePage = () => {
             />
           </div>
 
-          <div className="flex flex-col space-y-4">
+          {/* <div className="flex flex-col space-y-4">
             <label htmlFor="resume" className="font-bold">
               Resume:
             </label>
@@ -348,7 +347,7 @@ const WProfilePage = () => {
               onChange={handleFileChange}
               className="border border-gray-300 rounded-md p-2"
             />
-          </div>
+          </div> */}
 
           <button
             type="submit"
