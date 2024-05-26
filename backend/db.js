@@ -1,8 +1,15 @@
+require('dotenv').config();
+
+
 const { access } = require('fs');
 const mongoose = require('mongoose');
 const { array } = require('zod');
-mongoose.connect("mongodb+srv://Tomar606:Tomar606@jobjolt.udtlr0d.mongodb.net/")
 
+const databaseUrl = process.env.DATABASE_URL;
+
+mongoose.connect(databaseUrl)
+  .then(() => console.log('Database connected successfully'))
+  .catch(err => console.log('Database connection error: ', err));
 
 const workerSchema = new mongoose.Schema({
   username: {

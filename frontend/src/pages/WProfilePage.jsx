@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import WStats from "@/components/WStats";
 import DefPFP from '@/assets/DefPFP.jpg'
+import WStats from "@/components/WStats";
 
 const WProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
