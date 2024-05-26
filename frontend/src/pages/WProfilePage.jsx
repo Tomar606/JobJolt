@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import WStats from "@/components/WStats";
+import GSTback from "@/assets/GSTback.png"
 
 const WProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -104,7 +105,7 @@ const WProfilePage = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center flex-col sm:flex-row">
           <div className="flex-shrink-0">
-            <img src={profilePicture} alt="Profile" className="rounded-full w-32 h-32 sm:w-48 sm:h-48 border-4 border-gray-300 shadow-xl" />
+            <img src={GSTback} alt="Profile" className="rounded-full w-32 h-32 sm:w-48 sm:h-48 border-4 border-gray-300 shadow-xl" />
           </div>
           <div className="bg-white p-2 rounded-xl sm:ml-4 border-2 border-gray-300 shadow-xl mt-4 sm:mt-0">
             <div className="font-serif font-bold text-2xl sm:text-4xl">
