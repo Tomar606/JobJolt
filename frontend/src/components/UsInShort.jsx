@@ -19,7 +19,7 @@ export const UsInShort = () => {
                         <div className="ml-4">
                             <div className="text-xl font-semibold">Pranshu Pandey</div>
                             <p className="mt-2">
-                                Pranshu's deep understanding of technology and software development has been crucial in creating JobJolt. 
+                                HEAD OF THE TABLE. 
                             </p>
                             <div className="text-center mt-4">
                                 <p>Connect with Pranshu on:</p>

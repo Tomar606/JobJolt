@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import LoadingSpinner from "@/components/Loader";
 export const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false)
   const toSignup = () => {
     let signup = "/choose";
     navigate(signup);
@@ -76,10 +76,12 @@ export const Signin = () => {
           </div>
 
           <div>
-            <button
+            {(!isLoading) ? <button
               type="button"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible.outline-offset-2 focus-visible:outline-indigo-600"
+
               onClick={async () => {
+                setIsLoading(true)
                 try {
                   const response = await axios.post(
                     "https://jobjolt.onrender.com/api/v1/signin",
@@ -94,16 +96,16 @@ export const Signin = () => {
                     localStorage.setItem("wfname", response.data.wfname);
                     localStorage.setItem("workerId", response.data.workerId);
                     localStorage.setItem("username", username)
-                    localStorage.setItem("utype",'Worker')
+                    localStorage.setItem("utype", 'Worker')
                   } else if (response.data.redirectTo === "/hdashboard") {
                     localStorage.setItem("htoken", response.data.htoken);
                     localStorage.setItem("hfname", response.data.hfname);
                     localStorage.setItem("hirerId", response.data.hirerId);
                     localStorage.setItem("username", username)
-                    localStorage.setItem("utype",'Hirer')
+                    localStorage.setItem("utype", 'Hirer')
                   }
                   console.log("Successfully signed in !!!");
-                  toast.success(`Signed In Successfully as ${(localStorage.getItem('wfname'))?(localStorage.getItem('wfname')):(localStorage.getItem('hfname'))}!`, {
+                  toast.success(`Signed In Successfully as ${(localStorage.getItem('wfname')) ? (localStorage.getItem('wfname')) : (localStorage.getItem('hfname'))}!`, {
                     position: "bottom-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -113,12 +115,12 @@ export const Signin = () => {
                     progress: undefined,
                     theme: "dark",
                     transition: Flip,
-                    });
+                  });
                   navigate(response.data.redirectTo);
-                } 
+                }
                 catch (error) {
-                  const statusCode=error.response.status
-                  if(statusCode===401){
+                  const statusCode = error.response.status
+                  if (statusCode === 401) {
                     toast.error("Icorrect e-mail or password!", {
                       position: "bottom-center",
                       autoClose: 3000,
@@ -130,7 +132,7 @@ export const Signin = () => {
                       theme: "dark",
                       transition: Flip,
                     });
-                  }else if(statusCode===411){
+                  } else if (statusCode === 411) {
                     toast.error("Invalid format for e-mail!", {
                       position: "bottom-center",
                       autoClose: 3000,
@@ -141,14 +143,15 @@ export const Signin = () => {
                       progress: undefined,
                       theme: "dark",
                       transition: Flip,
-                    });
+                    })
+                    setIsLoading(false);
                   }
                   console.error("Error signing in:", error);
                 }
               }}
             >
               Sign In
-            </button>
+            </button> : <center><LoadingSpinner /></center>}
           </div>
         </form>
 

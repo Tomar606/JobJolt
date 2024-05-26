@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "@/components/Loader";
 
 export const HSignup = () => {
   const [hfirstName, setHFirstName] = useState("");
   const [hlastName, setHLastName] = useState("");
   const [husername, setHUsername] = useState("");
   const [hpassword, setHPassword] = useState("");
+  const [isLoading,setIsLoading] = useState(false)
 
   const navigate = useNavigate();
 
@@ -15,6 +17,7 @@ export const HSignup = () => {
   };
 
   const signup = async () => {
+    setIsLoading(true)
     try {
       const response = await axios.post("https://jobjolt.onrender.com/api/v1/hirer/hsignup", {
         husername,
@@ -28,6 +31,7 @@ export const HSignup = () => {
       localStorage.setItem('username', husername)
       localStorage.setItem('utype', 'Hirer')
     } catch (error) {
+      setIsLoading(false)
       console.error("Error signing up:", error);
     }
   };
@@ -94,12 +98,12 @@ export const HSignup = () => {
           </div>
 
           <div>
-            <button
+            {(!isLoading)?<button
               onClick={signup}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Sign up
-            </button>
+            </button>:<center><LoadingSpinner/></center>}
           </div>
         </div>
 
